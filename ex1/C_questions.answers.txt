@@ -1,5 +1,13 @@
 # CSC 369 Fall 2010 - Excercise 1
+#
 # Zeeshan Qureshi
 # zeeshan.qureshi@utoronto.ca
-#
 # $Id$
+
+Question 1
+==========
+
+Since the function strlen returns an unsigned integer, so when we get the 
+length of an empty string, it is 0. Now when we subtract 1 from it in the
+second function, the unisgned integer overflows and causes the loop to read
+past the string endiing, eventually causing a segfault.
