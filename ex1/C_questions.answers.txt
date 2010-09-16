@@ -11,3 +11,35 @@ Since the function strlen returns an unsigned integer, so when we get the
 length of an empty string, it is 0. Now when we subtract 1 from it in the
 second function, the unisgned integer overflows and causes the loop to read
 past the string endiing, eventually causing a segfault.
+
+Question 2
+==========
+  A: p is a pointer to a pointer to an int
+  Declaration: int **p
+
+  B: p is an integer
+  Declaration: int p
+
+  C: p is a structure
+  Declaration: struct thread p
+
+  D: p is a pointer to a character
+  Declaration: char *p
+
+  E: p is a pointer to a function that accepts an int and char **
+  Declaration: int (*p)(int, char **)
+
+  F: p is an unsigned short
+  Declaration: u_int16_t p
+
+  G: printf returns an int
+  Declaration: int p
+
+  H: (3, 4.2) evaluates to 4.2
+  Declaration: double p
+
+  I: p is of type u_int32_t
+  Declaration: u_int32_t p
+
+  J: p is a pointer to u_int32_t
+  Declaration: u_int32_t *p
