@@ -43,3 +43,14 @@ Question 2
 
   J: p is a pointer to u_int32_t
   Declaration: u_int32_t *p
+
+Question 3
+==========
+  A: This macro checks if two pointers point to the same stack(by casting 
+      the STACK_MASK into the two pointers and checking for equality)
+
+  B: This macro maps the SYSCALL names to numbers. It does so by
+      concatenating the two tokens before expanding the macro.
+
+  C: This piece of code defines a macro, that in turn calls a macro which 
+     expands to a function call.
