@@ -64,7 +64,9 @@ int main(int argc, char **argv){
 
   /* Print final message, free up memory and exit */
   printf("Main thread: Test complete\n");
+
   pthread_mutex_destroy(&threadsCreated);
   free(threads);
+
   pthread_exit(NULL);
 }
