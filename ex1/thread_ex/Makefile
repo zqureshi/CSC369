@@ -4,7 +4,10 @@
 # zeeshan.qureshi@utoronto.ca
 # $Id$
 
-all: thread_ex
+all: clean thread_ex
 
 thread_ex: thread_ex.c
-	gcc -Wall -lpthread -o $@ $^
+	gcc -Wall -pedantic -g -lpthread --std=c99 -o $@ $^
+
+clean:
+	rm -f thread_ex
