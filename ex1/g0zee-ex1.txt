@@ -1,0 +1,41 @@
+Exercise 1: Pointers and Threading
+
+Type exercise
+3: Signed and Unsigned Integers (4)
+ -- 1 for pointing out that an unsigned integer - 1 is a large number.
+ -- 2 points for a complete description of (a) why garbage is printed or (b) why the seg fault occurs.
+ -- 1 point for a description of the other.
+
+KR: Why does the seg fault occur?
+
+10: Type questions (10)
+ -- 1 point each.
+A. int **
+B. int
+C. struct thread
+D. char *
+E. function pointer or "int*(int, char**)"
+F. unsigned short
+G. int
+H. float/double
+I. u_int32_t (or unsigned int)
+J. u_int32_t *
+
+2: Macro questions (6)
+ -- 1 point each for an expansion
+ -- 1 point for a description of the final value. For "A" this involves a description of the "&" operator; for "C", the comma operator and function pointer.
+
+KR: "&" is the bitwise and operator not a cast (-2)
+KR: B - so what is the value?
+KR: Explain in detail (-2)
+
+Thread exercise
+2: Makefile compiles code (2)
+2: Style: Code compiles without warnings (2)
+2: Style: Error handling implemented (2)
+ -- 1 point for error handling on the command line args.
+ -- 1 point for checking at least a few system call return values. 
+2: Ordering implemented correctly; does not rely on timing (2)
+2: Main thread joins with children (2)
+
+25: Total (30)
