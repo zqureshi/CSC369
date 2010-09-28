@@ -1,3 +1,9 @@
+/*
+ * CSC 369 Fall 2010 - Assignment 1
+ *
+ * $Id
+ */
+
 #define MEAN_FILE_SIZE 20
 #define NUM_FILES 5         /* The number of files in the file table */
 #define NUM_SLOTS 20        /* The number of slots in the cache array */

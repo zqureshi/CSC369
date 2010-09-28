@@ -1,3 +1,9 @@
+/*
+ * CSC 369 Fall 2010 - Assignment 1
+ *
+ * $Id
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -40,4 +46,10 @@ void *process(void *arg) {
 
 	printf("[%d] terminating\n", pid);
 	return 0;
+}
+
+int main(int argc, char **argv){
+  printf("Hello WOrld!!\n");
+
+  return 0;
 }

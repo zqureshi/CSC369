@@ -1,3 +1,9 @@
+/*
+ * CSC 369 Fall 2010 - Assignment 1
+ *
+ * $Id
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
