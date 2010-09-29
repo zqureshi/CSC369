@@ -28,6 +28,24 @@ struct bnode {
   struct bnode *next;
 };
 
+typedef struct bnode bNode;
+
+/* function returns pointer to node if found, else NULL */
+bNode *bNode_search(bNode *head, int block_num){
+  if(head == NULL)
+    return NULL;
+
+  bNode *curr = head;
+  while(curr != NULL){
+    if(curr->block_num == block_num)
+      return curr;
+
+    curr = curr->next;
+  }
+
+  return NULL;
+}
+
 struct file_table {
   int size;
   struct bnode *head;
