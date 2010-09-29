@@ -99,6 +99,29 @@ struct file_table ftable[NUM_FILES];
 /* array of mutexes for each file */
 pthread_mutex_t ftable_locks[NUM_FILES];
 
+/* mutex for io request */
+pthread_mutex_t io_lock;
+
+/* variable to track empty slots along with mutex */
+int slot_count = NUM_SLOTS;
+pthread_mutex_t slot_count_lock;
+
+/* return slot number if available else -1 */
+int get_empty_slot(){
+  pthread_mutex_lock(&slot_count_lock);
+
+  int ret_val;
+  if(slot_count > 0){
+    ret_val = NUM_SLOTS - slot_count;
+    slot_count--;
+  } else{
+    ret_val = -1;
+  }
+
+  pthread_mutex_unlock(&slot_count_lock);
+  return ret_val;
+}
+
 /* Initialize the file table data structure with file sizes 
  * chosen from a Geometric distribution.
  */
@@ -143,6 +166,18 @@ void init_cache() {
       exit(1);
     }
   }
+
+  /* Initialize io lock */
+  if(pthread_mutex_init(&io_lock, NULL) != 0){
+    fprintf(stderr, "Error Initializing Mutex\n");
+    exit(1);
+  }
+
+  /* Initialize io lock */
+  if(pthread_mutex_init(&slot_count_lock, NULL) != 0){
+    fprintf(stderr, "Error Initializing Mutex\n");
+    exit(1);
+  }
 }
 
 /* Simulates the read operation for the block block_num of file file_id, 
@@ -152,7 +187,30 @@ void init_cache() {
  *         2 if the requested block was invalid
  */
 int read_block(int pid, int file_id, int block_num) {
-  /* Implement this and change the return value */
+  /* check if file_id is valid */
+  if((file_id < 0) || (file_id >= NUM_FILES)){
+    return 2;
+  }
+
+  pthread_mutex_lock(&ftable_locks[file_id]);
+  
+  /* check if invalid request */
+  if((block_num < 0) || (block_num >= get_file_size(file_id))){
+    pthread_mutex_unlock(&ftable_locks[file_id]);
+    return 2;
+  } else if(bNode_search(ftable[file_id].head, block_num) != NULL){
+    pthread_mutex_unlock(&ftable_locks[file_id]);
+    return 1;
+  } else {
+    /* get empty slot if available else randomly select one */
+    int slot = get_empty_slot();
+    if(slot == -1){
+      slot = Equilikely(0, NUM_SLOTS-1);
+    }
+
+    pthread_mutex_lock(&cache_locks[slot]);
+  }
+
   return 0;
 }
 
