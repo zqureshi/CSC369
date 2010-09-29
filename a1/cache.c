@@ -50,8 +50,13 @@ void build_file_table() {
 /* Return the size of the file specified by fileid.
  */
 int get_file_size(int fileid) {
-  /* Implement this and change the return value */
-  return 0;
+  /* Since this function doesn't access the linked list structure,
+   * no synchronization should be needed in it's logic
+   */
+  if((fileid < 0) || (fileid > NUM_FILES))
+    return 0;
+  else
+    return ftable[fileid].size;
 }
 
 void init_cache() {

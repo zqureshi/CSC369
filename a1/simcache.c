@@ -49,7 +49,13 @@ void *process(void *arg) {
 }
 
 int main(int argc, char **argv){
-  printf("Hello WOrld!!\n");
+  /* Initialize all structures */
+  build_file_table();
+
+  /* print size of each file */
+  for(int i = 0; i < NUM_FILES; i++){
+    printf("File Number: %d, Size: %d\n", i, get_file_size(i));
+  }
 
   return 0;
 }
