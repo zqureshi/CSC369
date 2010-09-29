@@ -151,6 +151,7 @@ void init_cache() {
   for(int i = 0; i < NUM_SLOTS; i++){
     /* Initialize each slot to free */
     cache[i].file_id = -1;
+    cache[i].dirty = 0;
 
     /* Initialize mutex for each slot */
     if(pthread_mutex_init(&cache_locks[i], NULL) != 0){
@@ -173,11 +174,40 @@ void init_cache() {
     exit(1);
   }
 
-  /* Initialize io lock */
+  /* Initialize slot_count lock */
   if(pthread_mutex_init(&slot_count_lock, NULL) != 0){
     fprintf(stderr, "Error Initializing Mutex\n");
     exit(1);
   }
+}
+
+void evict_block(int slot){
+  int file_id = cache[slot].file_id;
+  int block_num = cache[slot].block_num;
+
+  if(cache[slot].dirty == 1){
+    /* copy block from cache to disk
+     * i.e. sleep for DISK_TIME */
+    struct timespec sleep_time, sleep_rem;
+    sleep_time.tv_sec = 0;
+    sleep_time.tv_nsec = DISK_TIME;
+
+    /* Only one thread can access disk at a time */
+    pthread_mutex_lock(&io_lock);
+    nanosleep(&sleep_time, &sleep_rem);
+    pthread_mutex_unlock(&io_lock);
+
+    /* Now mark slot as non-dirty */
+    cache[slot].dirty = 0;
+  } 
+
+  /* remove block from owning file's list */
+  pthread_mutex_lock(&ftable_locks[file_id]);
+  ftable[file_id].head = bNode_remove(ftable[file_id].head, block_num);
+  pthread_mutex_unlock(&ftable_locks[file_id]);
+
+  /* mark slot as free */
+  cache[slot].file_id = -1;
 }
 
 /* Simulates the read operation for the block block_num of file file_id, 
@@ -224,6 +254,33 @@ int read_block(int pid, int file_id, int block_num) {
   }
 
   pthread_mutex_lock(&cache_locks[slot]);
+
+  /* if block not empty, evict it */
+  if(cache[slot].file_id != -1){
+    evict_block(slot);
+  }
+
+  /* copy block from disk to cache
+   * i.e. sleep for DISK_TIME */
+  struct timespec sleep_time, sleep_rem;
+  sleep_time.tv_sec = 0;
+  sleep_time.tv_nsec = DISK_TIME;
+
+  /* only one thread can access disk at a time */
+  pthread_mutex_lock(&io_lock);
+  nanosleep(&sleep_time, &sleep_rem);
+  pthread_mutex_unlock(&io_lock);
+
+  /* update the slot with block info */
+  cache[slot].file_id = file_id;
+  cache[slot].block_num = block_num;
+  cache[slot].dirty = 0;
+
+  /* now add the block info to file list */
+  pthread_mutex_lock(&ftable_locks[file_id]);
+  ftable[file_id].head = bNode_add(ftable[file_id].head, block_num, slot);
+  pthread_mutex_unlock(&ftable_locks[file_id]);
+
   pthread_mutex_unlock(&cache_locks[slot]);
 
   return 0;
@@ -244,25 +301,29 @@ int main(int argc, char **argv){
   build_file_table();
   init_cache();
 
-  for(int i=5; i>=0; i--){
-    ftable[0].head = bNode_add(ftable[0].head, i, 0);
-  }
+  /* read a couple of block from file 0 */
+  read_block(0, 0, 1);
+  read_block(0, 2, 1);
+  read_block(0, 0, 2);
+  read_block(0, 2, 2);
+  read_block(0, 0, 3);
+  read_block(0, 2, 3);
+  read_block(0, 0, 4);
+  read_block(0, 2, 4);
+  read_block(0, 0, 5);
+  read_block(0, 2, 5);
+  read_block(0, 0, 6);
+  read_block(0, 2, 6);
+  read_block(0, 0, 7);
+  read_block(0, 2, 7);
+  read_block(0, 0, 8);
+  read_block(0, 2, 8);
+  read_block(0, 0, 9);
+  read_block(0, 2, 9);
+  read_block(0, 0, 10);
+  read_block(0, 2, 10);
 
-  ftable[0].head = bNode_remove(ftable[0].head, 3);
-
-  /* print list */
-  bNode *curr = ftable[0].head;
-  while(curr != NULL){
-    printf("%d\n", curr->block_num);
-    curr = curr->next;
-  }
-
-  printf("read_block: %d\n", read_block(1, 0, 5));
-  printf("read_block: %d\n", read_block(1, 0, 4));
-  printf("read_block: %d\n", read_block(1, 0, 2));
-  printf("read_block: %d\n", read_block(1, 0, 3));
-  printf("read_block: %d\n", read_block(1, 0, 1));
-  printf("read_block: %d\n", read_block(1, 0, 27));
+  read_block(0, 0, 0);
 
   return 0;
 }
