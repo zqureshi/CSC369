@@ -100,8 +100,7 @@ struct file_table ftable[NUM_FILES];
 pthread_mutex_t ftable_locks[NUM_FILES];
 
 /* Initialize the file table data structure with file sizes 
- * chosen from a Geometric distribution, as well as initialize
- * the mutexes for each file
+ * chosen from a Geometric distribution.
  */
 void build_file_table() {
   int i;
@@ -110,12 +109,6 @@ void build_file_table() {
     double k = Geometric(p);
     ftable[i].size = k + 1;  /* Files can't have size 0 */
     ftable[i].head = NULL;
-
-    /* Initialize mutex for each file */
-    if(pthread_mutex_init(&ftable_locks[i], NULL) != 0){
-      fprintf(stderr, "Error Initializing Mutex\n");
-      exit(1);
-    }
   }
 }
 
@@ -138,6 +131,14 @@ void init_cache() {
 
     /* Initialize mutex for each slot */
     if(pthread_mutex_init(&cache_locks[i], NULL) != 0){
+      fprintf(stderr, "Error Initializing Mutex\n");
+      exit(1);
+    }
+  }
+
+  /* Initialize mutex for each file */
+  for(int i = 0; i < NUM_FILES; i++){
+    if(pthread_mutex_init(&ftable_locks[i], NULL) != 0){
       fprintf(stderr, "Error Initializing Mutex\n");
       exit(1);
     }
