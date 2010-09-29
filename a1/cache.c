@@ -19,6 +19,9 @@ struct slot {
 /* The global variable holding the cache structure */
 struct slot cache[NUM_SLOTS];
 
+/* array of mutexes for each slot */
+pthread_mutex_t slot_locks[NUM_SLOTS];
+
 struct bnode {
   int block_num;
   int cache_index;
@@ -53,14 +56,23 @@ int get_file_size(int fileid) {
   /* Since this function doesn't access the linked list structure,
    * no synchronization should be needed in it's logic
    */
-  if((fileid < 0) || (fileid > NUM_FILES))
+  if((fileid < 0) || (fileid >= NUM_FILES))
     return 0;
   else
     return ftable[fileid].size;
 }
 
 void init_cache() {
-  /* Implement this */
+  for(int i = 0; i < NUM_SLOTS; i++){
+    /* Initialize each slot to free */
+    cache[i].file_id = -1;
+
+    /* Initialize mutex for each slot */
+    if(pthread_mutex_init(&slot_locks[i], NULL) != 0){
+      fprintf(stderr, "Error Initializing Mutex\n");
+      exit(1);
+    }
+  }
 }
 
 /* Simulates the read operation for the block block_num of file file_id, 

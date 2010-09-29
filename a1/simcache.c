@@ -51,6 +51,7 @@ void *process(void *arg) {
 int main(int argc, char **argv){
   /* Initialize all structures */
   build_file_table();
+  init_cache();
 
   /* print size of each file */
   for(int i = 0; i < NUM_FILES; i++){
