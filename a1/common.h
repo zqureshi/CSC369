@@ -1,7 +1,7 @@
 /*
  * CSC 369 Fall 2010 - Assignment 1
  *
- * $Id
+ * $Id$
  */
 
 #define MEAN_FILE_SIZE 20

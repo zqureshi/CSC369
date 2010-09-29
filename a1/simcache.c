@@ -1,7 +1,7 @@
 /*
  * CSC 369 Fall 2010 - Assignment 1
  *
- * $Id
+ * $Id$
  */
 
 #include <stdio.h>

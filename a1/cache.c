@@ -1,7 +1,7 @@
 /*
  * CSC 369 Fall 2010 - Assignment 1
  *
- * $Id
+ * $Id$
  */
 
 #include <stdio.h>
@@ -59,7 +59,7 @@ bNode *bNode_add(bNode *head, int block_num, int cache_index){
   return temp;
 }
 
-/* remove node fmro list and return the head */
+/* remove node from list and return the head */
 bNode *bNode_remove(bNode *head, int block_num){
   bNode *prev, *curr, *toRemove;
   int found = 0;
@@ -87,7 +87,6 @@ bNode *bNode_remove(bNode *head, int block_num){
   free(toRemove);
   return head;
 }
-
 
 struct file_table {
   int size;
