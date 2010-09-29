@@ -46,6 +46,18 @@ bNode *bNode_search(bNode *head, int block_num){
   return NULL;
 }
 
+bNode *bNode_add(bNode *head, int block_num, int cache_index){
+  bNode *temp = malloc(sizeof (bNode));
+
+  /* Initialize node */
+  temp->block_num = block_num;
+  temp->cache_index = cache_index;
+
+  temp->next = head;
+
+  return temp;
+}
+
 struct file_table {
   int size;
   struct bnode *head;
