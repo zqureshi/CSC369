@@ -46,6 +46,7 @@ bNode *bNode_search(bNode *head, int block_num){
   return NULL;
 }
 
+/* add new node to front of list and return new head */
 bNode *bNode_add(bNode *head, int block_num, int cache_index){
   bNode *temp = malloc(sizeof (bNode));
 
@@ -58,6 +59,36 @@ bNode *bNode_add(bNode *head, int block_num, int cache_index){
   return temp;
 }
 
+/* remove node fmro list and return the head */
+bNode *bNode_remove(bNode *head, int block_num){
+  bNode *prev, *curr, *toRemove;
+  int found = 0;
+
+  prev = curr = head;
+  while(curr != NULL){
+    if(curr->block_num == block_num){
+      found = 1;
+      toRemove = curr;
+      break;
+    }
+
+    prev = curr;
+    curr = curr->next;
+  }
+
+  if(found == 0)
+    return head;
+
+  if(toRemove == head)
+    head = head->next;
+  else 
+    prev->next = toRemove->next;
+
+  free(toRemove);
+  return head;
+}
+
+
 struct file_table {
   int size;
   struct bnode *head;
@@ -65,7 +96,6 @@ struct file_table {
 
 /* The global variable holding the file table */
 struct file_table ftable[NUM_FILES];
-
 
 /* Initialize the file table data structure with file sizes 
  * chosen from a Geometric distribution.
