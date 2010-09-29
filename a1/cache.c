@@ -197,19 +197,34 @@ int read_block(int pid, int file_id, int block_num) {
   /* check if invalid request */
   if((block_num < 0) || (block_num >= get_file_size(file_id))){
     pthread_mutex_unlock(&ftable_locks[file_id]);
+
     return 2;
   } else if(bNode_search(ftable[file_id].head, block_num) != NULL){
+    /* if block found in cache */
     pthread_mutex_unlock(&ftable_locks[file_id]);
-    return 1;
-  } else {
-    /* get empty slot if available else randomly select one */
-    int slot = get_empty_slot();
-    if(slot == -1){
-      slot = Equilikely(0, NUM_SLOTS-1);
-    }
 
-    pthread_mutex_lock(&cache_locks[slot]);
+    /* sleep for MEM_TIME */
+    struct timespec sleep_time, sleep_rem;
+    sleep_time.tv_sec = 0;
+    sleep_time.tv_nsec = MEM_TIME;
+
+    nanosleep(&sleep_time, &sleep_rem);
+
+    return 1;
   }
+
+  /* unlock file since we're not going to modify it until
+   * we've copied the block over to the cache */
+  pthread_mutex_unlock(&ftable_locks[file_id]);
+
+  /* get empty slot if available else randomly select one */
+  int slot = get_empty_slot();
+  if(slot == -1){
+    slot = Equilikely(0, NUM_SLOTS-1);
+  }
+
+  pthread_mutex_lock(&cache_locks[slot]);
+  pthread_mutex_unlock(&cache_locks[slot]);
 
   return 0;
 }
@@ -222,5 +237,32 @@ int read_block(int pid, int file_id, int block_num) {
  */
 int write_block(int pid, int file_id, int block_num) {
   /* Implement this and change the return value */
+  return 0;
+}
+
+int main(int argc, char **argv){
+  build_file_table();
+  init_cache();
+
+  for(int i=5; i>=0; i--){
+    ftable[0].head = bNode_add(ftable[0].head, i, 0);
+  }
+
+  ftable[0].head = bNode_remove(ftable[0].head, 3);
+
+  /* print list */
+  bNode *curr = ftable[0].head;
+  while(curr != NULL){
+    printf("%d\n", curr->block_num);
+    curr = curr->next;
+  }
+
+  printf("read_block: %d\n", read_block(1, 0, 5));
+  printf("read_block: %d\n", read_block(1, 0, 4));
+  printf("read_block: %d\n", read_block(1, 0, 2));
+  printf("read_block: %d\n", read_block(1, 0, 3));
+  printf("read_block: %d\n", read_block(1, 0, 1));
+  printf("read_block: %d\n", read_block(1, 0, 27));
+
   return 0;
 }

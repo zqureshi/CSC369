@@ -48,7 +48,7 @@ void *process(void *arg) {
 	return 0;
 }
 
-int main(int argc, char **argv){
+int _main(int argc, char **argv){
   /* Initialize all structures */
   build_file_table();
   init_cache();
