@@ -20,7 +20,7 @@ struct slot {
 struct slot cache[NUM_SLOTS];
 
 /* array of mutexes for each slot */
-pthread_mutex_t slot_locks[NUM_SLOTS];
+pthread_mutex_t cache_locks[NUM_SLOTS];
 
 struct bnode {
   int block_num;
@@ -96,8 +96,12 @@ struct file_table {
 /* The global variable holding the file table */
 struct file_table ftable[NUM_FILES];
 
+/* array of mutexes for each file */
+pthread_mutex_t ftable_locks[NUM_FILES];
+
 /* Initialize the file table data structure with file sizes 
- * chosen from a Geometric distribution.
+ * chosen from a Geometric distribution, as well as initialize
+ * the mutexes for each file
  */
 void build_file_table() {
   int i;
@@ -106,6 +110,12 @@ void build_file_table() {
     double k = Geometric(p);
     ftable[i].size = k + 1;  /* Files can't have size 0 */
     ftable[i].head = NULL;
+
+    /* Initialize mutex for each file */
+    if(pthread_mutex_init(&ftable_locks[i], NULL) != 0){
+      fprintf(stderr, "Error Initializing Mutex\n");
+      exit(1);
+    }
   }
 }
 
@@ -127,7 +137,7 @@ void init_cache() {
     cache[i].file_id = -1;
 
     /* Initialize mutex for each slot */
-    if(pthread_mutex_init(&slot_locks[i], NULL) != 0){
+    if(pthread_mutex_init(&cache_locks[i], NULL) != 0){
       fprintf(stderr, "Error Initializing Mutex\n");
       exit(1);
     }
