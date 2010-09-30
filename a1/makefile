@@ -7,8 +7,13 @@ LIBS  = -lpthread -lm
 
 all: clean simcache
 
+debug: clean simcache-dbg
+
 simcache: rv.c cache.c simcache.c
 	gcc ${FLAGS} ${LIBS} -o $@ $^
+
+simcache-dbg: rv.c cache.c simcache.c
+	gcc ${FLAGS} -D DEBUG ${LIBS} -o simcache $^
 
 clean:
 	rm -f simcache

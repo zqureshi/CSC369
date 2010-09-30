@@ -276,6 +276,9 @@ int read_block(int pid, int file_id, int block_num) {
     pthread_mutex_lock(&cache_locks[slot]);
     /* check if slot hasn't been re-written */
     if((cache[slot].file_id == file_id) && (cache[slot].block_num == block_num)){
+#ifdef DEBUG
+      printf("file %d, block %d, slot %d, read from cache\n", file_id, block_num, slot);
+#endif
       /* sleep for MEM_TIME */
       struct timespec sleep_time;
       sleep_timespec(&sleep_time, MEM_TIME);
@@ -285,6 +288,9 @@ int read_block(int pid, int file_id, int block_num) {
       pthread_mutex_unlock(&cache_locks[slot]);
       return 1;
     } else {
+#ifdef DEBUG
+      printf("file %d, block %d, slot %d, slot overwritten\n", file_id, block_num, slot);
+#endif
       pthread_mutex_unlock(&cache_locks[slot]);
     }
   }
@@ -302,6 +308,9 @@ int read_block(int pid, int file_id, int block_num) {
     slot = Equilikely(0, NUM_SLOTS-1);
   }
 
+#ifdef DEBUG
+  printf("file %d, block %d, slot %d, read from disk\n", file_id, block_num, slot);
+#endif
   pthread_mutex_lock(&cache_locks[slot]);
 
   /* if block not empty, evict it */
@@ -348,6 +357,7 @@ int write_block(int pid, int file_id, int block_num) {
 
   pthread_mutex_lock(&ftable_locks[file_id]);
   bNode *node = NULL;
+  int found = 0;
   
   /* check if invalid request */
   if((block_num < 0) || (block_num >= get_file_size(file_id))){
@@ -356,12 +366,18 @@ int write_block(int pid, int file_id, int block_num) {
     return 2;
   } else if((node = bNode_search(ftable[file_id].head, block_num)) != NULL){
     /* if block found in cache */
+    found = 1;
     int slot = node->cache_index;
     pthread_mutex_unlock(&ftable_locks[file_id]);
 
     /* lock slot and write */
     pthread_mutex_lock(&cache_locks[slot]);
 
+    /* check if slot hasn't been re-written */
+    if((cache[slot].file_id == file_id) && (cache[slot].block_num == block_num)){
+#ifdef DEBUG
+    printf("file %d, block %d, slot %d, write to cache\n", file_id, block_num, slot);
+#endif
     /* sleep for MEM_TIME */
     struct timespec sleep_time;
     sleep_timespec(&sleep_time, MEM_TIME);
@@ -371,11 +387,60 @@ int write_block(int pid, int file_id, int block_num) {
     cache[slot].dirty = 1;
 
     pthread_mutex_unlock(&cache_locks[slot]);
-
     return 1;
+    } else {
+#ifdef DEBUG
+    printf("file %d, block %d, slot %d, slot overwritten\n", file_id, block_num, slot);
+#endif
+    pthread_mutex_unlock(&cache_locks[slot]);
+    }
   }
 
+  /* if block was found then file has already been unlocked */
+  if(found == 0){
+    /* unlock file since we're not going to modify it until
+     * we've copied the block over to the cache */
+    pthread_mutex_unlock(&ftable_locks[file_id]);
+  }
+
+  /* get empty slot if available else randomly select one */
+  int slot = get_empty_slot();
+  if(slot == -1){
+    slot = Equilikely(0, NUM_SLOTS-1);
+  }
+
+#ifdef DEBUG
+  printf("file %d, block %d, slot %d, write to disk\n", file_id, block_num, slot);
+#endif
+  pthread_mutex_lock(&cache_locks[slot]);
+
+  /* if block not empty, evict it */
+  if(cache[slot].file_id != -1){
+    evict_block(slot);
+  }
+
+  /* copy block from disk to cache
+   * i.e. sleep for DISK_TIME */
+  struct timespec sleep_time;
+  sleep_timespec(&sleep_time, DISK_TIME);
+
+  /* only one thread can access disk at a time */
+  pthread_mutex_lock(&io_lock);
+  nanosleep(&sleep_time, NULL);
+  pthread_mutex_unlock(&io_lock);
+
+  /* update the slot with block info */
+  cache[slot].file_id = file_id;
+  cache[slot].block_num = block_num;
+  cache[slot].dirty = 1;
+
+  /* now add the block info to file list */
+  pthread_mutex_lock(&ftable_locks[file_id]);
+  ftable[file_id].head = bNode_add(ftable[file_id].head, block_num, slot);
   pthread_mutex_unlock(&ftable_locks[file_id]);
+
+  pthread_mutex_unlock(&cache_locks[slot]);
+
   return 0;
 }
 
