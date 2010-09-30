@@ -325,7 +325,41 @@ int read_block(int pid, int file_id, int block_num) {
  *         2 if the requested block was invalid
  */
 int write_block(int pid, int file_id, int block_num) {
-  /* Implement this and change the return value */
+  /* check if file_id i s valid */
+  if((file_id < 0) || (file_id >= NUM_FILES)){
+    return 2;
+  }
+
+  pthread_mutex_lock(&ftable_locks[file_id]);
+  bNode *node = NULL;
+  
+  /* check if invalid request */
+  if((block_num < 0) || (block_num >= get_file_size(file_id))){
+    pthread_mutex_unlock(&ftable_locks[file_id]);
+
+    return 2;
+  } else if((node = bNode_search(ftable[file_id].head, block_num)) != NULL){
+    /* if block found in cache */
+    int slot = node->cache_index;
+    pthread_mutex_unlock(&ftable_locks[file_id]);
+
+    /* lock slot and write */
+    pthread_mutex_lock(&cache_locks[slot]);
+
+    /* sleep for MEM_TIME */
+    struct timespec sleep_time, sleep_rem;
+    sleep_timespec(&sleep_time, MEM_TIME);
+    nanosleep(&sleep_time, &sleep_rem);
+
+    /* update dirty flag */
+    cache[slot].dirty = 1;
+
+    pthread_mutex_unlock(&cache_locks[slot]);
+
+    return 1;
+  }
+
+  pthread_mutex_unlock(&ftable_locks[file_id]);
   return 0;
 }
 
