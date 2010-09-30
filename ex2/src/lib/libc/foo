@@ -1,0 +1,58 @@
+# 1 "syscalls.S"
+# 1 "<built-in>"
+# 1 "<command line>"
+# 1 "syscalls.S"
+# 12 "syscalls.S"
+# 1 "/u/demke/csc369/root/include/machine/asmdefs.h" 1
+# 13 "syscalls.S" 2
+# 50 "syscalls.S"
+   .set noreorder
+   .text
+   .type __syscall,@function
+   .ent __syscall
+__syscall:
+   syscall
+   beq $7, $0, 1f
+   nop
+   sw $2, errno
+   li $3, -1
+   li $2, -1
+1:
+   j $31
+   nop
+   .end __syscall
+   .set reorder
+
+.set noreorder ; .globl _exit ; .type _exit,@function ; .ent _exit ; _exit: ; j __syscall ; addiu $2, $0, 0 ; .end _exit ; .set reorder
+.set noreorder ; .globl execv ; .type execv,@function ; .ent execv ; execv: ; j __syscall ; addiu $2, $0, 1 ; .end execv ; .set reorder
+.set noreorder ; .globl fork ; .type fork,@function ; .ent fork ; fork: ; j __syscall ; addiu $2, $0, 2 ; .end fork ; .set reorder
+.set noreorder ; .globl waitpid ; .type waitpid,@function ; .ent waitpid ; waitpid: ; j __syscall ; addiu $2, $0, 3 ; .end waitpid ; .set reorder
+.set noreorder ; .globl open ; .type open,@function ; .ent open ; open: ; j __syscall ; addiu $2, $0, 4 ; .end open ; .set reorder
+.set noreorder ; .globl read ; .type read,@function ; .ent read ; read: ; j __syscall ; addiu $2, $0, 5 ; .end read ; .set reorder
+.set noreorder ; .globl write ; .type write,@function ; .ent write ; write: ; j __syscall ; addiu $2, $0, 6 ; .end write ; .set reorder
+.set noreorder ; .globl close ; .type close,@function ; .ent close ; close: ; j __syscall ; addiu $2, $0, 7 ; .end close ; .set reorder
+.set noreorder ; .globl reboot ; .type reboot,@function ; .ent reboot ; reboot: ; j __syscall ; addiu $2, $0, 8 ; .end reboot ; .set reorder
+.set noreorder ; .globl sync ; .type sync,@function ; .ent sync ; sync: ; j __syscall ; addiu $2, $0, 9 ; .end sync ; .set reorder
+.set noreorder ; .globl sbrk ; .type sbrk,@function ; .ent sbrk ; sbrk: ; j __syscall ; addiu $2, $0, 10 ; .end sbrk ; .set reorder
+.set noreorder ; .globl getpid ; .type getpid,@function ; .ent getpid ; getpid: ; j __syscall ; addiu $2, $0, 11 ; .end getpid ; .set reorder
+.set noreorder ; .globl ioctl ; .type ioctl,@function ; .ent ioctl ; ioctl: ; j __syscall ; addiu $2, $0, 12 ; .end ioctl ; .set reorder
+.set noreorder ; .globl lseek ; .type lseek,@function ; .ent lseek ; lseek: ; j __syscall ; addiu $2, $0, 13 ; .end lseek ; .set reorder
+.set noreorder ; .globl fsync ; .type fsync,@function ; .ent fsync ; fsync: ; j __syscall ; addiu $2, $0, 14 ; .end fsync ; .set reorder
+.set noreorder ; .globl ftruncate ; .type ftruncate,@function ; .ent ftruncate ; ftruncate: ; j __syscall ; addiu $2, $0, 15 ; .end ftruncate ; .set reorder
+.set noreorder ; .globl fstat ; .type fstat,@function ; .ent fstat ; fstat: ; j __syscall ; addiu $2, $0, 16 ; .end fstat ; .set reorder
+.set noreorder ; .globl remove ; .type remove,@function ; .ent remove ; remove: ; j __syscall ; addiu $2, $0, 17 ; .end remove ; .set reorder
+.set noreorder ; .globl rename ; .type rename,@function ; .ent rename ; rename: ; j __syscall ; addiu $2, $0, 18 ; .end rename ; .set reorder
+.set noreorder ; .globl link ; .type link,@function ; .ent link ; link: ; j __syscall ; addiu $2, $0, 19 ; .end link ; .set reorder
+.set noreorder ; .globl mkdir ; .type mkdir,@function ; .ent mkdir ; mkdir: ; j __syscall ; addiu $2, $0, 20 ; .end mkdir ; .set reorder
+.set noreorder ; .globl rmdir ; .type rmdir,@function ; .ent rmdir ; rmdir: ; j __syscall ; addiu $2, $0, 21 ; .end rmdir ; .set reorder
+.set noreorder ; .globl chdir ; .type chdir,@function ; .ent chdir ; chdir: ; j __syscall ; addiu $2, $0, 22 ; .end chdir ; .set reorder
+.set noreorder ; .globl getdirentry ; .type getdirentry,@function ; .ent getdirentry ; getdirentry: ; j __syscall ; addiu $2, $0, 23 ; .end getdirentry ; .set reorder
+.set noreorder ; .globl symlink ; .type symlink,@function ; .ent symlink ; symlink: ; j __syscall ; addiu $2, $0, 24 ; .end symlink ; .set reorder
+.set noreorder ; .globl readlink ; .type readlink,@function ; .ent readlink ; readlink: ; j __syscall ; addiu $2, $0, 25 ; .end readlink ; .set reorder
+.set noreorder ; .globl dup2 ; .type dup2,@function ; .ent dup2 ; dup2: ; j __syscall ; addiu $2, $0, 26 ; .end dup2 ; .set reorder
+.set noreorder ; .globl pipe ; .type pipe,@function ; .ent pipe ; pipe: ; j __syscall ; addiu $2, $0, 27 ; .end pipe ; .set reorder
+.set noreorder ; .globl __time ; .type __time,@function ; .ent __time ; __time: ; j __syscall ; addiu $2, $0, 28 ; .end __time ; .set reorder
+.set noreorder ; .globl __getcwd ; .type __getcwd,@function ; .ent __getcwd ; __getcwd: ; j __syscall ; addiu $2, $0, 29 ; .end __getcwd ; .set reorder
+.set noreorder ; .globl stat ; .type stat,@function ; .ent stat ; stat: ; j __syscall ; addiu $2, $0, 30 ; .end stat ; .set reorder
+.set noreorder ; .globl lstat ; .type lstat,@function ; .ent lstat ; lstat: ; j __syscall ; addiu $2, $0, 31 ; .end lstat ; .set reorder
+.set noreorder ; .globl mynewcall ; .type mynewcall,@function ; .ent mynewcall ; mynewcall: ; j __syscall ; addiu $2, $0, 42 ; .end mynewcall ; .set reorder
