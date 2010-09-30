@@ -89,6 +89,7 @@ bNode *bNode_remove(bNode *head, int block_num){
   return head;
 }
 
+/* free up each node of the list and return NULL */
 bNode *bNode_free_list(bNode *head){
   bNode *next = head;
 
@@ -148,6 +149,7 @@ void build_file_table() {
   }
 }
 
+/* free up each list in the file table */
 void destroy_file_table(){
   for(int i=0; i<NUM_FILES; i++)
     ftable[i].head = bNode_free_list(ftable[i].head);
@@ -199,7 +201,10 @@ void init_cache() {
   }
 }
 
+/* create timespec with a given number of nanoseconds */
 void sleep_timespec(struct timespec *sleep_time, int nsec){
+  /* tv_nsec cannot be greater than 999999999, thus need
+   * to use seconds fields if extra time needed */
   if(nsec >= 1000000000){
     /* floor to nearest second, put rest in nanosec */
     sleep_time->tv_sec = floor(nsec/1000000000.0);
@@ -210,6 +215,7 @@ void sleep_timespec(struct timespec *sleep_time, int nsec){
   }
 }
 
+/* evict a block from the cache, writing it to disk first if dirty */
 void evict_block(int slot){
   int file_id = cache[slot].file_id;
   int block_num = cache[slot].block_num;
