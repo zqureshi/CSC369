@@ -201,8 +201,10 @@ void init_cache() {
   }
 }
 
-/* create timespec with a given number of nanoseconds */
-void sleep_timespec(struct timespec *sleep_time, int nsec){
+/* create timespec with a given number of milliseconds */
+void sleep_timespec(struct timespec *sleep_time, int msec){
+  /* convert milli seconds to nano seconds */
+  int nsec = msec*1000;
   /* tv_nsec cannot be greater than 999999999, thus need
    * to use seconds fields if extra time needed */
   if(nsec >= 1000000000){
