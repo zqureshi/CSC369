@@ -88,6 +88,18 @@ bNode *bNode_remove(bNode *head, int block_num){
   return head;
 }
 
+bNode *bNode_free_list(bNode *head){
+  bNode *next = head;
+
+  while(head != NULL){
+    next = head->next;
+    free(head);
+    head = next;
+  }
+
+  return NULL;
+}
+
 struct file_table {
   int size;
   struct bnode *head;
@@ -324,6 +336,10 @@ int main(int argc, char **argv){
   read_block(0, 2, 10);
 
   read_block(0, 0, 0);
+
+  for(int i=0; i < NUM_FILES; i++){
+    ftable[i].head = bNode_free_list(ftable[i].head);
+  }
 
   return 0;
 }
