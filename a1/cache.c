@@ -259,28 +259,42 @@ int read_block(int pid, int file_id, int block_num) {
   }
 
   pthread_mutex_lock(&ftable_locks[file_id]);
+  bNode *node = NULL;
+  int found = 0;
   
   /* check if invalid request */
   if((block_num < 0) || (block_num >= get_file_size(file_id))){
     pthread_mutex_unlock(&ftable_locks[file_id]);
 
     return 2;
-  } else if(bNode_search(ftable[file_id].head, block_num) != NULL){
+  } else if((node = bNode_search(ftable[file_id].head, block_num)) != NULL){
+    int slot = node->cache_index;
     /* if block found in cache */
+    found = 1;
     pthread_mutex_unlock(&ftable_locks[file_id]);
 
-    /* sleep for MEM_TIME */
-    struct timespec sleep_time;
-    sleep_timespec(&sleep_time, MEM_TIME);
+    pthread_mutex_lock(&cache_locks[slot]);
+    /* check if slot hasn't been re-written */
+    if((cache[slot].file_id == file_id) && (cache[slot].block_num == block_num)){
+      /* sleep for MEM_TIME */
+      struct timespec sleep_time;
+      sleep_timespec(&sleep_time, MEM_TIME);
 
-    nanosleep(&sleep_time, NULL);
+      nanosleep(&sleep_time, NULL);
 
-    return 1;
+      pthread_mutex_unlock(&cache_locks[slot]);
+      return 1;
+    } else {
+      pthread_mutex_unlock(&cache_locks[slot]);
+    }
   }
 
-  /* unlock file since we're not going to modify it until
-   * we've copied the block over to the cache */
-  pthread_mutex_unlock(&ftable_locks[file_id]);
+  /* if block was found then file has already been unlocked */
+  if(found == 0){
+    /* unlock file since we're not going to modify it until
+     * we've copied the block over to the cache */
+    pthread_mutex_unlock(&ftable_locks[file_id]);
+  }
 
   /* get empty slot if available else randomly select one */
   int slot = get_empty_slot();
