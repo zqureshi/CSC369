@@ -7,22 +7,23 @@ Read Request:
    return 2.
 4. search the block list in the file struct for the block number (found)
 5. unlock the file
-6. lock the cache at the cache_index
-7. check if the cache block at cache_index was not changed between 5 
+6. lock the cache slot at the cache_index
+7. check if the cache slot at cache_index was not changed between 5 
    and 6 by a different thread
    
 if the block wasn't changed:
 8. read the cache block
-9. unlock cache
+9. unlock cache slot
 10.return 1
 
 if the block was changed (treat it as if it wasn't found):
 11.unlock the cache block
-12.find an empty slot in the cache; if not found, evict a block and use its
-   slot
-13.lock the new cache slot
+
+12.find an empty slot in the cache; if not found select a random slot
+13.lock new cache slot
+14.if the new slot isn't empty evict the resident block
 14.lock I/O
-15.copy block from  disk to cache
+15.copy block from disk to cache
 16.unlock I/O
 17.update cache slot with cache info: dirty is 0
 18.lock the file
