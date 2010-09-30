@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <math.h>
 #include "rv.h"
 #include "common.h"
 
@@ -147,6 +148,11 @@ void build_file_table() {
   }
 }
 
+void destroy_file_table(){
+  for(int i=0; i<NUM_FILES; i++)
+    ftable[i].head = bNode_free_list(ftable[i].head);
+}
+
 /* Return the size of the file specified by fileid.
  */
 int get_file_size(int fileid) {
@@ -193,6 +199,17 @@ void init_cache() {
   }
 }
 
+void sleep_timespec(struct timespec *sleep_time, int nsec){
+  if(nsec >= 1000000000){
+    /* floor to nearest second, put rest in nanosec */
+    sleep_time->tv_sec = floor(nsec/1000000000.0);
+    sleep_time->tv_nsec = nsec - (sleep_time->tv_sec * 1000000000);
+  } else {
+    sleep_time->tv_sec = 0;
+    sleep_time->tv_nsec = nsec;
+  }
+}
+
 void evict_block(int slot){
   int file_id = cache[slot].file_id;
   int block_num = cache[slot].block_num;
@@ -201,8 +218,7 @@ void evict_block(int slot){
     /* copy block from cache to disk
      * i.e. sleep for DISK_TIME */
     struct timespec sleep_time, sleep_rem;
-    sleep_time.tv_sec = 0;
-    sleep_time.tv_nsec = DISK_TIME;
+    sleep_timespec(&sleep_time, DISK_TIME);
 
     /* Only one thread can access disk at a time */
     pthread_mutex_lock(&io_lock);
@@ -247,8 +263,7 @@ int read_block(int pid, int file_id, int block_num) {
 
     /* sleep for MEM_TIME */
     struct timespec sleep_time, sleep_rem;
-    sleep_time.tv_sec = 0;
-    sleep_time.tv_nsec = MEM_TIME;
+    sleep_timespec(&sleep_time, MEM_TIME);
 
     nanosleep(&sleep_time, &sleep_rem);
 
@@ -275,8 +290,7 @@ int read_block(int pid, int file_id, int block_num) {
   /* copy block from disk to cache
    * i.e. sleep for DISK_TIME */
   struct timespec sleep_time, sleep_rem;
-  sleep_time.tv_sec = 0;
-  sleep_time.tv_nsec = DISK_TIME;
+  sleep_timespec(&sleep_time, DISK_TIME);
 
   /* only one thread can access disk at a time */
   pthread_mutex_lock(&io_lock);
@@ -309,7 +323,7 @@ int write_block(int pid, int file_id, int block_num) {
   return 0;
 }
 
-int main(int argc, char **argv){
+int __main(int argc, char **argv){
   build_file_table();
   init_cache();
 

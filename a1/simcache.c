@@ -22,6 +22,8 @@ void compute(int min_time, int max_time) {
 	}
 }
 
+/* array to store read/write stats */
+int io_stats[NUM_PROCESSES][3];
 
 void *process(void *arg) {
 	int pid = (long)arg;
@@ -31,6 +33,9 @@ void *process(void *arg) {
 	int size = get_file_size(fileid);
 	printf("[%d] starting, file %d, size %d\n", pid, fileid, size);
 
+  // initialize IO statistics
+  io_stats[pid][0] = io_stats[pid][1] = io_stats[pid][2] = 0; 
+
 	// access each block of the file sequentially
 	int i;
 	for(i = 0; i < size; i++) {
@@ -38,25 +43,52 @@ void *process(void *arg) {
 		compute(MIN_COMPUTE_TIME, MAX_COMPUTE_TIME);
 		// do the file read or write
 		if(random() / (double)INT32_MAX < READ_PROB) {
-			read_block(pid, fileid, i);
+			io_stats[pid][read_block(pid, fileid, i)]++;
 		} else {
-			write_block(pid, fileid, i);
+			io_stats[pid][write_block(pid, fileid, i)]++;
 		}
 	}
 
 	printf("[%d] terminating\n", pid);
-	return 0;
+  pthread_exit(NULL);
 }
 
-int _main(int argc, char **argv){
+/* declare function to free up lists */
+void destroy_file_table();
+
+int main(int argc, char **argv){
   /* Initialize all structures */
   build_file_table();
   init_cache();
 
-  /* print size of each file */
-  for(int i = 0; i < NUM_FILES; i++){
-    printf("File Number: %d, Size: %d\n", i, get_file_size(i));
+  pthread_t threads[NUM_PROCESSES];
+
+  for(int i=0; i<NUM_PROCESSES; i++){
+    if(pthread_create(&threads[i], NULL, process, (void *)i) != 0){
+      fprintf(stderr, "Error creating thread\n");
+      exit(1);
+    }
   }
 
-  return 0;
+  void *status;
+  for(int i=0; i<NUM_PROCESSES; i++){
+    pthread_join(threads[i], &status);
+  }
+
+  double ratio, total_hits=0, total=0;
+  printf("\nStatistics:\n");
+  for(int i=0; i<NUM_PROCESSES; i++){
+    ratio = (double)(io_stats[i][1])/
+      (io_stats[i][0] + io_stats[i][1] + io_stats[i][2]);
+
+    total_hits += io_stats[i][1];
+    total += io_stats[i][0] + io_stats[i][1] + io_stats[i][2];
+
+    printf("Thread %d, hits: %lf%% (%d)\n",
+        i, ratio*100, io_stats[i][1]);
+  }
+  printf("Total hits: %lf%%\n", (double)total_hits/total*100);
+
+  destroy_file_table();
+  pthread_exit(NULL);
 }
