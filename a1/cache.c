@@ -204,7 +204,7 @@ void init_cache() {
 /* create timespec with a given number of milliseconds */
 void sleep_timespec(struct timespec *sleep_time, int msec){
   /* convert milli seconds to nano seconds */
-  int nsec = msec*1000;
+  unsigned long int nsec = msec*1000*1000;
   /* tv_nsec cannot be greater than 999999999, thus need
    * to use seconds fields if extra time needed */
   if(nsec >= 1000000000){
@@ -225,12 +225,12 @@ void evict_block(int slot){
   if(cache[slot].dirty == 1){
     /* copy block from cache to disk
      * i.e. sleep for DISK_TIME */
-    struct timespec sleep_time, sleep_rem;
+    struct timespec sleep_time;
     sleep_timespec(&sleep_time, DISK_TIME);
 
     /* Only one thread can access disk at a time */
     pthread_mutex_lock(&io_lock);
-    nanosleep(&sleep_time, &sleep_rem);
+    nanosleep(&sleep_time, NULL);
     pthread_mutex_unlock(&io_lock);
 
     /* Now mark slot as non-dirty */
@@ -270,10 +270,10 @@ int read_block(int pid, int file_id, int block_num) {
     pthread_mutex_unlock(&ftable_locks[file_id]);
 
     /* sleep for MEM_TIME */
-    struct timespec sleep_time, sleep_rem;
+    struct timespec sleep_time;
     sleep_timespec(&sleep_time, MEM_TIME);
 
-    nanosleep(&sleep_time, &sleep_rem);
+    nanosleep(&sleep_time, NULL);
 
     return 1;
   }
@@ -297,12 +297,12 @@ int read_block(int pid, int file_id, int block_num) {
 
   /* copy block from disk to cache
    * i.e. sleep for DISK_TIME */
-  struct timespec sleep_time, sleep_rem;
+  struct timespec sleep_time;
   sleep_timespec(&sleep_time, DISK_TIME);
 
   /* only one thread can access disk at a time */
   pthread_mutex_lock(&io_lock);
-  nanosleep(&sleep_time, &sleep_rem);
+  nanosleep(&sleep_time, NULL);
   pthread_mutex_unlock(&io_lock);
 
   /* update the slot with block info */
@@ -349,9 +349,9 @@ int write_block(int pid, int file_id, int block_num) {
     pthread_mutex_lock(&cache_locks[slot]);
 
     /* sleep for MEM_TIME */
-    struct timespec sleep_time, sleep_rem;
+    struct timespec sleep_time;
     sleep_timespec(&sleep_time, MEM_TIME);
-    nanosleep(&sleep_time, &sleep_rem);
+    nanosleep(&sleep_time, NULL);
 
     /* update dirty flag */
     cache[slot].dirty = 1;
