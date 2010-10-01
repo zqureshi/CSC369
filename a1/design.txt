@@ -13,27 +13,30 @@ Read Request
      and 6 by a different thread
      
   if the block wasn't changed:
-    8. read the cache block
-    9. unlock cache slot
-   10. return 1
+     8. read the cache block
+     9. unlock cache slot
+    10. return 1
 
   if the block was changed (treat it as if it wasn't found):
-   11. unlock the cache block
-   12. find an empty slot in the cache; if not found select a random slot
-   13. lock new cache slot
-   14. if the new slot isn't empty evict the resident block
-   15. lock I/O
-   16. copy block from disk to cache
-   17. unlock I/O
-   18. update cache slot with cache info: dirty is 0
-   19. lock the file
-   20. add a new block to the block list
-   21. unlock the file
-   22. unlock the cache
-   23. return 0
+    11. unlock the cache block
+    12. find an empty slot in the cache; if not found select a random slot
+    13. lock new cache slot
+    14. if the new slot isn't empty evict the resident block
+    15. lock I/O
+    16. copy block from disk to cache
+    17. unlock I/O
+    18. update cache slot with cache info: dirty is 0
+    19. lock the file
+    20. add a new block to the block list
+    21. unlock the file
+    22. unlock the cache
+    23. return 0
 
 Evict Operation
 ===============
+
+* Precondition: Lock for slot has already been acquired
+
   1. check if the block in the given slot is dirty
 
   if the block is dirty:
