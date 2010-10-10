@@ -1,0 +1,1094 @@
+BladeRunner	testbin/userthreads/userthreads.c	/^BladeRunner()$/
+DEBUG	kern/include/lib.h	/^#define DEBUG(d, fmt, ...) ((dbflags & (d)) ? kpri/
+DEBUG	kern/include/lib.h	/^#define DEBUG(d, fmt, args...) ((dbflags & (d)) ? /
+DEFTEST	kern/test/fstest.c	/^#define DEFTEST(testname)                         /
+DIVROUNDUP	kern/include/lib.h	/^#define DIVROUNDUP(a,b) (((a)+(b)-1)\/(b))$/
+Elf_Ehdr	kern/include/elf.h	164
+Elf_Phdr	kern/include/elf.h	165
+FSOP_GETROOT	kern/include/fs.h	/^#define FSOP_GETROOT(fs)     ((fs)->fs_getroot(fs)/
+FSOP_GETVOLNAME	kern/include/fs.h	/^#define FSOP_GETVOLNAME(fs)  ((fs)->fs_getvolname(/
+FSOP_SYNC	kern/include/fs.h	/^#define FSOP_SYNC(fs)        ((fs)->fs_sync(fs))$/
+FSOP_UNMOUNT	kern/include/fs.h	/^#define FSOP_UNMOUNT(fs)     ((fs)->fs_unmount(fs)/
+IOCTL	testbin/badcall/bad_ioctl.c	/^#define IOCTL(fd, sym) any_ioctl_badbuf(fd, sym, #/
+KVADDR_TO_PADDR	kern/arch/mips/include/vm.h	/^#define KVADDR_TO_PADDR(vaddr) ((vaddr)-MIPS_KSEG0/
+LETTER	testbin/f_test/f_test.c	/^#define LETTER(x) ('a' + (x % 31))$/
+LOCKME	lib/libc/random.c	/^#define LOCKME()$/
+MAKENAME	kern/test/fstest.c	/^#define MAKENAME() fstest_makename(name, sizeof(na/
+MKPAB	kern/lib/kheap.c	/^#define MKPAB(pa, blk)   (((pa)&PAGE_FRAME) | ((bl/
+Madd	testbin/add/add.c	/^main(int argc, char *argv[])$/
+Margtest	testbin/argtest/argtest.c	/^main(int argc, char *argv[])$/
+Mbigfile	testbin/bigfile/bigfile.c	/^main(int argc, char *argv[])$/
+Mcat	bin/cat/cat.c	/^main(int argc, char *argv[])$/
+Mconman	testbin/conman/conman.c	/^main() {$/
+Mcp	bin/cp/cp.c	/^main(int argc, char *argv[])$/
+Mcrash	testbin/crash/crash.c	/^main(int argc, char **argv)$/
+Mctest	testbin/ctest/ctest.c	/^main(int argc, char **argv)$/
+Mdirconc	testbin/dirconc/dirconc.c	/^main(int argc, char *argv[])$/
+Mdirseek	testbin/dirseek/dirseek.c	/^main()$/
+Mdirtest	testbin/dirtest/dirtest.c	/^main(void)$/
+Mdriver	testbin/badcall/driver.c	/^main(int argc, char **argv)$/
+Mdumpsfs	sbin/dumpsfs/dumpsfs.c	/^main(int argc, char **argv)$/
+Mexittest	testbin/exittest/exittest.c	/^main()$/
+Mf_test	testbin/f_test/f_test.c	/^main(int argc, char * argv[])$/
+Mfalse	bin/false/false.c	/^main()$/
+Mfarm	testbin/farm/farm.c	/^main()$/
+Mfaulter	testbin/faulter/faulter.c	/^main(void) $/
+Mfiletest	testbin/filetest/filetest.c	/^main(int argc, char *argv[])$/
+Mforkbomb	testbin/forkbomb/forkbomb.c	/^main()$/
+Mforktest	testbin/forktest/forktest.c	/^main(int argc, char *argv[])$/
+Mguzzle	testbin/guzzle/guzzle.c	/^main(int argc, char *argv[])$/
+Mhalt	sbin/halt/halt.c	/^main()$/
+Mhash	testbin/hash/hash.c	/^main(int argc, char *argv[])$/
+Mhog	testbin/hog/hog.c	/^main(void)$/
+Mhuge	testbin/huge/huge.c	/^main()$/
+Mkitchen	testbin/kitchen/kitchen.c	/^main(void)$/
+Mln	bin/ln/ln.c	/^main(int argc, char *argv[])$/
+Mls	bin/ls/ls.c	/^main(int argc, char *argv[])$/
+Mmain	testbin/randcall/main.c	/^main(int argc, char *argv[])$/
+Mmalloctest	testbin/malloctest/malloctest.c	/^main(int argc, char *argv[])$/
+Mmatmult	testbin/matmult/matmult.c	/^main()$/
+Mmatmult-orig	testbin/matmult/matmult-orig.c	/^main()$/
+Mmkdir	bin/mkdir/mkdir.c	/^main(int argc, char *argv[])$/
+Mmksfs	sbin/mksfs/mksfs.c	/^main(int argc, char **argv)$/
+Mmv	bin/mv/mv.c	/^main(int argc, char *argv[])$/
+Mpalin	testbin/palin/palin.c	/^main()$/
+Mparallelvm	testbin/parallelvm/parallelvm.c	/^main()$/
+Mpoweroff	sbin/poweroff/poweroff.c	/^main()$/
+Mprintchartest	testbin/printchartest/printchartest.c	/^main()$/
+Mprintftest	testbin/printftest/printftest.c	/^main()$/
+Mpwd	bin/pwd/pwd.c	/^main()$/
+Mreboot	sbin/reboot/reboot.c	/^main()$/
+Mrm	bin/rm/rm.c	/^main(int argc, char *argv[])$/
+Mrmdir	bin/rmdir/rmdir.c	/^main(int argc, char *argv[])$/
+Mrmdirtest	testbin/rmdirtest/rmdirtest.c	/^main(void)$/
+Mrmtest	testbin/rmtest/rmtest.c	/^main()$/
+Msh	bin/sh/sh.c	/^main(int argc, char *argv[])$/
+Msink	testbin/sink/sink.c	/^main(void)$/
+Msort	testbin/sort/sort.c	/^main(void)$/
+Msty	testbin/sty/sty.c	/^main()$/
+Msync	bin/sync/sync.c	/^main()$/
+Mtail	testbin/tail/tail.c	/^main(int argc, char **argv)$/
+Mtictac	testbin/tictac/tictac.c	/^main()$/
+Mtriplehuge	testbin/triplehuge/triplehuge.c	/^main()$/
+Mtriplemat	testbin/triplemat/triplemat.c	/^main()$/
+Mtriplesort	testbin/triplesort/triplesort.c	/^main()$/
+Mtrue	bin/true/true.c	/^main()$/
+Muserthreads	testbin/userthreads/userthreads.c	/^main(int argc, char *argv[])$/
+P	kern/thread/synch.c	/^P(struct semaphore *sem)$/
+PADDR_TO_KVADDR	kern/arch/mips/include/vm.h	/^#define PADDR_TO_KVADDR(paddr) ((paddr)+MIPS_KSEG0/
+PR_BLOCKTYPE	kern/lib/kheap.c	/^#define PR_BLOCKTYPE(pr) ((pr)->pageaddr_and_block/
+PR_PAGEADDR	kern/lib/kheap.c	/^#define PR_PAGEADDR(pr)  ((pr)->pageaddr_and_block/
+ROUNDUP	kern/include/lib.h	/^#define ROUNDUP(a,b)    (DIVROUNDUP(a,b)*b)$/
+SAME_STACK	kern/arch/mips/include/pcb.h	/^#define SAME_STACK(p1,p2)	(((p1)&STACK_MASK)==((p2/
+SFSUIO	kern/include/sfs.h	/^#define SFSUIO(uio, ptr, block, rw) \\$/
+SFS_BITBLOCKS	kern/include/kern/sfs.h	/^#define SFS_BITBLOCKS(nblocks)  (SFS_BITMAPSIZE(nb/
+SFS_BITMAPSIZE	kern/include/kern/sfs.h	/^#define SFS_BITMAPSIZE(nblocks) SFS_ROUNDUP(nblock/
+SFS_ROUNDUP	kern/include/kern/sfs.h	/^#define SFS_ROUNDUP(a,b)       ((((a)+(b)-1)\/(b))*/
+SWAPFUNCS	kern/lib/ntoh.c	/^#define SWAPFUNCS(size, type)                     /
+SWAPFUNCS	kern/lib/ntoh.c	/^#define SWAPFUNCS(size, type) \\$/
+SWAPFUNCS	kern/lib/ntoh.c	/^SWAPFUNCS(s, u_int16_t)$/
+SWAPL	sbin/mksfs/mksfs.c	/^#define SWAPL(x) ntohl(x)$/
+SWAPL	sbin/mksfs/mksfs.c	/^#define SWAPL(x) (x)$/
+SWAPL	sbin/dumpsfs/dumpsfs.c	/^#define SWAPL(x) ntohl(x)$/
+SWAPL	sbin/dumpsfs/dumpsfs.c	/^#define SWAPL(x) (x)$/
+SWAPS	sbin/mksfs/mksfs.c	/^#define SWAPS(x) ntohs(x)$/
+SWAPS	sbin/mksfs/mksfs.c	/^#define SWAPS(x) (x)$/
+SWAPS	sbin/dumpsfs/dumpsfs.c	/^#define SWAPS(x) ntohs(x)$/
+SWAPS	sbin/dumpsfs/dumpsfs.c	/^#define SWAPS(x) (x)$/
+S_ISBLK	kern/include/kern/stat.h	/^#define S_ISBLK(mode)	(((mode) & S_IFMT) == S_IFBL/
+S_ISCHR	kern/include/kern/stat.h	/^#define S_ISCHR(mode)	(((mode) & S_IFMT) == S_IFCH/
+S_ISDIR	kern/include/kern/stat.h	/^#define S_ISDIR(mode)	(((mode) & S_IFMT) == S_IFDI/
+S_ISLNK	kern/include/kern/stat.h	/^#define S_ISLNK(mode)	(((mode) & S_IFMT) == S_IFLN/
+S_ISREG	kern/include/kern/stat.h	/^#define S_ISREG(mode)	(((mode) & S_IFMT) == S_IFRE/
+Strcmp	testbin/tictac/tictac.c	/^Strcmp(const char *a, const char *b)$/
+T	testbin/badcall/common_fds.c	/^#define T(call) \\$/
+T	testbin/badcall/common_buf.c	/^#define T(call) \\$/
+T	testbin/badcall/common_path.c	/^#define T(call) \\$/
+T2	testbin/badcall/common_path.c	/^#define T2(call) \\$/
+TC	testbin/badcall/common_fds.c	/^#define TC(call) \\$/
+TLBHI_INVALID	kern/arch/mips/include/tlb.h	/^#define TLBHI_INVALID(entryno) ((0x80000+(entryno)/
+TLBLO_INVALID	kern/arch/mips/include/tlb.h	/^#define TLBLO_INVALID()        (0)$/
+ThreadRunner	testbin/userthreads/userthreads.c	/^ThreadRunner()$/
+UNLOCKME	lib/libc/random.c	/^#define UNLOCKME()$/
+V	kern/thread/synch.c	/^V(struct semaphore *sem)$/
+VOP_CLOSE	kern/include/vnode.h	/^#define VOP_CLOSE(vn)                   (__VOP(vn,/
+VOP_CREAT	kern/include/vnode.h	/^#define VOP_CREAT(vn, name, excl, res)  (__VOP(vn,/
+VOP_DECOPEN	kern/include/vnode.h	/^#define VOP_DECOPEN(vn) 		vnode_decopen(vn)$/
+VOP_DECREF	kern/include/vnode.h	/^#define VOP_DECREF(vn) 			vnode_decref(vn)$/
+VOP_FSYNC	kern/include/vnode.h	/^#define VOP_FSYNC(vn)                   (__VOP(vn,/
+VOP_GETDIRENTRY	kern/include/vnode.h	/^#define VOP_GETDIRENTRY(vn, uio)        (__VOP(vn,/
+VOP_GETTYPE	kern/include/vnode.h	/^#define VOP_GETTYPE(vn, result)         (__VOP(vn,/
+VOP_INCOPEN	kern/include/vnode.h	/^#define VOP_INCOPEN(vn) 		vnode_incopen(vn)$/
+VOP_INCREF	kern/include/vnode.h	/^#define VOP_INCREF(vn) 			vnode_incref(vn)$/
+VOP_INIT	kern/include/vnode.h	/^#define VOP_INIT(vn, ops, fs, data)     vnode_init/
+VOP_IOCTL	kern/include/vnode.h	/^#define VOP_IOCTL(vn, code, buf)        (__VOP(vn,/
+VOP_KILL	kern/include/vnode.h	/^#define VOP_KILL(vn)			vnode_kill(vn)$/
+VOP_LINK	kern/include/vnode.h	/^#define VOP_LINK(vn, name, vn2)         (__VOP(vn,/
+VOP_LOOKPARENT	kern/include/vnode.h	/^#define VOP_LOOKPARENT(vn,nm,res,bf,ln) (__VOP(vn,/
+VOP_LOOKUP	kern/include/vnode.h	/^#define VOP_LOOKUP(vn, name, res)       (__VOP(vn,/
+VOP_MKDIR	kern/include/vnode.h	/^#define VOP_MKDIR(vn, name)             (__VOP(vn,/
+VOP_MMAP	kern/include/vnode.h	/^#define VOP_MMAP(vn \/*add stuff *\/)     (__VOP(vn,/
+VOP_NAMEFILE	kern/include/vnode.h	/^#define VOP_NAMEFILE(vn, uio)           (__VOP(vn,/
+VOP_OPEN	kern/include/vnode.h	/^#define VOP_OPEN(vn, flags)             (__VOP(vn,/
+VOP_READ	kern/include/vnode.h	/^#define VOP_READ(vn, uio)               (__VOP(vn,/
+VOP_READLINK	kern/include/vnode.h	/^#define VOP_READLINK(vn, uio)           (__VOP(vn,/
+VOP_RECLAIM	kern/include/vnode.h	/^#define VOP_RECLAIM(vn)                 (__VOP(vn,/
+VOP_REMOVE	kern/include/vnode.h	/^#define VOP_REMOVE(vn, name)            (__VOP(vn,/
+VOP_RENAME	kern/include/vnode.h	/^#define VOP_RENAME(vn1,name1,vn2,name2)(__VOP(vn1,/
+VOP_RMDIR	kern/include/vnode.h	/^#define VOP_RMDIR(vn, name)             (__VOP(vn,/
+VOP_STAT	kern/include/vnode.h	/^#define VOP_STAT(vn, ptr) 	        (__VOP(vn, stat/
+VOP_SYMLINK	kern/include/vnode.h	/^#define VOP_SYMLINK(vn, name, content)  (__VOP(vn,/
+VOP_TRUNCATE	kern/include/vnode.h	/^#define VOP_TRUNCATE(vn, pos)           (__VOP(vn,/
+VOP_TRYSEEK	kern/include/vnode.h	/^#define VOP_TRYSEEK(vn, pos)            (__VOP(vn,/
+VOP_WRITE	kern/include/vnode.h	/^#define VOP_WRITE(vn, uio)              (__VOP(vn,/
+WEXITSTATUS	testbin/dirconc/dirconc.c	/^#define WEXITSTATUS(status)	(status)$/
+WIFEXITED	testbin/dirconc/dirconc.c	/^#define WIFEXITED(status)	((void)(status), 1)$/
+WIFSIGNALED	testbin/dirconc/dirconc.c	/^#define WIFSIGNALED(status)	((void)(status), 0)$/
+WTERMSIG	testbin/dirconc/dirconc.c	/^#define WTERMSIG(status)	((void)(status), 0)$/
+__PF	kern/include/lib.h	/^#define __PF(a,b) __attribute__((__format__(__prin/
+__PF	kern/include/lib.h	/^#define __PF(a,b)$/
+__VOP	kern/include/vnode.h	/^#define __VOP(vn, sym) (vnode_check(vn, #sym), (vn/
+__bad_assert	lib/libc/__assert.c	/^__bad_assert(const char *file, int line, const cha/
+__exit_hack	lib/libc/exit.c	/^__exit_hack(void)$/
+__pf_endfield	lib/libc/__printf.c	/^__pf_endfield(PF *pf)$/
+__pf_fill	lib/libc/__printf.c	/^__pf_fill(PF *pf, int spc)$/
+__pf_getnum	lib/libc/__printf.c	/^__pf_getnum(PF *pf, int ch)$/
+__pf_modifier	lib/libc/__printf.c	/^__pf_modifier(PF *pf, int ch)$/
+__pf_print	lib/libc/__printf.c	/^__pf_print(PF *pf, const char *txt, size_t len)$/
+__pf_printnum	lib/libc/__printf.c	/^__pf_printnum(PF *pf)$/
+__pf_printstuff	lib/libc/__printf.c	/^__pf_printstuff(PF *pf,$/
+__pf_send	lib/libc/__printf.c	/^__pf_send(PF *pf, int ch)$/
+__pf_setbase	lib/libc/__printf.c	/^__pf_setbase(PF *pf, int ch)$/
+__printerr	lib/libc/err.c	/^__printerr(int use_errno, const char *fmt, va_list/
+__printf_send	lib/libc/printf.c	/^__printf_send(void *mydata, const char *data, size/
+__puts	lib/libc/__puts.c	/^__puts(const char *str)$/
+__senderr	lib/libc/err.c	/^__senderr(void *junk, const char *data, size_t len/
+__senderrstr	lib/libc/err.c	/^__senderrstr(const char *str)$/
+__snprintf_send	lib/libc/snprintf.c	/^__snprintf_send(void *mydata, const char *data, si/
+__time	lib/hostcompat/time.c	/^__time(time_t *secs, unsigned long *nsecs)$/
+__va_list	include/stdarg.h	10
+__va_list	kern/include/stdarg.h	13
+__vprintf	lib/libc/__printf.c	/^__vprintf(void (*func)(void *clientdata, const cha/
+abort	lib/libc/abort.c	/^abort(void)$/
+addeq	testbin/parallelvm/parallelvm.c	/^addeq(struct matrix *m1, const struct matrix *m2)$/
+alignment_error	testbin/crash/crash.c	/^alignment_error(void)$/
+alloc_kpages	kern/arch/mips/mips/dumbvm.c	/^alloc_kpages(int npages)$/
+allocpageref	kern/lib/kheap.c	/^allocpageref(void)$/
+answer	testbin/parallelvm/parallelvm.c	/^answer(void)$/
+any_badbuf	testbin/badcall/common_buf.c	/^any_badbuf(struct buftest *info)$/
+any_badbuf	testbin/badcall/bad_stat.c	/^any_badbuf(int (*statfunc)(struct stat *), const c/
+any_badfd	testbin/badcall/common_fds.c	/^any_badfd(int (*func)(int fd), void (*cleanup)(voi/
+any_badpath	testbin/badcall/common_path.c	/^any_badpath(int (*func)(const char *path), const c/
+any_empty	testbin/badcall/bad_stat.c	/^any_empty(int (*statfunc)(const char *, struct sta/
+any_ioctl_badbuf	testbin/badcall/bad_ioctl.c	/^any_ioctl_badbuf(int fd, int code, const char *cod/
+array_add	kern/lib/array.c	/^array_add(struct array *a, void *guy)$/
+array_create	kern/lib/array.c	/^array_create(void)$/
+array_destroy	kern/lib/array.c	/^array_destroy(struct array *a)$/
+array_getguy	kern/lib/array.c	/^array_getguy(struct array *a, int index)$/
+array_getnum	kern/lib/array.c	/^array_getnum(struct array *a)$/
+array_preallocate	kern/lib/array.c	/^array_preallocate(struct array *a, int nguys)$/
+array_remove	kern/lib/array.c	/^array_remove(struct array *a, int index)$/
+array_setguy	kern/lib/array.c	/^array_setguy(struct array *a, int index, void *ptr/
+array_setsize	kern/lib/array.c	/^array_setsize(struct array *a, int nguys)$/
+arraytest	kern/test/arraytest.c	/^arraytest(int nargs, char **args)$/
+as_activate	kern/arch/mips/mips/dumbvm.c	/^as_activate(struct addrspace *as)$/
+as_activate	kern/vm/addrspace.c	/^as_activate(struct addrspace *as)$/
+as_complete_load	kern/arch/mips/mips/dumbvm.c	/^as_complete_load(struct addrspace *as)$/
+as_complete_load	kern/vm/addrspace.c	/^as_complete_load(struct addrspace *as)$/
+as_copy	kern/arch/mips/mips/dumbvm.c	/^as_copy(struct addrspace *old, struct addrspace **/
+as_copy	kern/vm/addrspace.c	/^as_copy(struct addrspace *old, struct addrspace **/
+as_create	kern/arch/mips/mips/dumbvm.c	/^as_create(void)$/
+as_create	kern/vm/addrspace.c	/^as_create(void)$/
+as_define_region	kern/arch/mips/mips/dumbvm.c	/^as_define_region(struct addrspace *as, vaddr_t vad/
+as_define_region	kern/vm/addrspace.c	/^as_define_region(struct addrspace *as, vaddr_t vad/
+as_define_stack	kern/arch/mips/mips/dumbvm.c	/^as_define_stack(struct addrspace *as, vaddr_t *sta/
+as_define_stack	kern/vm/addrspace.c	/^as_define_stack(struct addrspace *as, vaddr_t *sta/
+as_destroy	kern/arch/mips/mips/dumbvm.c	/^as_destroy(struct addrspace *as)$/
+as_destroy	kern/vm/addrspace.c	/^as_destroy(struct addrspace *as)$/
+as_prepare_load	kern/arch/mips/mips/dumbvm.c	/^as_prepare_load(struct addrspace *as)$/
+as_prepare_load	kern/vm/addrspace.c	/^as_prepare_load(struct addrspace *as)$/
+ask_yesno	testbin/tictac/tictac.c	/^ask_yesno(const char *msg)$/
+assert	include/assert.h	/^#define assert(x) ((void)(x))$/
+assert	include/assert.h	/^#define assert(x) ((x) ? (void)0 : __bad_assert(__/
+assert	kern/include/lib.h	/^#define assert(x) { \\$/
+atoi	lib/libc/atoi.c	/^atoi(const char *s)$/
+attach_beep_to_ltimer	kern/dev/lamebus/beep_ltimer.c	/^attach_beep_to_ltimer(int beepno, struct ltimer_so/
+attach_con_to_lscreen	kern/dev/lamebus/con_lscreen.c	/^attach_con_to_lscreen(int consno, struct lscreen_s/
+attach_con_to_lser	kern/dev/lamebus/con_lser.c	/^attach_con_to_lser(int consno, struct lser_softc */
+attach_console_to_vfs	kern/dev/generic/console.c	/^attach_console_to_vfs(struct con_softc *cs)$/
+attach_emu_to_lamebus	kern/dev/lamebus/emu_att.c	/^attach_emu_to_lamebus(int emuno, struct lamebus_so/
+attach_lhd_to_lamebus	kern/dev/lamebus/lhd_att.c	/^attach_lhd_to_lamebus(int lhdno, struct lamebus_so/
+attach_lnet_to_lamebus	kern/dev/lamebus/lnet_att.c	/^attach_lnet_to_lamebus(int lnetno, struct lamebus_/
+attach_lrandom_to_lamebus	kern/dev/lamebus/lrandom_att.c	/^attach_lrandom_to_lamebus(int lrandomno, struct la/
+attach_lscreen_to_lamebus	kern/dev/lamebus/lscreen_att.c	/^attach_lscreen_to_lamebus(int lscreenno, struct la/
+attach_lser_to_lamebus	kern/dev/lamebus/lser_att.c	/^attach_lser_to_lamebus(int lserno, struct lamebus_/
+attach_ltimer_to_lamebus	kern/dev/lamebus/ltimer_att.c	/^attach_ltimer_to_lamebus(int ltimerno, struct lame/
+attach_ltrace_to_lamebus	kern/dev/lamebus/ltrace_att.c	/^attach_ltrace_to_lamebus(int ltraceno, struct lame/
+attach_random_to_lrandom	kern/dev/lamebus/random_lrandom.c	/^attach_random_to_lrandom(int randomno, struct lran/
+attach_random_to_pseudorand	kern/dev/generic/pseudorand_att.c	/^attach_random_to_pseudorand(int randomno, struct p/
+attach_rtclock_to_ltimer	kern/dev/lamebus/rtclock_ltimer.c	/^attach_rtclock_to_ltimer(int rtclockno, struct lti/
+autoconf_beep	kern/compile/EX2/autoconf.c	/^autoconf_beep(struct beep_softc *bus, int busunit)/
+autoconf_con	kern/compile/EX2/autoconf.c	/^autoconf_con(struct con_softc *bus, int busunit)$/
+autoconf_emu	kern/compile/EX2/autoconf.c	/^autoconf_emu(struct emu_softc *bus, int busunit)$/
+autoconf_lamebus	kern/compile/EX2/autoconf.c	/^autoconf_lamebus(struct lamebus_softc *bus, int bu/
+autoconf_lhd	kern/compile/EX2/autoconf.c	/^autoconf_lhd(struct lhd_softc *bus, int busunit)$/
+autoconf_lrandom	kern/compile/EX2/autoconf.c	/^autoconf_lrandom(struct lrandom_softc *bus, int bu/
+autoconf_lser	kern/compile/EX2/autoconf.c	/^autoconf_lser(struct lser_softc *bus, int busunit)/
+autoconf_ltimer	kern/compile/EX2/autoconf.c	/^autoconf_ltimer(struct ltimer_softc *bus, int busu/
+autoconf_ltrace	kern/compile/EX2/autoconf.c	/^autoconf_ltrace(struct ltrace_softc *bus, int busu/
+autoconf_pseudorand	kern/compile/EX2/autoconf.c	/^autoconf_pseudorand(struct pseudorand_softc *bus, /
+autoconf_random	kern/compile/EX2/autoconf.c	/^autoconf_random(struct random_softc *bus, int busu/
+autoconf_rtclock	kern/compile/EX2/autoconf.c	/^autoconf_rtclock(struct rtclock_softc *bus, int bu/
+backsp	kern/lib/kgets.c	/^backsp(void)$/
+badbuf_fstat	testbin/badcall/bad_stat.c	/^badbuf_fstat(struct stat *sb)$/
+badbuf_lstat	testbin/badcall/bad_stat.c	/^badbuf_lstat(struct stat *sb)$/
+badbuf_stat	testbin/badcall/bad_stat.c	/^badbuf_stat(struct stat *sb)$/
+badnames	kern/fs/vfs/vfslist.c	/^badnames(const char *n1, const char *n2, const cha/
+basename	bin/ls/ls.c	/^basename(const char *path)$/
+beep	kern/dev/generic/beep.c	/^beep(void)$/
+big_file	testbin/f_test/f_test.c	/^big_file(int size)$/
+bitmap_alloc	kern/lib/bitmap.c	/^bitmap_alloc(struct bitmap *b, u_int32_t *index)$/
+bitmap_create	kern/lib/bitmap.c	/^bitmap_create(u_int32_t nbits)$/
+bitmap_destroy	kern/lib/bitmap.c	/^bitmap_destroy(struct bitmap *b)$/
+bitmap_getdata	kern/lib/bitmap.c	/^bitmap_getdata(struct bitmap *b)$/
+bitmap_isset	kern/lib/bitmap.c	/^bitmap_isset(struct bitmap *b, u_int32_t index) $/
+bitmap_mark	kern/lib/bitmap.c	/^bitmap_mark(struct bitmap *b, u_int32_t index)$/
+bitmap_translate	kern/lib/bitmap.c	/^bitmap_translate(u_int32_t bitno, u_int32_t *ix, W/
+bitmap_unmark	kern/lib/bitmap.c	/^bitmap_unmark(struct bitmap *b, u_int32_t index)$/
+bitmaptest	kern/test/bitmaptest.c	/^bitmaptest(int nargs, char **args)$/
+blocktype	kern/lib/kheap.c	/^int blocktype(size_t sz)$/
+bool	testbin/tictac/tictac.c	25
+boot	kern/main/main.c	/^boot(void)$/
+bus_map_area	kern/arch/mips/include/bus.h	/^#define bus_map_area(bus, slot, offset) \\$/
+bus_read_register	kern/arch/mips/include/bus.h	/^#define bus_read_register(bus, slot, offset) \\$/
+bus_write_register	kern/arch/mips/include/bus.h	/^#define bus_write_register(bus, slot, offset, val)/
+bzero	lib/libc/bzero.c	/^bzero(void *vblock, size_t len)$/
+cat	bin/cat/cat.c	/^cat(const char *file)$/
+cat	testbin/farm/farm.c	/^cat(void)$/
+change_bootfs	kern/fs/vfs/vfslookup.c	/^change_bootfs(struct vnode *newguy)$/
+chdir_badpath	testbin/badcall/common_path.c	/^chdir_badpath(const char *path)$/
+chdir_empty	testbin/badcall/bad_chdir.c	/^chdir_empty(void)$/
+check	sbin/mksfs/mksfs.c	/^check(void)$/
+check	testbin/sort/sort.c	/^check(void)$/
+check	testbin/forktest/forktest.c	/^check(void)$/
+check_buffer	testbin/f_test/f_read.c	/^check_buffer(void)$/
+checkblock	testbin/malloctest/malloctest.c	/^checkblock(volatile void *ptr, size_t size, unsign/
+checkfilesystem	kern/test/fstest.c	/^checkfilesystem(int nargs, char **args)$/
+checksubpage	kern/lib/kheap.c	/^checksubpage(struct pageref *pr)$/
+checksubpage	kern/lib/kheap.c	/^#define checksubpage(pr) ((void)(pr))$/
+checksubpages	kern/lib/kheap.c	/^checksubpages(void)$/
+checksubpages	kern/lib/kheap.c	/^#define checksubpages() $/
+choose_name	testbin/dirconc/dirconc.c	/^choose_name(char *buf, size_t len)$/
+cleanup	testbin/dirseek/dirseek.c	/^cleanup(void)$/
+cleanup	testbin/dirconc/dirconc.c	/^cleanup(void)$/
+cleanup_rmdir	testbin/dirconc/dirconc.c	/^cleanup_rmdir(const char *name)$/
+clocksleep	kern/thread/hardclock.c	/^clocksleep(int num_secs)$/
+close_badfd	testbin/badcall/common_fds.c	/^close_badfd(int fd)$/
+closedisk	sbin/mksfs/disk.c	/^closedisk(void)$/
+closedisk	sbin/dumpsfs/disk.c	/^closedisk(void)$/
+closeit	testbin/dirseek/dirseek.c	/^closeit(void)$/
+cmd_bootfs	kern/main/menu.c	/^cmd_bootfs(int nargs, char **args)$/
+cmd_chdir	kern/main/menu.c	/^cmd_chdir(int nargs, char **args)$/
+cmd_dbflags	kern/main/menu.c	/^cmd_dbflags(int nargs, char **args) {$/
+cmd_dispatch	kern/main/menu.c	/^cmd_dispatch(char *cmd)$/
+cmd_kheapstats	kern/main/menu.c	/^cmd_kheapstats(int nargs, char **args)$/
+cmd_mainmenu	kern/main/menu.c	/^cmd_mainmenu(int n, char **a)$/
+cmd_mount	kern/main/menu.c	/^cmd_mount(int nargs, char **args)$/
+cmd_opsmenu	kern/main/menu.c	/^cmd_opsmenu(int n, char **a)$/
+cmd_panic	kern/main/menu.c	/^cmd_panic(int nargs, char **args)$/
+cmd_prog	kern/main/menu.c	/^cmd_prog(int nargs, char **args)$/
+cmd_progthread	kern/main/menu.c	/^cmd_progthread(void *ptr, unsigned long nargs)$/
+cmd_pwd	kern/main/menu.c	/^cmd_pwd(int nargs, char **args)$/
+cmd_quit	kern/main/menu.c	/^cmd_quit(int nargs, char **args)$/
+cmd_shell	kern/main/menu.c	/^cmd_shell(int nargs, char **args)$/
+cmd_sync	kern/main/menu.c	/^cmd_sync(int nargs, char **args)$/
+cmd_testmenu	kern/main/menu.c	/^cmd_testmenu(int n, char **a)$/
+cmd_unmount	kern/main/menu.c	/^cmd_unmount(int nargs, char **args)$/
+common_badbuf	testbin/badcall/common_buf.c	/^common_badbuf(struct buftest *info, void *buf, con/
+common_badbuf	testbin/badcall/bad_stat.c	/^common_badbuf(int (*statfunc)(struct stat *), void/
+common_badpath	testbin/badcall/common_path.c	/^common_badpath(int (*func)(const char *path), int /
+common_prog	kern/main/menu.c	/^common_prog(int nargs, char **args)$/
+compute	testbin/parallelvm/parallelvm.c	/^compute(int n)$/
+compute_thread	kern/test/tt3.c	/^compute_thread(void *junk1, unsigned long num)$/
+computeall	testbin/parallelvm/parallelvm.c	/^computeall(int mynum)$/
+con_close	kern/dev/generic/console.c	/^con_close(struct device *dev)$/
+con_input	kern/dev/generic/console.c	/^con_input(void *vcs, int ch)$/
+con_io	kern/dev/generic/console.c	/^con_io(struct device *dev, struct uio *uio)$/
+con_ioctl	kern/dev/generic/console.c	/^con_ioctl(struct device *dev, int op, userptr_t da/
+con_open	kern/dev/generic/console.c	/^con_open(struct device *dev, int openflags)$/
+con_start	kern/dev/generic/console.c	/^con_start(void *vcs)$/
+concur	testbin/f_test/f_test.c	/^concur(void)$/
+config_beep	kern/dev/generic/beep.c	/^config_beep(struct beep_softc *bs, int unit)$/
+config_con	kern/dev/generic/console.c	/^config_con(struct con_softc *cs, int unit)$/
+config_emu	kern/dev/lamebus/emu.c	/^config_emu(struct emu_softc *sc, int emuno)$/
+config_lhd	kern/dev/lamebus/lhd.c	/^config_lhd(struct lhd_softc *lh, int lhdno)$/
+config_lnet	kern/dev/lamebus/lnet.c	/^config_lnet(struct lnet_softc *sc, int lnetno)$/
+config_lrandom	kern/dev/lamebus/lrandom.c	/^config_lrandom(struct lrandom_softc *lr, int lrand/
+config_lscreen	kern/dev/lamebus/lscreen.c	/^config_lscreen(struct lscreen_softc *sc, int lscre/
+config_lser	kern/dev/lamebus/lser.c	/^config_lser(struct lser_softc *sc, int lserno)$/
+config_ltimer	kern/dev/lamebus/ltimer.c	/^config_ltimer(struct ltimer_softc *lt, int ltimern/
+config_ltrace	kern/dev/lamebus/ltrace.c	/^config_ltrace(struct ltrace_softc *sc, int ltracen/
+config_random	kern/dev/generic/random.c	/^config_random(struct random_softc *rs, int unit)$/
+config_rtclock	kern/dev/generic/rtclock.c	/^config_rtclock(struct rtclock_softc *rtc, int unit/
+console_send	kern/lib/kprintf.c	/^console_send(void *junk, const char *data, size_t /
+const_userptr_t	kern/include/types.h	31
+copy	bin/cp/cp.c	/^copy(const char *from, const char *to)$/
+copycheck	kern/lib/copyinout.c	/^copycheck(const_userptr_t userptr, size_t len, siz/
+copyfail	kern/lib/copyinout.c	/^copyfail(void)$/
+copyin	kern/lib/copyinout.c	/^copyin(const_userptr_t usersrc, void *dest, size_t/
+copyinstr	kern/lib/copyinout.c	/^copyinstr(const_userptr_t usersrc, char *dest, siz/
+copyout	kern/lib/copyinout.c	/^copyout(const void *src, userptr_t userdest, size_/
+copyoutstr	kern/lib/copyinout.c	/^copyoutstr(const char *src, userptr_t userdest, si/
+copystr	kern/lib/copyinout.c	/^copystr(char *dest, const char *src, size_t maxlen/
+cpu_halt	kern/arch/mips/mips/spl.c	/^cpu_halt(void)$/
+cpu_idle	kern/arch/mips/mips/spl.c	/^cpu_idle(void)$/
+create_testdir	testbin/badcall/driver.c	/^create_testdir(void)$/
+create_testfile	testbin/badcall/driver.c	/^create_testfile(void)$/
+create_testlink	testbin/badcall/driver.c	/^create_testlink(void)$/
+createstress_thread	kern/test/fstest.c	/^createstress_thread(void *fs, unsigned long num)$/
+cv_broadcast	kern/thread/synch.c	/^cv_broadcast(struct cv *cv, struct lock *lock)$/
+cv_create	kern/thread/synch.c	/^cv_create(const char *name)$/
+cv_destroy	kern/thread/synch.c	/^cv_destroy(struct cv *cv)$/
+cv_signal	kern/thread/synch.c	/^cv_signal(struct cv *cv, struct lock *lock)$/
+cv_wait	kern/thread/synch.c	/^cv_wait(struct cv *cv, struct lock *lock)$/
+cvtest	kern/test/synchtest.c	/^cvtest(int nargs, char **args)$/
+cvtestthread	kern/test/synchtest.c	/^cvtestthread(void *junk, unsigned long num)$/
+dbflags_print	kern/main/menu.c	/^dbflags_print() {$/
+dev_bootstrap	kern/dev/init.c	/^dev_bootstrap(void)$/
+dev_close	kern/fs/vfs/device.c	/^dev_close(struct vnode *v)$/
+dev_create_vnode	kern/fs/vfs/device.c	/^dev_create_vnode(struct device *dev)$/
+dev_gettype	kern/fs/vfs/device.c	/^dev_gettype(struct vnode *v, u_int32_t *ret)$/
+dev_ioctl	kern/fs/vfs/device.c	/^dev_ioctl(struct vnode *v, int op, userptr_t data)/
+dev_lookparent	kern/fs/vfs/device.c	/^dev_lookparent(struct vnode *dir, $/
+dev_lookup	kern/fs/vfs/device.c	/^dev_lookup(struct vnode *dir, $/
+dev_mmap	kern/fs/vfs/device.c	/^dev_mmap(struct vnode *v  \/* add stuff as needed */
+dev_namefile	kern/fs/vfs/device.c	/^dev_namefile(struct vnode *v, struct uio *uio)$/
+dev_open	kern/fs/vfs/device.c	/^dev_open(struct vnode *v, int flags)$/
+dev_read	kern/fs/vfs/device.c	/^dev_read(struct vnode *v, struct uio *uio)$/
+dev_reclaim	kern/fs/vfs/device.c	/^dev_reclaim(struct vnode *v)$/
+dev_stat	kern/fs/vfs/device.c	/^dev_stat(struct vnode *v, struct stat *statbuf)$/
+dev_truncate	kern/fs/vfs/device.c	/^dev_truncate(struct vnode *v, off_t len)$/
+dev_tryseek	kern/fs/vfs/device.c	/^dev_tryseek(struct vnode *v, off_t pos)$/
+dev_write	kern/fs/vfs/device.c	/^dev_write(struct vnode *v, struct uio *uio)$/
+devnull_create	kern/fs/vfs/devnull.c	/^devnull_create(void)$/
+dir_test	testbin/f_test/f_test.c	/^dir_test(int depth)$/
+diskblocks	sbin/mksfs/disk.c	/^diskblocks(void)$/
+diskblocks	sbin/dumpsfs/disk.c	/^diskblocks(void)$/
+diskblocksize	sbin/mksfs/disk.c	/^diskblocksize(void)$/
+diskblocksize	sbin/dumpsfs/disk.c	/^diskblocksize(void)$/
+diskread	sbin/mksfs/disk.c	/^diskread(void *data, u_int32_t block)$/
+diskread	sbin/dumpsfs/disk.c	/^diskread(void *data, u_int32_t block)$/
+diskwrite	sbin/mksfs/disk.c	/^diskwrite(const void *data, u_int32_t block)$/
+diskwrite	sbin/dumpsfs/disk.c	/^diskwrite(const void *data, u_int32_t block)$/
+divide_by_zero	testbin/crash/crash.c	/^divide_by_zero(void)$/
+do_move	testbin/tictac/tictac.c	/^do_move(int player)$/
+doallocbit	sbin/mksfs/mksfs.c	/^doallocbit(u_int32_t bit)$/
+dobadreads	testbin/dirseek/dirseek.c	/^dobadreads(void)$/
+docat	bin/cat/cat.c	/^docat(const char *name, int fd)$/
+docreatestress	kern/test/fstest.c	/^docreatestress(const char *filesys)$/
+dodirblock	sbin/dumpsfs/dumpsfs.c	/^dodirblock(u_int32_t block)$/
+dofork	testbin/forktest/forktest.c	/^dofork(void)$/
+dofork	testbin/dirconc/dirconc.c	/^dofork(void (*func)(void))$/
+dofstest	kern/test/fstest.c	/^dofstest(const char *filesys)$/
+dohardlink	bin/ln/ln.c	/^dohardlink(const char *oldfile, const char *newfil/
+domkdir	testbin/dirconc/dirconc.c	/^domkdir(const char *name)$/
+doreadat0	testbin/dirseek/dirseek.c	/^doreadat0(void)$/
+doreadateof	testbin/dirseek/dirseek.c	/^doreadateof(void)$/
+doreadone	testbin/dirseek/dirseek.c	/^doreadone(int which)$/
+doreadstress	kern/test/fstest.c	/^doreadstress(const char *filesys)$/
+doremove	bin/rm/rm.c	/^doremove(const char *file)$/
+dorename	bin/mv/mv.c	/^dorename(const char *oldfile, const char *newfile)/
+dorename	testbin/dirconc/dirconc.c	/^dorename(const char *name1, const char *name2)$/
+dorm	testbin/rmtest/rmtest.c	/^dorm(int fd)$/
+dormdir	testbin/dirconc/dirconc.c	/^dormdir(const char *name)$/
+dosymlink	bin/ln/ln.c	/^dosymlink(const char *text, const char *path)$/
+dotest	testbin/malloctest/malloctest.c	/^dotest(int tn)$/
+dotest	testbin/dirseek/dirseek.c	/^dotest(void)$/
+dowait	testbin/triplehuge/triple.c	/^dowait(int index, int pid)$/
+dowait	testbin/triplesort/triple.c	/^dowait(int index, int pid)$/
+dowait	testbin/f_test/f_test.c	/^dowait(int pid)$/
+dowait	testbin/triplemat/triple.c	/^dowait(int index, int pid)$/
+dowait	testbin/forktest/forktest.c	/^dowait(int nowait, int pid)$/
+dowritestress	kern/test/fstest.c	/^dowritestress(const char *filesys)$/
+dowritestress2	kern/test/fstest.c	/^dowritestress2(const char *filesys)$/
+dumpbits	sbin/dumpsfs/dumpsfs.c	/^dumpbits(u_int32_t fsblocks)$/
+dumpdir	sbin/dumpsfs/dumpsfs.c	/^dumpdir(u_int32_t ino)$/
+dumpsb	sbin/dumpsfs/dumpsfs.c	/^dumpsb(void)$/
+dumpsubpage	kern/lib/kheap.c	/^dumpsubpage(struct pageref *pr)$/
+dup2_badfd	testbin/badcall/common_fds.c	/^dup2_badfd(int fd)$/
+dup2_cleanup	testbin/badcall/common_fds.c	/^dup2_cleanup(void)$/
+dup2_fd2	testbin/badcall/bad_dup2.c	/^dup2_fd2(int fd, const char *desc)$/
+dup2_self	testbin/badcall/bad_dup2.c	/^dup2_self(void)$/
+emu_close	kern/dev/lamebus/emu.c	/^emu_close(struct emu_softc *sc, u_int32_t handle)$/
+emu_doread	kern/dev/lamebus/emu.c	/^emu_doread(struct emu_softc *sc, u_int32_t handle,/
+emu_getsize	kern/dev/lamebus/emu.c	/^emu_getsize(struct emu_softc *sc, u_int32_t handle/
+emu_irq	kern/dev/lamebus/emu.c	/^emu_irq(void *dev)$/
+emu_open	kern/dev/lamebus/emu.c	/^emu_open(struct emu_softc *sc, u_int32_t handle, c/
+emu_read	kern/dev/lamebus/emu.c	/^emu_read(struct emu_softc *sc, u_int32_t handle, u/
+emu_readdir	kern/dev/lamebus/emu.c	/^emu_readdir(struct emu_softc *sc, u_int32_t handle/
+emu_rreg	kern/dev/lamebus/emu.c	/^emu_rreg(struct emu_softc *sc, u_int32_t reg)$/
+emu_trunc	kern/dev/lamebus/emu.c	/^emu_trunc(struct emu_softc *sc, u_int32_t handle, /
+emu_waitdone	kern/dev/lamebus/emu.c	/^emu_waitdone(struct emu_softc *sc)$/
+emu_wreg	kern/dev/lamebus/emu.c	/^emu_wreg(struct emu_softc *sc, u_int32_t reg, u_in/
+emu_write	kern/dev/lamebus/emu.c	/^emu_write(struct emu_softc *sc, u_int32_t handle, /
+emufs_addtovfs	kern/dev/lamebus/emu.c	/^emufs_addtovfs(struct emu_softc *sc, const char *d/
+emufs_close	kern/dev/lamebus/emu.c	/^emufs_close(struct vnode *v)$/
+emufs_creat	kern/dev/lamebus/emu.c	/^emufs_creat(struct vnode *dir, const char *name, i/
+emufs_dir_gettype	kern/dev/lamebus/emu.c	/^emufs_dir_gettype(struct vnode *v, u_int32_t *resu/
+emufs_file_gettype	kern/dev/lamebus/emu.c	/^emufs_file_gettype(struct vnode *v, u_int32_t *res/
+emufs_fsync	kern/dev/lamebus/emu.c	/^emufs_fsync(struct vnode *v)$/
+emufs_getdirentry	kern/dev/lamebus/emu.c	/^emufs_getdirentry(struct vnode *v, struct uio *uio/
+emufs_getroot	kern/dev/lamebus/emu.c	/^emufs_getroot(struct fs *fs)$/
+emufs_getvolname	kern/dev/lamebus/emu.c	/^emufs_getvolname(struct fs *fs)$/
+emufs_ioctl	kern/dev/lamebus/emu.c	/^emufs_ioctl(struct vnode *v, int op, userptr_t dat/
+emufs_isdir	kern/dev/lamebus/emu.c	/^emufs_isdir(void)$/
+emufs_loadvnode	kern/dev/lamebus/emu.c	/^emufs_loadvnode(struct emufs_fs *ef, u_int32_t han/
+emufs_lookparent	kern/dev/lamebus/emu.c	/^emufs_lookparent(struct vnode *dir, char *pathname/
+emufs_lookup	kern/dev/lamebus/emu.c	/^emufs_lookup(struct vnode *dir, char *pathname, st/
+emufs_namefile	kern/dev/lamebus/emu.c	/^emufs_namefile(struct vnode *v, struct uio *uio)$/
+emufs_notdir	kern/dev/lamebus/emu.c	/^emufs_notdir(void)$/
+emufs_open	kern/dev/lamebus/emu.c	/^emufs_open(struct vnode *v, int openflags)$/
+emufs_opendir	kern/dev/lamebus/emu.c	/^emufs_opendir(struct vnode *v, int openflags)$/
+emufs_read	kern/dev/lamebus/emu.c	/^emufs_read(struct vnode *v, struct uio *uio)$/
+emufs_reclaim	kern/dev/lamebus/emu.c	/^emufs_reclaim(struct vnode *v)$/
+emufs_stat	kern/dev/lamebus/emu.c	/^emufs_stat(struct vnode *v, struct stat *statbuf)$/
+emufs_sync	kern/dev/lamebus/emu.c	/^emufs_sync(struct fs *fs)$/
+emufs_truncate	kern/dev/lamebus/emu.c	/^emufs_truncate(struct vnode *v, off_t len)$/
+emufs_tryseek	kern/dev/lamebus/emu.c	/^emufs_tryseek(struct vnode *v, off_t pos)$/
+emufs_unimp	kern/dev/lamebus/emu.c	/^emufs_unimp(void)$/
+emufs_unmount	kern/dev/lamebus/emu.c	/^emufs_unmount(struct fs *fs)$/
+emufs_write	kern/dev/lamebus/emu.c	/^emufs_write(struct vnode *v, struct uio *uio)$/
+enforce_sbrk	testbin/badcall/bad_sbrk.c	/^enforce_sbrk(long val, const char *desc, int err)$/
+err	lib/hostcompat/err.c	/^err(int exitcode, const char *fmt, ...)$/
+err	lib/libc/err.c	/^err(int exitcode, const char *fmt, ...)$/
+errx	lib/hostcompat/err.c	/^errx(int exitcode, const char *fmt, ...)$/
+errx	lib/libc/err.c	/^errx(int exitcode, const char *fmt, ...)$/
+exec_badargs	testbin/badcall/bad_execv.c	/^exec_badargs(void *args, const char *desc)$/
+exec_badprog	testbin/badcall/bad_execv.c	/^exec_badprog(const void *prog, const char *desc)$/
+exec_common_fork	testbin/badcall/bad_execv.c	/^exec_common_fork(void)$/
+exec_emptyprog	testbin/badcall/bad_execv.c	/^exec_emptyprog(void)$/
+exec_onearg	testbin/badcall/bad_execv.c	/^exec_onearg(void *ptr, const char *desc)$/
+exit	lib/libc/exit.c	/^exit(int code)$/
+exorcise	kern/thread/thread.c	/^exorcise(void)$/
+fail	kern/test/synchtest.c	/^fail(unsigned long num, const char *msg)$/
+fill_deadbeef	kern/lib/kheap.c	/^fill_deadbeef(void *vptr, size_t len)$/
+fillrand	testbin/randcall/main.c	/^fillrand(void *p, size_t len)$/
+findentry	testbin/dirseek/dirseek.c	/^findentry(const char *name)$/
+finderror	testbin/badcall/driver.c	/^finderror(int rv, int error)$/
+findmount	kern/fs/vfs/vfslist.c	/^findmount(const char *devname, struct knowndev **r/
+finish	kern/test/tt3.c	/^finish(int howmanytotal)$/
+finish	testbin/rmdirtest/rmdirtest.c	/^finish(void)$/
+firstread	testbin/dirseek/dirseek.c	/^firstread(void)$/
+flush_delay_buf	kern/dev/generic/console.c	/^flush_delay_buf(void)$/
+forkoff	testbin/f_test/f_test.c	/^forkoff(void (*func)(void))$/
+free_kpages	kern/arch/mips/mips/dumbvm.c	/^free_kpages(vaddr_t addr)$/
+freepageref	kern/lib/kheap.c	/^freepageref(struct pageref *p)$/
+fstat_badfd	testbin/badcall/common_fds.c	/^fstat_badfd(int fd)$/
+fstest_makename	kern/test/fstest.c	/^fstest_makename(char *buf, size_t buflen, $/
+fstest_read	kern/test/fstest.c	/^fstest_read(const char *fs, const char *namesuffix/
+fstest_remove	kern/test/fstest.c	/^fstest_remove(const char *fs, const char *namesuff/
+fstest_write	kern/test/fstest.c	/^fstest_write(const char *fs, const char *namesuffi/
+fsync_badfd	testbin/badcall/common_fds.c	/^fsync_badfd(int fd)$/
+ftruncate_badfd	testbin/badcall/common_fds.c	/^ftruncate_badfd(int fd)$/
+ftruncate_fd_device	testbin/badcall/bad_ftruncate.c	/^ftruncate_fd_device(void)$/
+ftruncate_size_neg	testbin/badcall/bad_ftruncate.c	/^ftruncate_size_neg(void)$/
+func	testbin/crash/crash.c	28
+get_status	kern/arch/mips/mips/spl.c	/^#define get_status(x) __asm volatile("mfc0 %0,$12"/
+getch	kern/dev/generic/console.c	/^getch(void)$/
+getch_intr	kern/dev/generic/console.c	/^getch_intr(struct con_softc *cs)$/
+getchar	lib/libc/getchar.c	/^getchar(void)$/
+getcwd	lib/libc/getcwd.c	/^getcwd(char *buf, size_t buflen)$/
+getcwd_badbuf	testbin/badcall/common_buf.c	/^getcwd_badbuf(void *buf)$/
+getcwd_cleanup	testbin/badcall/common_buf.c	/^static void getcwd_cleanup(void) {}$/
+getcwd_setup	testbin/badcall/common_buf.c	/^static int getcwd_setup(void) { return 0; }$/
+getdevice	kern/fs/vfs/vfslookup.c	/^getdevice(char *path, char **subpath, struct vnode/
+getdirentry_badbuf	testbin/badcall/common_buf.c	/^getdirentry_badbuf(void *ptr)$/
+getdirentry_badfd	testbin/badcall/common_fds.c	/^getdirentry_badfd(int fd)$/
+getdirentry_cleanup	testbin/badcall/common_buf.c	/^getdirentry_cleanup(void)$/
+getdirentry_setup	testbin/badcall/common_buf.c	/^getdirentry_setup(void)$/
+geti	testbin/malloctest/malloctest.c	/^geti(void)$/
+getinterval	kern/main/menu.c	/^getinterval(time_t s1, u_int32_t ns1, time_t s2, u/
+getppages	kern/arch/mips/mips/dumbvm.c	/^getppages(unsigned long npages)$/
+gettime	kern/dev/generic/rtclock.c	/^gettime(time_t *secs, u_int32_t *nsecs)$/
+go	testbin/parallelvm/parallelvm.c	/^go(int mynum)$/
+hardclock	kern/thread/hardclock.c	/^hardclock(void)$/
+hog	testbin/sty/sty.c	/^hog(void)$/
+hog	testbin/farm/farm.c	/^hog(void)$/
+hostcompat_cont	lib/hostcompat/hostcompat.c	/^hostcompat_cont(int sig)$/
+hostcompat_die	lib/hostcompat/hostcompat.c	/^hostcompat_die(int sig)$/
+hostcompat_init	lib/hostcompat/hostcompat.c	/^hostcompat_init(int argc, char *argv[])$/
+hostcompat_printerr	lib/hostcompat/err.c	/^hostcompat_printerr(int use_errno, const char *fmt/
+hostcompat_stop	lib/hostcompat/hostcompat.c	/^hostcompat_stop(int sig)$/
+hostcompat_ttyreset	lib/hostcompat/hostcompat.c	/^hostcompat_ttyreset(void)$/
+hostcompat_ttyresume	lib/hostcompat/hostcompat.c	/^hostcompat_ttyresume(void)$/
+hostcompat_ttysetup	lib/hostcompat/hostcompat.c	/^hostcompat_ttysetup(void)$/
+illegal_instruction	testbin/crash/crash.c	/^illegal_instruction(void)$/
+init_sem	kern/test/threadtest.c	/^init_sem(void)$/
+init_threadsem	kern/test/fstest.c	/^init_threadsem(void)$/
+initarray	testbin/sort/sort.c	/^initarray(void)$/
+initialize_board	testbin/tictac/tictac.c	/^initialize_board(void)$/
+inititems	kern/test/synchtest.c	/^inititems(void)$/
+initstate	lib/libc/random.c	/^initstate($/
+int16_t	kern/arch/mips/include/types.h	22
+int32_t	kern/arch/mips/include/types.h	23
+int64_t	kern/arch/mips/include/types.h	24
+int8_t	kern/arch/mips/include/types.h	21
+interrupts_off	kern/arch/mips/mips/spl.c	/^interrupts_off(void)$/
+interrupts_on	kern/arch/mips/mips/spl.c	/^interrupts_on(void)$/
+interrupts_onoff	kern/arch/mips/mips/spl.c	/^interrupts_onoff(void)$/
+intptr_t	kern/arch/mips/include/types.h	44
+inval_read	testbin/dirseek/dirseek.c	/^inval_read(void)$/
+ioctl_badbuf	testbin/badcall/bad_ioctl.c	/^ioctl_badbuf(void)$/
+ioctl_badcode	testbin/badcall/bad_ioctl.c	/^ioctl_badcode(void)$/
+ioctl_badfd	testbin/badcall/common_fds.c	/^ioctl_badfd(int fd)$/
+is_win	testbin/tictac/tictac.c	/^is_win(int x, int y)$/
+isdir	bin/ls/ls.c	/^isdir(const char *path)$/
+jmp_buf	kern/arch/mips/include/setjmp.h	11
+jump_to_inval	testbin/crash/crash.c	/^jump_to_inval(void)$/
+jump_to_kernel	testbin/crash/crash.c	/^jump_to_kernel(void)$/
+jump_to_null	testbin/crash/crash.c	/^jump_to_null(void)$/
+kfree	kern/lib/kheap.c	/^kfree(void *ptr)$/
+kgets	kern/lib/kgets.c	/^kgets(char *buf, size_t maxlen)$/
+kheap_printstats	kern/lib/kheap.c	/^kheap_printstats(void)$/
+kill_curthread	kern/arch/mips/mips/trap.c	/^kill_curthread(u_int32_t epc, unsigned code, u_int/
+killdir	testbin/rmdirtest/rmdirtest.c	/^killdir(void)$/
+kmain	kern/main/main.c	/^kmain(char *arguments)$/
+kmalloc	kern/lib/kheap.c	/^kmalloc(size_t sz)$/
+kprintf	kern/lib/kprintf.c	/^kprintf(const char *fmt, ...)$/
+kprintf_bootstrap	kern/lib/kprintf.c	/^kprintf_bootstrap(void)$/
+kstrdup	kern/lib/misc.c	/^kstrdup(const char *s)$/
+lamebus_attach_interrupt	kern/dev/lamebus/lamebus.c	/^lamebus_attach_interrupt(struct lamebus_softc *sc,/
+lamebus_detach_interrupt	kern/dev/lamebus/lamebus.c	/^lamebus_detach_interrupt(struct lamebus_softc *sc,/
+lamebus_init	kern/dev/lamebus/lamebus.c	/^lamebus_init(void)$/
+lamebus_interrupt	kern/dev/lamebus/lamebus.c	/^lamebus_interrupt(struct lamebus_softc *lamebus)$/
+lamebus_map_area	kern/arch/mips/mips/lamebus_mips.c	/^lamebus_map_area(struct lamebus_softc *bus, int sl/
+lamebus_mark	kern/dev/lamebus/lamebus.c	/^lamebus_mark(struct lamebus_softc *sc, int slot)$/
+lamebus_poweroff	kern/dev/lamebus/lamebus.c	/^lamebus_poweroff(struct lamebus_softc *lamebus)$/
+lamebus_probe	kern/dev/lamebus/lamebus.c	/^lamebus_probe(struct lamebus_softc *sc,$/
+lamebus_ramsize	kern/dev/lamebus/lamebus.c	/^lamebus_ramsize(void)$/
+lamebus_read_register	kern/arch/mips/mips/lamebus_mips.c	/^lamebus_read_register(struct lamebus_softc *bus, i/
+lamebus_unmark	kern/dev/lamebus/lamebus.c	/^lamebus_unmark(struct lamebus_softc *sc, int slot)/
+lamebus_write_register	kern/arch/mips/mips/lamebus_mips.c	/^lamebus_write_register(struct lamebus_softc *bus, /
+lb_irqfunc	kern/dev/lamebus/lamebus.h	36
+lhd_close	kern/dev/lamebus/lhd.c	/^lhd_close(struct device *d)$/
+lhd_code_to_errno	kern/dev/lamebus/lhd.c	/^int lhd_code_to_errno(struct lhd_softc *lh, int co/
+lhd_io	kern/dev/lamebus/lhd.c	/^lhd_io(struct device *d, struct uio *uio)$/
+lhd_ioctl	kern/dev/lamebus/lhd.c	/^lhd_ioctl(struct device *d, int op, userptr_t data/
+lhd_iodone	kern/dev/lamebus/lhd.c	/^lhd_iodone(struct lhd_softc *lh, int err)$/
+lhd_irq	kern/dev/lamebus/lhd.c	/^lhd_irq(void *vlh)$/
+lhd_open	kern/dev/lamebus/lhd.c	/^lhd_open(struct device *d, int openflags)$/
+lhd_rdreg	kern/dev/lamebus/lhd.c	/^u_int32_t lhd_rdreg(struct lhd_softc *lh, u_int32_/
+lhd_reset	kern/dev/lamebus/lhd.c	/^lhd_reset(struct lhd_softc *lh)$/
+lhd_wreg	kern/dev/lamebus/lhd.c	/^void lhd_wreg(struct lhd_softc *lh, u_int32_t reg,/
+link_badpath1	testbin/badcall/common_path.c	/^link_badpath1(const char *path)$/
+link_badpath2	testbin/badcall/common_path.c	/^link_badpath2(const char *path)$/
+link_dir	testbin/badcall/bad_link.c	/^link_dir(void)$/
+link_empty1	testbin/badcall/bad_link.c	/^link_empty1(void)$/
+link_empty2	testbin/badcall/bad_link.c	/^link_empty2(void)$/
+listdir	bin/ls/ls.c	/^listdir(const char *path, int showheader)$/
+listitem	bin/ls/ls.c	/^listitem(const char *path, int showheader)$/
+load_elf	kern/userprog/loadelf.c	/^load_elf(struct vnode *v, vaddr_t *entrypoint)$/
+load_segment	kern/userprog/loadelf.c	/^load_segment(struct vnode *v, off_t offset, vaddr_/
+lock_acquire	kern/thread/synch.c	/^lock_acquire(struct lock *lock)$/
+lock_create	kern/thread/synch.c	/^lock_create(const char *name)$/
+lock_destroy	kern/thread/synch.c	/^lock_destroy(struct lock *lock)$/
+lock_do_i_hold	kern/thread/synch.c	/^lock_do_i_hold(struct lock *lock)$/
+lock_release	kern/thread/synch.c	/^lock_release(struct lock *lock)$/
+locktest	kern/test/synchtest.c	/^locktest(int nargs, char **args)$/
+locktestthread	kern/test/synchtest.c	/^locktestthread(void *junk, unsigned long num)$/
+loudthread	kern/test/threadtest.c	/^loudthread(void *junk, unsigned long num)$/
+lrandom_randmax	kern/dev/lamebus/lrandom.c	/^lrandom_randmax(void *devdata)$/
+lrandom_random	kern/dev/lamebus/lrandom.c	/^lrandom_random(void *devdata)$/
+lrandom_read	kern/dev/lamebus/lrandom.c	/^lrandom_read(void *devdata, struct uio *uio)$/
+lscreen_char	kern/dev/lamebus/lscreen.c	/^lscreen_char(struct lscreen_softc *sc, int ch)$/
+lscreen_irq	kern/dev/lamebus/lscreen.c	/^lscreen_irq(void *vsc)$/
+lscreen_newline	kern/dev/lamebus/lscreen.c	/^lscreen_newline(struct lscreen_softc *sc)$/
+lscreen_write	kern/dev/lamebus/lscreen.c	/^lscreen_write(void *vsc, int ch)$/
+lseek_badfd	testbin/badcall/common_fds.c	/^lseek_badfd(int fd)$/
+lseek_fd_device	testbin/badcall/bad_lseek.c	/^lseek_fd_device(void)$/
+lseek_file_stdin	testbin/badcall/bad_lseek.c	/^lseek_file_stdin(void)$/
+lseek_loc_negative	testbin/badcall/bad_lseek.c	/^lseek_loc_negative(void)$/
+lseek_loc_pasteof	testbin/badcall/bad_lseek.c	/^lseek_loc_pasteof(void)$/
+lseek_whence_inval	testbin/badcall/bad_lseek.c	/^lseek_whence_inval(void)$/
+lser_irq	kern/dev/lamebus/lser.c	/^lser_irq(void *vsc)$/
+lser_spin_until_write	kern/dev/lamebus/lser.c	/^lser_spin_until_write(struct lser_softc *sc)$/
+lser_write	kern/dev/lamebus/lser.c	/^lser_write(void *vls, int ch)$/
+lser_writepolled	kern/dev/lamebus/lser.c	/^lser_writepolled(void *vsc, int ch)$/
+lstat_badpath	testbin/badcall/common_path.c	/^lstat_badpath(const char *name)$/
+ltimer_beep	kern/dev/lamebus/ltimer.c	/^ltimer_beep(void *vlt)$/
+ltimer_gettime	kern/dev/lamebus/ltimer.c	/^ltimer_gettime(void *vlt, time_t *secs, u_int32_t /
+ltimer_irq	kern/dev/lamebus/ltimer.c	/^ltimer_irq(void *vlt)$/
+ltrace_debug	kern/dev/lamebus/ltrace.c	/^ltrace_debug(u_int32_t code)$/
+ltrace_dump	kern/dev/lamebus/ltrace.c	/^ltrace_dump(u_int32_t code)$/
+ltrace_off	kern/dev/lamebus/ltrace.c	/^ltrace_off(u_int32_t code)$/
+ltrace_on	kern/dev/lamebus/ltrace.c	/^ltrace_on(u_int32_t code)$/
+machdep_dev_bootstrap	kern/arch/mips/mips/lamebus_mips.c	/^machdep_dev_bootstrap(void)$/
+make_computes	kern/test/tt3.c	/^make_computes(int howmany)$/
+make_runnable	kern/thread/scheduler.c	/^make_runnable(struct thread *t)$/
+make_sleepalots	kern/test/tt3.c	/^make_sleepalots(int howmany)$/
+makeprocs	testbin/parallelvm/parallelvm.c	/^makeprocs(void)$/
+mallocstress	kern/test/malloctest.c	/^mallocstress(int nargs, char **args)$/
+malloctest	kern/test/malloctest.c	/^malloctest(int nargs, char **args)$/
+mallocthread	kern/test/malloctest.c	/^mallocthread(void *sm, unsigned long num)$/
+markblock	testbin/malloctest/malloctest.c	/^markblock(volatile void *ptr, size_t size, unsigne/
+md_forkentry	kern/arch/mips/mips/syscall.c	/^md_forkentry(struct trapframe *tf)$/
+md_halt	kern/arch/mips/mips/lamebus_mips.c	/^md_halt(void)$/
+md_initpcb	kern/arch/mips/mips/pcb.c	/^md_initpcb(struct pcb *pcb, char *stack, $/
+md_initpcb0	kern/arch/mips/mips/pcb.c	/^md_initpcb0(struct pcb *pcb)$/
+md_panic	kern/arch/mips/mips/lamebus_mips.c	/^md_panic(void)$/
+md_poweroff	kern/arch/mips/mips/lamebus_mips.c	/^md_poweroff(void)$/
+md_reboot	kern/arch/mips/mips/lamebus_mips.c	/^md_reboot(void)$/
+md_switch	kern/arch/mips/mips/pcb.c	/^md_switch(struct pcb *old, struct pcb *nu)$/
+md_usermode	kern/arch/mips/mips/trap.c	/^md_usermode(int argc, userptr_t argv, vaddr_t stac/
+memcmp	lib/libc/memcmp.c	/^memcmp(const void *av, const void *bv, size_t len)/
+memcpy	lib/libc/memcpy.c	/^memcpy(void *dst, const void *src, size_t len)$/
+memmove	lib/libc/memmove.c	/^memmove(void *dst, const void *src, size_t len)$/
+memset	lib/libc/memset.c	/^memset(void *ptr, int ch, size_t len)$/
+menu	kern/main/menu.c	/^menu(char *args)$/
+menu	testbin/badcall/driver.c	/^menu(void)$/
+menu_execute	kern/main/menu.c	/^menu_execute(char *line, int isargs)$/
+mergexy	kern/dev/lamebus/lscreen.c	/^mergexy(unsigned x, unsigned y)$/
+mi_switch	kern/thread/thread.c	/^mi_switch(threadstate_t nextstate)$/
+mi_threadstart	kern/thread/thread.c	/^mi_threadstart(void *data1, unsigned long data2, $/
+mips_interrupt	kern/arch/mips/mips/interrupt.c	/^mips_interrupt(u_int32_t cause)$/
+mips_lamebus_interrupt	kern/arch/mips/mips/lamebus_mips.c	/^mips_lamebus_interrupt(void)$/
+mips_ramsize	kern/arch/mips/mips/lamebus_mips.c	/^mips_ramsize(void)$/
+mips_syscall	kern/arch/mips/mips/syscall.c	/^mips_syscall(struct trapframe *tf)$/
+mips_trap	kern/arch/mips/mips/trap.c	/^mips_trap(struct trapframe *tf)$/
+mips_usermode	kern/arch/mips/mips/trap.c	/^mips_usermode(struct trapframe *tf)$/
+mk_kuio	kern/userprog/uio.c	/^mk_kuio(struct uio *uio, void *kbuf, size_t len, o/
+mkdir_badpath	testbin/badcall/common_path.c	/^mkdir_badpath(const char *path)$/
+mkdir_dot	testbin/badcall/bad_mkdir.c	/^mkdir_dot(void)$/
+mkdir_dotdot	testbin/badcall/bad_mkdir.c	/^mkdir_dotdot(void)$/
+mkdir_empty	testbin/badcall/bad_mkdir.c	/^mkdir_empty(void)$/
+mkdir_proc	testbin/dirconc/dirconc.c	/^mkdir_proc(void)$/
+mkfile	testbin/dirseek/dirseek.c	/^mkfile(const char *name)$/
+mkrawname	kern/fs/vfs/vfslist.c	/^mkrawname(const char *name)$/
+mod_by_zero	testbin/crash/crash.c	/^mod_by_zero(void)$/
+multiply	testbin/parallelvm/parallelvm.c	/^multiply(struct matrix *res, const struct matrix */
+nettest	kern/test/nettest.c	/^nettest(void)$/
+null_creat	kern/fs/vfs/device.c	/^null_creat(struct vnode *v, const char *name, int /
+null_fsync	kern/fs/vfs/device.c	/^null_fsync(struct vnode *v)$/
+null_io	kern/fs/vfs/device.c	/^null_io(struct vnode *v, struct uio *uio)$/
+null_link	kern/fs/vfs/device.c	/^null_link(struct vnode *v, const char *name, struc/
+null_nameop	kern/fs/vfs/device.c	/^null_nameop(struct vnode *v, const char *name)$/
+null_rename	kern/fs/vfs/device.c	/^null_rename(struct vnode *v, const char *n1, struc/
+null_symlink	kern/fs/vfs/device.c	/^null_symlink(struct vnode *v, const char *contents/
+nullclose	kern/fs/vfs/devnull.c	/^nullclose(struct device *dev)$/
+nullio	kern/fs/vfs/devnull.c	/^nullio(struct device *dev, struct uio *uio)$/
+nullioctl	kern/fs/vfs/devnull.c	/^nullioctl(struct device *dev, int op, userptr_t da/
+nullopen	kern/fs/vfs/devnull.c	/^nullopen(struct device *dev, int openflags)$/
+off_t	kern/include/kern/types.h	10
+one_ioctl_badbuf	testbin/badcall/bad_ioctl.c	/^one_ioctl_badbuf(int fd, int code, const char *cod/
+open_badflags	testbin/badcall/bad_open.c	/^open_badflags(void)$/
+open_badpath	testbin/badcall/common_path.c	/^open_badpath(const char *path)$/
+open_empty	testbin/badcall/bad_open.c	/^open_empty(void)$/
+open_testfile	testbin/badcall/driver.c	/^open_testfile(const char *string)$/
+opendisk	sbin/mksfs/disk.c	/^opendisk(const char *path)$/
+opendisk	sbin/dumpsfs/disk.c	/^opendisk(const char *path)$/
+openit	testbin/dirseek/dirseek.c	/^openit(void)$/
+option	bin/ls/ls.c	/^option(int ch)$/
+paddr_t	kern/arch/mips/include/ktypes.h	9
+panic	kern/lib/kprintf.c	/^panic(const char *fmt, ...)$/
+pcb_faultfunc	kern/arch/mips/include/pcb.h	20
+pid_t	kern/include/kern/types.h	11
+pipe_badptr	testbin/badcall/bad_pipe.c	/^pipe_badptr(void *ptr, const char *desc)$/
+pipe_unaligned	testbin/badcall/bad_pipe.c	/^pipe_unaligned(void)$/
+populate_initial_matrixes	testbin/parallelvm/parallelvm.c	/^populate_initial_matrixes(int mynum)$/
+print	bin/ls/ls.c	/^print(const char *path)$/
+print_board	testbin/tictac/tictac.c	/^print_board(void)$/
+print_instructions	testbin/tictac/tictac.c	/^print_instructions(void)$/
+print_run_queue	kern/thread/scheduler.c	/^print_run_queue(void)$/
+printf	lib/libc/printf.c	/^printf(const char *fmt, ...)$/
+printfile	kern/test/fstest.c	/^printfile(int nargs, char **args)$/
+printheader	bin/ls/ls.c	/^printheader(const char *file)$/
+pseudoattach_pseudorand	kern/dev/generic/pseudorand.c	/^pseudoattach_pseudorand(int unit)$/
+pseudoconfig	kern/compile/EX2/autoconf.c	/^pseudoconfig(void)$/
+pseudorand_randmax	kern/dev/generic/pseudorand.c	/^pseudorand_randmax(void *devdata)$/
+pseudorand_random	kern/dev/generic/pseudorand.c	/^pseudorand_random(void *devdata)$/
+pseudorand_read	kern/dev/generic/pseudorand.c	/^pseudorand_read(void *devdata, struct uio *uio)$/
+putch	kern/dev/generic/console.c	/^putch(int ch)$/
+putch_delayed	kern/dev/generic/console.c	/^putch_delayed(int ch)$/
+putch_intr	kern/dev/generic/console.c	/^putch_intr(struct con_softc *cs, int ch)$/
+putch_polled	kern/dev/generic/console.c	/^putch_polled(struct con_softc *cs, int ch)$/
+putchar	lib/libc/putchar.c	/^putchar(int ch)$/
+puts	lib/libc/puts.c	/^puts(const char *s)$/
+q_addtail	kern/lib/queue.c	/^q_addtail(struct queue *q, void *ptr)$/
+q_create	kern/lib/queue.c	/^q_create(int size)$/
+q_destroy	kern/lib/queue.c	/^q_destroy(struct queue *q)$/
+q_empty	kern/lib/queue.c	/^q_empty(struct queue *q)$/
+q_getend	kern/lib/queue.c	/^q_getend(struct queue *q)$/
+q_getguy	kern/lib/queue.c	/^q_getguy(struct queue *q, int index)$/
+q_getsize	kern/lib/queue.c	/^q_getsize(struct queue *q)$/
+q_getstart	kern/lib/queue.c	/^q_getstart(struct queue *q)$/
+q_grow	kern/lib/queue.c	/^q_grow(struct queue *q, int targetsize)$/
+q_preallocate	kern/lib/queue.c	/^q_preallocate(struct queue *q, int size)$/
+q_remhead	kern/lib/queue.c	/^q_remhead(struct queue *q)$/
+queuetest	kern/test/queuetest.c	/^queuetest(int nargs, char **args)$/
+quietthread	kern/test/threadtest.c	/^quietthread(void *junk, unsigned long num)$/
+ram_bootstrap	kern/arch/mips/mips/ram.c	/^ram_bootstrap(void)$/
+ram_getsize	kern/arch/mips/mips/ram.c	/^ram_getsize(u_int32_t *lo, u_int32_t *hi)$/
+ram_stealmem	kern/arch/mips/mips/ram.c	/^ram_stealmem(unsigned long npages)$/
+randchar	testbin/randcall/main.c	/^randchar(char *c)$/
+randclose	kern/dev/generic/random.c	/^randclose(struct device *dev)$/
+randint	testbin/randcall/main.c	/^randint(void)$/
+randio	kern/dev/generic/random.c	/^randio(struct device *dev, struct uio *uio)$/
+randioctl	kern/dev/generic/random.c	/^randioctl(struct device *dev, int op, userptr_t da/
+randmax	kern/dev/generic/random.c	/^randmax(void)$/
+randoff	testbin/randcall/main.c	/^randoff(void)$/
+random	lib/libc/random.c	/^random(void)$/
+random	kern/dev/generic/random.c	/^random(void)$/
+random_unlocked	lib/libc/random.c	/^random_unlocked(void)$/
+randopen	kern/dev/generic/random.c	/^randopen(struct device *dev, int openflags)$/
+randptr	testbin/randcall/main.c	/^randptr(void)$/
+randsize	testbin/randcall/main.c	/^randsize(void)$/
+read_badbuf	testbin/badcall/common_buf.c	/^read_badbuf(void *buf)$/
+read_badfd	testbin/badcall/common_fds.c	/^read_badfd(int fd)$/
+read_cfg_register	kern/dev/lamebus/lamebus.c	/^read_cfg_register(struct lamebus_softc *lb, int sl/
+read_cleanup	testbin/badcall/common_buf.c	/^read_cleanup(void)$/
+read_ctl_register	kern/dev/lamebus/lamebus.c	/^read_ctl_register(struct lamebus_softc *lb, u_int3/
+read_from_inval	testbin/crash/crash.c	/^read_from_inval(void)$/
+read_from_kernel	testbin/crash/crash.c	/^read_from_kernel(void)$/
+read_from_null	testbin/crash/crash.c	/^read_from_null(void)$/
+read_setup	testbin/badcall/common_buf.c	/^read_setup(void)$/
+read_string	testbin/tictac/tictac.c	/^read_string(char *buf, int length)$/
+readallonebyone	testbin/dirseek/dirseek.c	/^readallonebyone(void)$/
+readallrandomly	testbin/dirseek/dirseek.c	/^readallrandomly(void)$/
+readateof	testbin/dirseek/dirseek.c	/^readateof(void)$/
+readit	testbin/dirseek/dirseek.c	/^readit(void)$/
+readlink_badbuf	testbin/badcall/common_buf.c	/^readlink_badbuf(void *buf)$/
+readlink_badpath	testbin/badcall/common_path.c	/^readlink_badpath(const char *path)$/
+readlink_cleanup	testbin/badcall/common_buf.c	/^readlink_cleanup(void)$/
+readlink_dir	testbin/badcall/bad_readlink.c	/^readlink_dir(void)$/
+readlink_empty	testbin/badcall/bad_readlink.c	/^readlink_empty(void)$/
+readlink_file	testbin/badcall/bad_readlink.c	/^readlink_file(void)$/
+readlink_setup	testbin/badcall/common_buf.c	/^readlink_setup(void)$/
+readone	testbin/dirseek/dirseek.c	/^readone(const char *shouldbe)$/
+readstress_thread	kern/test/fstest.c	/^readstress_thread(void *fs, unsigned long num)$/
+reboot_badflags	testbin/badcall/bad_reboot.c	/^reboot_badflags(void)$/
+recurse_inf	testbin/crash/crash.c	/^recurse_inf(void)$/
+recursedir	bin/ls/ls.c	/^recursedir(const char *path)$/
+recursive_cleanup	testbin/dirconc/dirconc.c	/^recursive_cleanup(const char *sofar, int depth)$/
+remove_badpath	testbin/badcall/common_path.c	/^remove_badpath(const char *path)$/
+remove_dir	testbin/badcall/bad_remove.c	/^remove_dir(void)$/
+remove_dot	testbin/badcall/bad_remove.c	/^remove_dot(void)$/
+remove_dotdot	testbin/badcall/bad_remove.c	/^remove_dotdot(void)$/
+remove_empty	testbin/badcall/bad_remove.c	/^remove_empty(void)$/
+remove_lists	kern/lib/kheap.c	/^remove_lists(struct pageref *pr, int blktype)$/
+rename_badpath1	testbin/badcall/common_path.c	/^rename_badpath1(const char *path)$/
+rename_badpath2	testbin/badcall/common_path.c	/^rename_badpath2(const char *path)$/
+rename_dot	testbin/badcall/bad_rename.c	/^rename_dot(void)$/
+rename_dotdot	testbin/badcall/bad_rename.c	/^rename_dotdot(void)$/
+rename_empty1	testbin/badcall/bad_rename.c	/^rename_empty1(void)$/
+rename_empty2	testbin/badcall/bad_rename.c	/^rename_empty2(void)$/
+rename_proc	testbin/dirconc/dirconc.c	/^rename_proc(void)$/
+report_survival	testbin/badcall/driver.c	/^report_survival(int rv, int error, const char *des/
+report_test	testbin/badcall/driver.c	/^report_test(int rv, int error, int right_error, co/
+report_test2	testbin/badcall/driver.c	/^report_test2(int rv, int error, int okerr1, int ok/
+rmdir_badpath	testbin/badcall/common_path.c	/^rmdir_badpath(const char *path)$/
+rmdir_dot	testbin/badcall/bad_rmdir.c	/^rmdir_dot(void)$/
+rmdir_dotdot	testbin/badcall/bad_rmdir.c	/^rmdir_dotdot(void)$/
+rmdir_empty	testbin/badcall/bad_rmdir.c	/^rmdir_empty(void)$/
+rmdir_file	testbin/badcall/bad_rmdir.c	/^rmdir_file(void)$/
+rmdir_proc	testbin/dirconc/dirconc.c	/^rmdir_proc(void)$/
+rotate	kern/test/fstest.c	/^rotate(char *str, int amt)$/
+run	testbin/dirconc/dirconc.c	/^run(void)$/
+runit	testbin/badcall/driver.c	/^runit(int op)$/
+runprogram	kern/userprog/runprogram.c	/^runprogram(char *progname)$/
+runtest	testbin/badcall/common_fds.c	/^runtest(int (*func)(int fd), void (*cleanup)(void)/
+runtest3	kern/test/tt3.c	/^runtest3(int nsleeps, int ncomputes)$/
+runthreads	kern/test/threadtest.c	/^runthreads(int doloud)$/
+same	testbin/rmtest/rmtest.c	/^same(const char *a, const char *b, int len)$/
+samestring	kern/fs/vfs/vfslist.c	/^samestring(const char *a, const char *b)$/
+samestring3	kern/fs/vfs/vfslist.c	/^samestring3(const char *a, const char *b, const ch/
+say	testbin/parallelvm/parallelvm.c	/^say(const char *fmt, ...)$/
+say	testbin/dirconc/dirconc.c	/^say(const char *fmt, ...)$/
+sbrk_bigneg	testbin/badcall/bad_sbrk.c	/^sbrk_bigneg(void)$/
+sbrk_bigpos	testbin/badcall/bad_sbrk.c	/^sbrk_bigpos(void)$/
+sbrk_neg	testbin/badcall/bad_sbrk.c	/^sbrk_neg(void)$/
+sbrk_unalignedneg	testbin/badcall/bad_sbrk.c	/^sbrk_unalignedneg(void)$/
+sbrk_unalignedpos	testbin/badcall/bad_sbrk.c	/^sbrk_unalignedpos(void)$/
+scheduler	kern/thread/scheduler.c	/^scheduler(void)$/
+scheduler_bootstrap	kern/thread/scheduler.c	/^scheduler_bootstrap(void)$/
+scheduler_killall	kern/thread/scheduler.c	/^scheduler_killall(void)$/
+scheduler_preallocate	kern/thread/scheduler.c	/^scheduler_preallocate(int nthreads)$/
+scheduler_shutdown	kern/thread/scheduler.c	/^scheduler_shutdown(void)$/
+sem_create	kern/thread/synch.c	/^sem_create(const char *namearg, int initial_count)/
+sem_destroy	kern/thread/synch.c	/^sem_destroy(struct semaphore *sem)$/
+semtest	kern/test/synchtest.c	/^semtest(int nargs, char **args)$/
+semtestthread	kern/test/synchtest.c	/^semtestthread(void *junk, unsigned long num)$/
+set_status	kern/arch/mips/mips/spl.c	/^#define set_status(x) __asm volatile("mtc0 %0,$12"/
+setstate	lib/libc/random.c	/^setstate(char *arg_state)		\/* pointer to state arr/
+setup	kern/test/tt3.c	/^setup(void)$/
+setup	testbin/dirseek/dirseek.c	/^setup(void)$/
+setup	testbin/dirconc/dirconc.c	/^setup(const char *fs)$/
+showmenu	kern/main/menu.c	/^showmenu(const char *name, const char *x[])$/
+shutdown	kern/main/main.c	/^shutdown(void)$/
+sink	testbin/kitchen/kitchen.c	/^sink(void)$/
+size_t	kern/arch/mips/include/types.h	39
+size_t	kern/arch/mips/include/types.h	41
+sleepalot_thread	kern/test/tt3.c	/^sleepalot_thread(void *junk, unsigned long num)$/
+snprintf	lib/libc/snprintf.c	/^snprintf(char *buf, size_t len, const char *fmt, ./
+snprintf	kern/include/lib.h	/^int snprintf(char *buf, size_t maxlen, const char /
+sort	testbin/sort/sort.c	/^sort(int *arr, int size)$/
+spawnv	testbin/triplehuge/triple.c	/^spawnv(const char *prog, char **argv)$/
+spawnv	testbin/triplesort/triple.c	/^spawnv(const char *prog, char **argv)$/
+spawnv	testbin/triplemat/triple.c	/^spawnv(const char *prog, char **argv)$/
+spawnv	testbin/farm/farm.c	/^spawnv(const char *prog, char **argv)$/
+spl0	kern/arch/mips/mips/spl.c	/^spl0(void)$/
+splhigh	kern/arch/mips/mips/spl.c	/^splhigh(void)$/
+splitxy	kern/dev/lamebus/lscreen.c	/^splitxy(u_int32_t xy, unsigned *x, unsigned *y)$/
+splx	kern/arch/mips/mips/spl.c	/^splx(int newspl)$/
+srandom	lib/libc/random.c	/^srandom(unsigned long x)$/
+srandom_unlocked	lib/libc/random.c	/^srandom_unlocked(unsigned long x)$/
+startup	testbin/rmdirtest/rmdirtest.c	/^startup(void)$/
+stat_badpath	testbin/badcall/common_path.c	/^stat_badpath(const char *name)$/
+status_is_failure	testbin/parallelvm/parallelvm.c	/^status_is_failure(int status)$/
+strcat	lib/libc/strcat.c	/^strcat(char *dest, const char *src)$/
+strchr	lib/libc/strchr.c	/^strchr(const char *s, int ch)$/
+strcmp	lib/libc/strcmp.c	/^strcmp(const char *a, const char *b)$/
+strcpy	lib/libc/strcpy.c	/^strcpy(char *dest, const char *src)$/
+strerror	lib/libc/strerror.c	/^strerror(int errcode)$/
+strerror	kern/lib/misc.c	/^strerror(int errcode)$/
+strlen	lib/libc/strlen.c	/^strlen(const char *s)$/
+strrchr	lib/libc/strrchr.c	/^strrchr(const char *s, int ch)$/
+strtok	lib/libc/strtok.c	/^strtok(char *str, const char *seps)$/
+strtok_r	lib/libc/strtok_r.c	/^strtok_r(char *string, const char *seps, char **co/
+subpage_kfree	kern/lib/kheap.c	/^subpage_kfree(void *ptr)$/
+subpage_kmalloc	kern/lib/kheap.c	/^subpage_kmalloc(size_t sz)$/
+subproc_read	testbin/f_test/f_read.c	/^subproc_read(void)$/
+subproc_write	testbin/f_test/f_write.c	/^subproc_write(void)$/
+symlink_badpath1	testbin/badcall/common_path.c	/^symlink_badpath1(const char *path)$/
+symlink_badpath2	testbin/badcall/common_path.c	/^symlink_badpath2(const char *path)$/
+symlink_empty1	testbin/badcall/bad_symlink.c	/^symlink_empty1(void)$/
+symlink_empty2	testbin/badcall/bad_symlink.c	/^symlink_empty2(void)$/
+sys_reboot	kern/main/main.c	/^sys_reboot(int code)$/
+system	lib/libc/system.c	/^system(const char *cmd)$/
+tail	testbin/tail/tail.c	/^tail(int file, off_t where, const char *filename)$/
+test	testbin/forktest/forktest.c	/^test(int nowait)$/
+test1	testbin/rmdirtest/rmdirtest.c	/^test1(void)$/
+test1	testbin/malloctest/malloctest.c	/^test1(void)$/
+test2	testbin/rmdirtest/rmdirtest.c	/^test2(void)$/
+test2	testbin/malloctest/malloctest.c	/^test2(void)$/
+test3	testbin/rmdirtest/rmdirtest.c	/^test3(void)$/
+test3	testbin/malloctest/malloctest.c	/^test3(void)$/
+test4	testbin/rmdirtest/rmdirtest.c	/^test4(void)$/
+test4	testbin/malloctest/malloctest.c	/^test4(void)$/
+test5	testbin/rmdirtest/rmdirtest.c	/^test5(void)$/
+test5	testbin/malloctest/malloctest.c	/^test5(void)$/
+test567	testbin/malloctest/malloctest.c	/^test567(int testno, unsigned long seed)$/
+test6	testbin/rmdirtest/rmdirtest.c	/^test6(void)$/
+test6	testbin/malloctest/malloctest.c	/^test6(void)$/
+test7	testbin/rmdirtest/rmdirtest.c	/^test7(void)$/
+test7	testbin/malloctest/malloctest.c	/^test7(void)$/
+test_chdir	testbin/badcall/bad_chdir.c	/^test_chdir(void)$/
+test_close	testbin/badcall/bad_close.c	/^test_close(void)$/
+test_dup2	testbin/badcall/bad_dup2.c	/^test_dup2(void)$/
+test_execv	testbin/badcall/bad_execv.c	/^test_execv(void)$/
+test_fstat	testbin/badcall/bad_stat.c	/^test_fstat(void)$/
+test_fsync	testbin/badcall/bad_fsync.c	/^test_fsync(void)$/
+test_ftruncate	testbin/badcall/bad_ftruncate.c	/^test_ftruncate(void)$/
+test_getcwd	testbin/badcall/bad_getcwd.c	/^test_getcwd(void)$/
+test_getdirentry	testbin/badcall/bad_getdirentry.c	/^test_getdirentry(void)$/
+test_ioctl	testbin/badcall/bad_ioctl.c	/^test_ioctl(void)$/
+test_link	testbin/badcall/bad_link.c	/^test_link(void)$/
+test_lseek	testbin/badcall/bad_lseek.c	/^test_lseek(void)$/
+test_lstat	testbin/badcall/bad_stat.c	/^test_lstat(void)$/
+test_mkdir	testbin/badcall/bad_mkdir.c	/^test_mkdir(void)$/
+test_open	testbin/badcall/bad_open.c	/^test_open(void)$/
+test_pipe	testbin/badcall/bad_pipe.c	/^test_pipe(void)$/
+test_read	testbin/badcall/bad_read.c	/^test_read(void)$/
+test_readlink	testbin/badcall/bad_readlink.c	/^test_readlink(void)$/
+test_reboot	testbin/badcall/bad_reboot.c	/^test_reboot(void)$/
+test_remove	testbin/badcall/bad_remove.c	/^test_remove(void)$/
+test_rename	testbin/badcall/bad_rename.c	/^test_rename(void)$/
+test_rmdir	testbin/badcall/bad_rmdir.c	/^test_rmdir(void)$/
+test_sbrk	testbin/badcall/bad_sbrk.c	/^test_sbrk(void)$/
+test_stat	testbin/badcall/bad_stat.c	/^test_stat(void)$/
+test_symlink	testbin/badcall/bad_symlink.c	/^test_symlink(void)$/
+test_time	testbin/badcall/bad_time.c	/^test_time(void)$/
+test_waitpid	testbin/badcall/bad_waitpid.c	/^test_waitpid(void)$/
+test_write	testbin/badcall/bad_write.c	/^test_write(void)$/
+testa	kern/test/arraytest.c	/^testa(struct array *a)$/
+testq	kern/test/queuetest.c	/^testq(struct queue *q, int n)$/
+thread_bootstrap	kern/thread/thread.c	/^thread_bootstrap(void)$/
+thread_create	kern/thread/thread.c	/^thread_create(const char *name)$/
+thread_destroy	kern/thread/thread.c	/^thread_destroy(struct thread *thread)$/
+thread_exit	kern/thread/thread.c	/^thread_exit(void)$/
+thread_fork	kern/thread/thread.c	/^thread_fork(const char *name, $/
+thread_hassleepers	kern/thread/thread.c	/^thread_hassleepers(const void *addr)$/
+thread_killall	kern/thread/thread.c	/^thread_killall(void)$/
+thread_panic	kern/thread/thread.c	/^thread_panic(void)$/
+thread_shutdown	kern/thread/thread.c	/^thread_shutdown(void)$/
+thread_sleep	kern/thread/thread.c	/^thread_sleep(const void *addr)$/
+thread_wakeup	kern/thread/thread.c	/^thread_wakeup(const void *addr)$/
+thread_yield	kern/thread/thread.c	/^thread_yield(void)$/
+threadstate_t	kern/thread/thread.c	22
+threadtest	kern/test/threadtest.c	/^threadtest(int nargs, char **args)$/
+threadtest2	kern/test/threadtest.c	/^threadtest2(int nargs, char **args)$/
+threadtest3	kern/test/tt3.c	/^threadtest3(int nargs, char **args)$/
+time	lib/libc/time.c	/^time(time_t *t)$/
+time_badnsecs	testbin/badcall/bad_time.c	/^time_badnsecs(void *ptr, const char *desc)$/
+time_badsecs	testbin/badcall/bad_time.c	/^time_badsecs(void *ptr, const char *desc)$/
+time_t	kern/include/kern/types.h	12
+trace	testbin/parallelvm/parallelvm.c	/^trace(const struct matrix *m1)$/
+translate_err	kern/dev/lamebus/emu.c	/^translate_err(struct emu_softc *sc, u_int32_t code/
+triple	testbin/triplehuge/triple.c	/^triple(const char *prog)$/
+triple	testbin/triplesort/triple.c	/^triple(const char *prog)$/
+triple	testbin/triplemat/triple.c	/^triple(const char *prog)$/
+try___getcwd	testbin/randcall/calls.c	/^try___getcwd(int dofork)$/
+try___time	testbin/randcall/calls.c	/^try___time(int dofork)$/
+try_chdir	testbin/randcall/calls.c	/^try_chdir(int dofork)$/
+try_close	testbin/randcall/calls.c	/^try_close(int dofork)$/
+try_dup2	testbin/randcall/calls.c	/^try_dup2(int dofork)$/
+try_execv	testbin/randcall/calls.c	/^try_execv(int dofork)$/
+try_fstat	testbin/randcall/calls.c	/^try_fstat(int dofork)$/
+try_fsync	testbin/randcall/calls.c	/^try_fsync(int dofork)$/
+try_ftruncate	testbin/randcall/calls.c	/^try_ftruncate(int dofork)$/
+try_getdirentry	testbin/randcall/calls.c	/^try_getdirentry(int dofork)$/
+try_ioctl	testbin/randcall/calls.c	/^try_ioctl(int dofork)$/
+try_link	testbin/randcall/calls.c	/^try_link(int dofork)$/
+try_lseek	testbin/randcall/calls.c	/^try_lseek(int dofork)$/
+try_lstat	testbin/randcall/calls.c	/^try_lstat(int dofork)$/
+try_mkdir	testbin/randcall/calls.c	/^try_mkdir(int dofork)$/
+try_open	testbin/randcall/calls.c	/^try_open(int dofork)$/
+try_pipe	testbin/randcall/calls.c	/^try_pipe(int dofork)$/
+try_read	testbin/randcall/calls.c	/^try_read(int dofork)$/
+try_readlink	testbin/randcall/calls.c	/^try_readlink(int dofork)$/
+try_remove	testbin/randcall/calls.c	/^try_remove(int dofork)$/
+try_rename	testbin/randcall/calls.c	/^try_rename(int dofork)$/
+try_rmdir	testbin/randcall/calls.c	/^try_rmdir(int dofork)$/
+try_sbrk	testbin/badcall/bad_sbrk.c	/^try_sbrk(long val)$/
+try_stat	testbin/randcall/calls.c	/^try_stat(int dofork)$/
+try_symlink	testbin/randcall/calls.c	/^try_symlink(int dofork)$/
+try_waitpid	testbin/randcall/calls.c	/^try_waitpid(int dofork)$/
+try_write	testbin/randcall/calls.c	/^try_write(int dofork)$/
+tryattach_beep_to_ltimer	kern/compile/EX2/autoconf.c	/^tryattach_beep_to_ltimer(int devunit, struct ltime/
+tryattach_con_to_lser	kern/compile/EX2/autoconf.c	/^tryattach_con_to_lser(int devunit, struct lser_sof/
+tryattach_emu_to_lamebus	kern/compile/EX2/autoconf.c	/^tryattach_emu_to_lamebus(int devunit, struct lameb/
+tryattach_lhd_to_lamebus	kern/compile/EX2/autoconf.c	/^tryattach_lhd_to_lamebus(int devunit, struct lameb/
+tryattach_lrandom_to_lamebus	kern/compile/EX2/autoconf.c	/^tryattach_lrandom_to_lamebus(int devunit, struct l/
+tryattach_lser_to_lamebus	kern/compile/EX2/autoconf.c	/^tryattach_lser_to_lamebus(int devunit, struct lame/
+tryattach_ltimer_to_lamebus	kern/compile/EX2/autoconf.c	/^tryattach_ltimer_to_lamebus(int devunit, struct la/
+tryattach_ltrace_to_lamebus	kern/compile/EX2/autoconf.c	/^tryattach_ltrace_to_lamebus(int devunit, struct la/
+tryattach_random_to_lrandom	kern/compile/EX2/autoconf.c	/^tryattach_random_to_lrandom(int devunit, struct lr/
+tryattach_random_to_pseudorand	kern/compile/EX2/autoconf.c	/^tryattach_random_to_pseudorand(int devunit, struct/
+tryattach_rtclock_to_ltimer	kern/compile/EX2/autoconf.c	/^tryattach_rtclock_to_ltimer(int devunit, struct lt/
+trycalls	testbin/randcall/calls.c	/^trycalls(int asst, int dofork, int count)$/
+tryfunc	testbin/randcall/calls.c	13
+u_int16_t	kern/arch/mips/include/types.h	27
+u_int16_t	sbin/mksfs/support.h	22
+u_int16_t	sbin/mksfs/support.h	28
+u_int16_t	sbin/dumpsfs/support.h	22
+u_int16_t	sbin/dumpsfs/support.h	28
+u_int32_t	kern/arch/mips/include/types.h	28
+u_int32_t	sbin/mksfs/support.h	21
+u_int32_t	sbin/mksfs/support.h	27
+u_int32_t	sbin/dumpsfs/support.h	21
+u_int32_t	sbin/dumpsfs/support.h	27
+u_int64_t	kern/arch/mips/include/types.h	29
+u_int8_t	kern/arch/mips/include/types.h	26
+u_int8_t	sbin/mksfs/support.h	23
+u_int8_t	sbin/mksfs/support.h	29
+u_int8_t	sbin/dumpsfs/support.h	23
+u_int8_t	sbin/dumpsfs/support.h	29
+uintptr_t	kern/arch/mips/include/types.h	45
+uiomove	kern/userprog/uio.c	/^uiomove(void *ptr, size_t n, struct uio *uio)$/
+uiomovezeros	kern/userprog/uio.c	/^uiomovezeros(size_t n, struct uio *uio)$/
+usage	testbin/randcall/main.c	/^usage(void)$/
+userptr_t	kern/include/types.h	30
+va_arg	include/stdarg.h	/^#define va_arg(ap,t) __builtin_va_arg(ap,t)$/
+va_arg	kern/include/stdarg.h	/^#define va_arg(ap,t) __builtin_va_arg(ap,t)$/
+va_copy	include/stdarg.h	/^#define va_copy(ap1,ap2) __builtin_va_copy(ap1,ap2/
+va_copy	kern/include/stdarg.h	/^#define va_copy(ap1,ap2) __builtin_va_copy(ap1,ap2/
+va_end	include/stdarg.h	/^#define va_end(ap) __builtin_va_end(ap)$/
+va_end	kern/include/stdarg.h	/^#define va_end(ap) __builtin_va_end(ap)$/
+va_list	include/stdarg.h	11
+va_list	kern/include/stdarg.h	14
+va_start	include/stdarg.h	/^#define va_start(ap,fmt) __builtin_stdarg_start(ap/
+va_start	kern/include/stdarg.h	/^#define va_start(ap,fmt) __builtin_stdarg_start(ap/
+vaddr_t	kern/arch/mips/include/ktypes.h	10
+verr	lib/hostcompat/err.c	/^verr(int exitcode, const char *fmt, va_list ap)$/
+verr	lib/libc/err.c	/^verr(int exitcode, const char *fmt, va_list ap)$/
+verrx	lib/hostcompat/err.c	/^verrx(int exitcode, const char *fmt, va_list ap)$/
+verrx	lib/libc/err.c	/^verrx(int exitcode, const char *fmt, va_list ap)$/
+vfs_adddev	kern/fs/vfs/vfslist.c	/^vfs_adddev(const char *devname, struct device *dev/
+vfs_addfs	kern/fs/vfs/vfslist.c	/^vfs_addfs(const char *devname, struct fs *fs)$/
+vfs_bootstrap	kern/fs/vfs/vfslist.c	/^vfs_bootstrap(void)$/
+vfs_chdir	kern/fs/vfs/vfscwd.c	/^vfs_chdir(char *path)$/
+vfs_clearbootfs	kern/fs/vfs/vfslookup.c	/^vfs_clearbootfs(void)$/
+vfs_clearcurdir	kern/fs/vfs/vfscwd.c	/^vfs_clearcurdir(void)$/
+vfs_close	kern/fs/vfs/vfspath.c	/^vfs_close(struct vnode *vn)$/
+vfs_doadd	kern/fs/vfs/vfslist.c	/^vfs_doadd(const char *dname, int mountable, struct/
+vfs_getcurdir	kern/fs/vfs/vfscwd.c	/^vfs_getcurdir(struct vnode **ret)$/
+vfs_getcwd	kern/fs/vfs/vfscwd.c	/^vfs_getcwd(struct uio *uio)$/
+vfs_getdevname	kern/fs/vfs/vfslist.c	/^vfs_getdevname(struct fs *fs)$/
+vfs_getroot	kern/fs/vfs/vfslist.c	/^vfs_getroot(const char *devname, struct vnode **re/
+vfs_initbootfs	kern/fs/vfs/vfslookup.c	/^vfs_initbootfs(void)$/
+vfs_link	kern/fs/vfs/vfspath.c	/^vfs_link(char *oldpath, char *newpath)$/
+vfs_lookparent	kern/fs/vfs/vfslookup.c	/^vfs_lookparent(char *path, struct vnode **retval,$/
+vfs_lookup	kern/fs/vfs/vfslookup.c	/^vfs_lookup(char *path, struct vnode **retval)$/
+vfs_mkdir	kern/fs/vfs/vfspath.c	/^vfs_mkdir(char *path)$/
+vfs_mount	kern/fs/vfs/vfslist.c	/^vfs_mount(const char *devname, void *data,$/
+vfs_open	kern/fs/vfs/vfspath.c	/^vfs_open(char *path, int openflags, struct vnode */
+vfs_readlink	kern/fs/vfs/vfspath.c	/^vfs_readlink(char *path, struct uio *uio)$/
+vfs_remove	kern/fs/vfs/vfspath.c	/^vfs_remove(char *path)$/
+vfs_rename	kern/fs/vfs/vfspath.c	/^vfs_rename(char *oldpath, char *newpath)$/
+vfs_rmdir	kern/fs/vfs/vfspath.c	/^vfs_rmdir(char *path)$/
+vfs_setbootfs	kern/fs/vfs/vfslookup.c	/^vfs_setbootfs(const char *fsname)$/
+vfs_setcurdir	kern/fs/vfs/vfscwd.c	/^vfs_setcurdir(struct vnode *dir)$/
+vfs_symlink	kern/fs/vfs/vfspath.c	/^vfs_symlink(const char *contents, char *path)$/
+vfs_sync	kern/fs/vfs/vfslist.c	/^vfs_sync(void)$/
+vfs_unmount	kern/fs/vfs/vfslist.c	/^vfs_unmount(const char *devname)$/
+vfs_unmountall	kern/fs/vfs/vfslist.c	/^vfs_unmountall(void)$/
+vkprintf	kern/include/stdarg.h	/^void vkprintf(const char *fmt, va_list ap) __PF(1,/
+vm_bootstrap	kern/arch/mips/mips/dumbvm.c	/^vm_bootstrap(void)$/
+vm_fault	kern/arch/mips/mips/dumbvm.c	/^vm_fault(int faulttype, vaddr_t faultaddress)$/
+vnode_check	kern/fs/vfs/vnode.c	/^vnode_check(struct vnode *v, const char *opstr)$/
+vnode_decopen	kern/fs/vfs/vnode.c	/^vnode_decopen(struct vnode *vn)$/
+vnode_decref	kern/fs/vfs/vnode.c	/^vnode_decref(struct vnode *vn)$/
+vnode_incopen	kern/fs/vfs/vnode.c	/^vnode_incopen(struct vnode *vn)$/
+vnode_incref	kern/fs/vfs/vnode.c	/^vnode_incref(struct vnode *vn)$/
+vnode_init	kern/fs/vfs/vnode.c	/^vnode_init(struct vnode *vn, const struct vnode_op/
+vnode_kill	kern/fs/vfs/vnode.c	/^vnode_kill(struct vnode *vn)$/
+vprintf	lib/libc/printf.c	/^vprintf(const char *fmt, va_list ap)$/
+vsnprintf	lib/libc/snprintf.c	/^vsnprintf(char *buf, size_t len, const char *fmt, /
+vwarn	lib/hostcompat/err.c	/^vwarn(const char *fmt, va_list ap)$/
+vwarn	lib/libc/err.c	/^vwarn(const char *fmt, va_list ap)$/
+vwarnx	lib/hostcompat/err.c	/^vwarnx(const char *fmt, va_list ap)$/
+vwarnx	lib/libc/err.c	/^vwarnx(const char *fmt, va_list ap)$/
+wait_badflags	testbin/badcall/bad_waitpid.c	/^wait_badflags(void)$/
+wait_badpid	testbin/badcall/bad_waitpid.c	/^wait_badpid(int pid, const char *desc)$/
+wait_badstatus	testbin/badcall/bad_waitpid.c	/^wait_badstatus(void *ptr, const char *desc)$/
+wait_parent	testbin/badcall/bad_waitpid.c	/^wait_parent(void)$/
+wait_self	testbin/badcall/bad_waitpid.c	/^wait_self(void)$/
+wait_siblings	testbin/badcall/bad_waitpid.c	/^wait_siblings(void)$/
+wait_siblings_child	testbin/badcall/bad_waitpid.c	/^wait_siblings_child(void)$/
+wait_unaligned	testbin/badcall/bad_waitpid.c	/^wait_unaligned(void)$/
+waitall	testbin/sty/sty.c	/^waitall(void)$/
+waitall	testbin/kitchen/kitchen.c	/^waitall(void)$/
+waitall	testbin/farm/farm.c	/^waitall(void)$/
+waker_thread	kern/test/tt3.c	/^waker_thread(void *junk1, unsigned long junk2)$/
+warn	lib/hostcompat/err.c	/^warn(const char *fmt, ...)$/
+warn	lib/libc/err.c	/^warn(const char *fmt, ...)$/
+warnx	lib/hostcompat/err.c	/^warnx(const char *fmt, ...)$/
+warnx	lib/libc/err.c	/^warnx(const char *fmt, ...)$/
+win_column	testbin/tictac/tictac.c	/^win_column(int y, int marker)$/
+win_diag_left	testbin/tictac/tictac.c	/^win_diag_left(int x, int y, int marker)$/
+win_diag_right	testbin/tictac/tictac.c	/^win_diag_right(int x, int y, int marker)$/
+win_row	testbin/tictac/tictac.c	/^win_row(int x, int marker)$/
+write_badbuf	testbin/badcall/common_buf.c	/^write_badbuf(void *ptr)$/
+write_badfd	testbin/badcall/common_fds.c	/^write_badfd(int fd)$/
+write_cfg_register	kern/dev/lamebus/lamebus.c	/^write_cfg_register(struct lamebus_softc *lb, int s/
+write_cleanup	testbin/badcall/common_buf.c	/^write_cleanup(void)$/
+write_ctl_register	kern/dev/lamebus/lamebus.c	/^write_ctl_register(struct lamebus_softc *lb, u_int/
+write_setup	testbin/badcall/common_buf.c	/^write_setup(void)$/
+write_to_code	testbin/crash/crash.c	/^write_to_code(void)$/
+write_to_inval	testbin/crash/crash.c	/^write_to_inval(void)$/
+write_to_kernel	testbin/crash/crash.c	/^write_to_kernel(void)$/
+write_to_null	testbin/crash/crash.c	/^write_to_null(void)$/
+writebitmap	sbin/mksfs/mksfs.c	/^writebitmap(u_int32_t fsblocks)$/
+writerootdir	sbin/mksfs/mksfs.c	/^writerootdir(void)$/
+writestress2_thread	kern/test/fstest.c	/^writestress2_thread(void *fs, unsigned long num)$/
+writestress_thread	kern/test/fstest.c	/^writestress_thread(void *fs, unsigned long num)$/
+writesuper	sbin/mksfs/mksfs.c	/^writesuper(const char *volname, u_int32_t nblocks)/
