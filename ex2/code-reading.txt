@@ -1,0 +1,9 @@
+CSC 369 Fall 2010 - Excercise 2
+
+Zeeshan Qureshi
+g0zee@cdf.toronto.edu
+$Id$
+
+Q1: OS/161 does not support interrupt priorities(levels) thus you can only turn them on or off.
+
+Q2: Under dumbvm a page is 4096 bytes and each process gets 12 pages for it's user-level stack
