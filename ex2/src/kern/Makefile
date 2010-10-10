@@ -72,3 +72,10 @@ cleanhere:
 # (hopefully) won't become confused if files by those names appear.
 #
 .PHONY: all tags depend clean cleanhere install includes
+
+# Compile kernel EX2
+
+ex2: EX2
+
+EX2:
+	cd compile/EX2;	${MAKE} depend;	${MAKE}; ${MAKE} install

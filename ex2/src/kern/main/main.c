@@ -66,7 +66,7 @@ boot(void)
 	kprintf("%s", harvard_copyright);
 	kprintf("\n");
 
-	kprintf("Put-your-group-name-here's system version %s (%s #%d)\n", 
+	kprintf("g0zee: It's going to be LEGEN.........DARY [Barney]\n", 
 		GROUP_VERSION, buildconfig, buildversion);
 	kprintf("\n");
 
