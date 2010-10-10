@@ -6,4 +6,18 @@ $Id$
 
 Q1: OS/161 does not support interrupt priorities(levels) thus you can only turn them on or off.
 
-Q2: Under dumbvm a page is 4096 bytes and each process gets 12 pages for it's user-level stack
+Q2: Under dumbvm a page is 4096 bytes and each process gets 12 pages for it's user-level stack.
+
+Q3: The function 'as_copy' is used to create an exact copy of an address space.
+
+Q4: The function 'mi_threadstart' is the entrypoint for new threads. 
+
+Q5: OS/161 provides semaphores, locks and condition variables.
+
+Q6: The error 'EINVAL' should be generated when a system call is invoked with invalid arguments.
+
+Q7: The syscall number for execv is 1 (SYS_execv).
+
+Q8: The file 'kern/main/main.c' contains the machine independent code for the 'sys_reboot' call.
+
+The file 'kern/dev/lamebus/lamebus.c' contains the 'lamebus_poweroff' function which contains the actual machine dependent code that does the reboot.
