@@ -25,3 +25,9 @@ The file 'kern/dev/lamebus/lamebus.c' contains the 'lamebus_poweroff' function w
 Q9: If you change a header file then you will have to run 'make' and 'make install' again.
 
 Q10: If you add a new header, then you will have to reconfigure and re-compile. Thus you'll have to re-run everything i.e. ./config, make depend, make and make install
+
+Q11: 7 Subsystems are bootstrapped during the boot phase. They are ram, vm, scheduler, thread, vfs, dev and kprintf respectively.
+
+Q12: No it's not okay to use kprintf before the threads subsystem has been initialized because kthread uses a lock(mutex) to synchronize which in turn depends on the threads subsystem to work properly.
+
+Q13: The menu function runs inside the kernel (a hint is that it has a bunch of kprintf's which signify that it's running inside the kernel).
