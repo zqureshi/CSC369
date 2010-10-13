@@ -41,3 +41,13 @@ thread_sleep with S_SLEEP to put the thread in the 'sleeping' state(as the name 
 Q15: The function 'cmd_prog' is called to handle the 'p' command.
 
 Q16: There is a function 'exorcise' that destroys the zombie threads and cleans up the queues. It gets called from 'mi_switch' when not switching to a new thread.
+
+Q17: userptr_t is used to point to an address in USERSPACE. It is declared as a pointer to a one-byte struct __userptr.
+
+Q18: The numerical value of the exception code for a MIPS system call is 8 (EX_SYS).
+
+Q19: A MIPS instruction is 4 bytes (32 bits) since the tf_epc of a trapframe is incremented by 4 in 'mips_syscall'.
+
+Q20: If a system call fails then it is forced to return -1 and errno is set (copied val from register v0), so we can test for the return value of the system call to determine if it failed or not.
+
+If we still want to make sure, we can test that the register a3 is 0 (1 signifies error).
