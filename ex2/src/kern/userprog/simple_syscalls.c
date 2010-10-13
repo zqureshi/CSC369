@@ -14,3 +14,10 @@ void sys__exit(int exitcode){
   /* Call thread_exit with exitcode to cleanup */
   thread_exit(exitcode);
 }
+
+int sys_printchar(char c){
+  if(kprintf("%c", c) == 1)
+    return 1;
+  else
+    return -1;
+}

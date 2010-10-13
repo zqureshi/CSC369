@@ -78,6 +78,16 @@ mips_syscall(struct trapframe *tf)
     err = 1;
     break;
 
+      case SYS_printchar:
+    retval = sys_printchar((char)tf->tf_a0);
+    DEBUG(DB_SYSCALL, "\nsys_printchar: passed %c, returned %d\n",
+        (char)tf->tf_a0, retval);
+    if(retval != 1)
+      err = 1;
+    else
+      err = 0;
+    break;
+
 	    /* Add stuff here */
  
 	    default:

@@ -30,7 +30,7 @@ all depend tags clean install:
 	(cd matmult && $(MAKE) $@)
 	(cd palin && $(MAKE) $@)
 	(cd parallelvm && $(MAKE) $@)
-	#(cd printchartest && $(MAKE) $@)
+	(cd printchartest && $(MAKE) $@)
 	#(cd printftest && $(MAKE) $@)
 	(cd randcall && $(MAKE) $@)
 	(cd rmdirtest && $(MAKE) $@)
