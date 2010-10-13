@@ -117,7 +117,7 @@ fail(unsigned long num, const char *msg)
 	lock_release(testlock);
 
 	V(donesem);
-	thread_exit();
+	thread_exit(0);
 }
 
 static
@@ -223,7 +223,7 @@ cvtestthread(void *junk, unsigned long num)
 				kprintf("That's too fast... you must be "
 					"busy-looping\n");
 				V(donesem);
-				thread_exit();
+				thread_exit(0);
 			}
 
 		}

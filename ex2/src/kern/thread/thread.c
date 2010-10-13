@@ -425,7 +425,7 @@ mi_switch(threadstate_t nextstate)
  * gets called from exorcise().
  */
 void
-thread_exit(void)
+thread_exit(int exitcode)
 {
 	if (curthread->t_stack != NULL) {
 		/*
@@ -457,6 +457,9 @@ thread_exit(void)
 		VOP_DECREF(curthread->t_cwd);
 		curthread->t_cwd = NULL;
 	}
+
+  /* Null op on exitcode to suppress warning */
+  (void)exitcode;
 
 	assert(numthreads>0);
 	numthreads--;
@@ -589,5 +592,5 @@ mi_threadstart(void *data1, unsigned long data2,
 	func(data1, data2);
 
 	/* Done. */
-	thread_exit();
+	thread_exit(0);
 }

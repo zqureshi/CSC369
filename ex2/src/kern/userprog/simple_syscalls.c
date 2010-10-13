@@ -10,5 +10,5 @@
 #include<thread.h>
 
 void sys__exit(int exitcode){
-  thread_exit();
+  thread_exit(exitcode);
 }
