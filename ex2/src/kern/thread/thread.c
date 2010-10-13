@@ -427,6 +427,9 @@ mi_switch(threadstate_t nextstate)
 void
 thread_exit(int exitcode)
 {
+  /* Print exit code if DB_SYSCALL flag set */
+  DEBUG(DB_SYSCALL, "_exit: exit code: %d\n", exitcode);
+
 	if (curthread->t_stack != NULL) {
 		/*
 		 * Check the magic number we put on the bottom end of

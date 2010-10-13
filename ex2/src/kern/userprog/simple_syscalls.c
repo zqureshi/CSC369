@@ -7,8 +7,10 @@
  */
 
 #include<types.h>
+#include<lib.h>
 #include<thread.h>
 
 void sys__exit(int exitcode){
+  /* Call thread_exit with exitcode to cleanup */
   thread_exit(exitcode);
 }
