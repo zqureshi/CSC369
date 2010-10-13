@@ -6,6 +6,6 @@
  */
 
 int sys_reboot(int code);
-
+void sys__exit(int exitcode);
 
 #endif /* _SYSCALL_H_ */
