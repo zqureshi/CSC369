@@ -123,6 +123,9 @@ int __getcwd(char *buf, size_t buflen);
 /* stat - see sys/stat.h */
 /* lstat - see sys/stat.h */
 
+/* Custom */
+void _exit(int exitcode);
+
 /*
  * These are not themselves system calls, but wrapper routines in libc.
  */
