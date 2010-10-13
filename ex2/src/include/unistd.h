@@ -123,7 +123,7 @@ int __getcwd(char *buf, size_t buflen);
 /* stat - see sys/stat.h */
 /* lstat - see sys/stat.h */
 
-/* Custom */
+/* Custom syscalls */
 int printchar(char c);
 
 /*
