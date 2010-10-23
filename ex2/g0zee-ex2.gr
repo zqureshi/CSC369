@@ -1,0 +1,23 @@
+Exercise 2: Introduction to OS/161
+
+1 : Grace days used
+
+Code Reading
+8.5 : 20 questions at .5 each (10)
+
+Modifying Greeting
+1 : New OS/161 Greeting (1)
+
+System Calls
+2 : _exit correctly uses an altered version of thread_exit (2)
+2 : informative debug messages added to _exit (2)
+
+1 : printchar calls kprintf and checks its return value (1)
+2 : printchar returns the correct return value -and- error condition (2)
+2 : informative debug messages added to _printchar (2)
+
+18.5 : Total (20)
+
+Comments:
+
+
