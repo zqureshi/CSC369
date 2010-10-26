@@ -1,0 +1,39 @@
+
+#
+# The machine dependent sources for MIPS.
+#
+
+file        arch/mips/mips/cache_mips1.S	# MIPS RAM cache handling
+file        arch/mips/mips/exception.S		# Exception entry points
+file        arch/mips/mips/lamebus_mips.c	# MD code for LAMEbus
+file        arch/mips/mips/interrupt.c		# Interrupt handler
+file        arch/mips/mips/pcb.c		# MD thread code
+file        arch/mips/mips/ram.c		# Physical memory accounting
+file        arch/mips/mips/spl.c		# Interrupt management
+file        arch/mips/mips/start.S		# Kernel bootup
+file        arch/mips/mips/switch.S		# Thread context switch
+file        arch/mips/mips/syscall.c		# System call handler 
+file        arch/mips/mips/threadstart.S	# Entry code for new threads
+file        arch/mips/mips/trap.c		# Trap (exception) handler
+file        arch/mips/mips/tlb_mips1.S		# TLB handling routines
+
+file        ../lib/libc/mips-setjmp.S		# setjmp/longjmp
+
+#
+# This is included here rather than in conf.kern because
+# it may not be suitable for all architectures.
+#
+file        lib/copyinout.c			# copyin/out et al.
+
+#
+# For the early assignments, we supply a very stupid MIPS-only skeleton
+# of a VM system. It is just barely capable of running a single userlevel
+# program as long as that program's not very large.
+#
+defoption   dumbvm
+optfile     dumbvm  arch/mips/mips/dumbvm.c
+
+#
+# Get the files and options for LAMEbus devices.
+#
+include dev/lamebus/conf.lamebus
