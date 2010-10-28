@@ -56,7 +56,7 @@ jointest1(int nargs, char **args)
 	kprintf("Starting join test 1...\n");
 
 	for (i=0; i<NTHREADS; i++) {
-		result = thread_fork("jointest1", NULL, i, jointestthread, &kids[i]);
+		result = thread_fork("jointest1", NULL, i, jointestthread, NULL);//&kids[i]);
 		if (result) {
 			panic("jointest1: thread_fork failed: %s\n", 
 			      strerror(result));
@@ -99,7 +99,7 @@ int jointest2(int nargs, char **args)
 	kprintf("Starting join test 2...\n");
 
 	for (i=0; i<NTHREADS; i++) {
-		result = thread_fork("jointest2", NULL, i, jointestthread, &kids[i]);
+		result = thread_fork("jointest2", NULL, i, jointestthread, NULL);//&kids[i]);
 		if (result) {
 			panic("jointest1: thread_fork failed: %s\n", 
 			      strerror(result));
