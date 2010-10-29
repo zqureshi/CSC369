@@ -1,0 +1,11 @@
+# CSC 369 Fall 2010 - Assignment 2
+#
+# Zeeshan Qureshi <g0zee@cdf.toronto.edu>
+# Aditya Mishra <c9mishra@cdf.toronto.edu>
+# $Id$
+
+Answer 1
+--------
+When a thread exits, its address space is destroyed and is marked a zombie(and later exorcized).
+
+When thread_sleep() is called, the thread is marked as sleeping(S_SLEEP) on "sleep address" addr. When thread_wakeup is called with the same address, then the thread wakes up. 

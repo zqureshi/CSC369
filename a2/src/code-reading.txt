@@ -1,5 +1,0 @@
-# CSC 369 Fall 2010 - Assignment 2
-#
-# Zeeshan Qureshi <g0zee@cdf.toronto.edu>
-# Aditya Mishra <c9mishra@cdf.toronto.edu>
-# $Id$
