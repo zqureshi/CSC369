@@ -10,9 +10,11 @@ When a thread exits, its address space is destroyed and is marked a zombie(and l
 
 When thread_sleep() is called, the thread is marked as sleeping(S_SLEEP) on "sleep address" addr. When thread_wakeup is called with the same address, then the thread wakes up.
 
+
 Answer 2
 --------
 The mi_switch() function handles a context switch
+
 
 Answer 3
 --------
@@ -21,3 +23,11 @@ There are 4 thread states:
   * S_READY
   * S_SLEEP
   * S_ZOMB
+
+
+Answer 4
+--------
+Three events that can directly trigger a context switch are:
+  * Trap/Exception (Software Interrupt)
+  * Hardware Interrupt
+  * When the thread exits
