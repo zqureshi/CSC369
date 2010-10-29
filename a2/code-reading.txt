@@ -13,3 +13,11 @@ When thread_sleep() is called, the thread is marked as sleeping(S_SLEEP) on "sle
 Answer 2
 --------
 The mi_switch() function handles a context switch
+
+Answer 3
+--------
+There are 4 thread states:
+  * S_RUN
+  * S_READY
+  * S_SLEEP
+  * S_ZOMB
