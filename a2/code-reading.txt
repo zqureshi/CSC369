@@ -57,3 +57,7 @@ Semaphores are implemented as follows:
 Answer 8
 --------
 This is because it does not make sense to store the value of the lock holder and use it later since it might have changed by the time it is used.
+
+Answer 9
+--------
+The ELF Magic Numbers are used to uniquely identify different file types, so that its complex data structures inside a file don't have to be scanned to determine its type.
