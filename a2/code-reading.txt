@@ -73,3 +73,7 @@ Answer 10
 UIO_USERISPACE is used when the file being loaded is an executable, UIO_USERSPACE otherwise. Although currently in uio.c, they are treated as exactly the same.
 
 UIO_SYSSPACE is used to denote that the data being loaded is going to be contained entirely in 'system space'(i.e. 'kernel space').
+
+Answer 11
+---------
+The uio object is just an interface to vnode objects and it is just used to translate the data from a vnode to the address space 'vaddr' so it is not of any use after all the data has been translated; only the vnode and address space 'vaddr' are useful.
