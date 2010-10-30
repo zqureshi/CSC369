@@ -31,3 +31,11 @@ Three events that can directly trigger a context switch are:
   * Trap/Exception (Software Interrupt)
   * Hardware Interrupt
   * When the thread exits
+
+Answer 5
+--------
+Turning interrupts off means that the CPU will not interrupt the currently executing code on received hardware/software interrupts. This guarantees that the code will be atomic and and another thread will only be able to run when interrupts are enabled again.
+
+This is accomplished by enabling/disabling the master interrupt flag in bit 0 of the status register.
+
+Interrupts should be off inside the thread subsystem because it handles the creation/deletion/switching of threads for which it needs to manipulate the data structures atomically and thus should not be interrupted.
