@@ -88,3 +88,9 @@ Answer 13
 The function md_usermode() sets up the registers to put the processor into usermode while asm_usermode has the actual instructions that do the job.
 
 Yes md_usermode() is machine dependent since it sets up specific registers that put the CPU into usermode.
+
+Answer 14
+---------
+'copyin' and 'copyout' are defined in 'kern/lib/copyinout.c', whereas memmove is defined in 'lib/libc/memmove.c'.
+
+'copyin' and 'copyout' cannot be implemented as simply as 'memmove', since 'memmove' works with data in the same space(either SYS or USER), whereas they copy data in/out from UIO_SYSSPACE to UIO_USER{,I}SPACE (or vice versa) so the virtual addresses must first be translated to physical addresses.
