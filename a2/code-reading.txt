@@ -82,3 +82,9 @@ The uio object is just an interface to vnode objects and it is just used to tran
 Answer 12
 ---------
 In runprogram() it is necessary to call vfs_close() since md_switch() does not return, and since the file has already been loaded into t_vmspace, it's not going to be used(or closed) anywhere else in the program, and if we don't close it right now then the reference count for the file will always be greater than 0 and we will be leaking memory every time we open a file.
+
+Answer 13
+---------
+The function md_usermode() sets up the registers to put the processor into usermode while asm_usermode has the actual instructions that do the job.
+
+Yes md_usermode() is machine dependent since it sets up specific registers that put the CPU into usermode.
