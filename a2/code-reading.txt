@@ -61,3 +61,15 @@ This is because it does not make sense to store the value of the lock holder and
 Answer 9
 --------
 The ELF Magic Numbers are used to uniquely identify different file types, so that its complex data structures inside a file don't have to be scanned to determine its type.
+
+In our case, they are:
+  * ELFMAG0 = 0x7f
+  * ELFMAG1 = 'E'
+  * ELFMAG2 = 'L'
+  * ELFMAG3 = 'F'
+
+Answer 10
+---------
+UIO_USERISPACE is used when the file being loaded is an executable, UIO_USERSPACE otherwise. Although currently in uio.c, they are treated as exactly the same.
+
+UIO_SYSSPACE is used to denote that the data being loaded is going to be contained entirely in 'system space'(i.e. 'kernel space').
