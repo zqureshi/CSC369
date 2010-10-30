@@ -13,8 +13,9 @@ When thread_sleep() is called, the thread is marked as sleeping(S_SLEEP) on "sle
 
 Answer 2
 --------
-The mi_switch() function handles a context switch
-
+  * mi_switch() handles the machine independent portion of context switching
+  * md_switch() handles the machine-dependent portion
+  * mips_switch() does the actual low-level switching for a MIPS system
 
 Answer 3
 --------
@@ -77,3 +78,7 @@ UIO_SYSSPACE is used to denote that the data being loaded is going to be contain
 Answer 11
 ---------
 The uio object is just an interface to vnode objects and it is just used to translate the data from a vnode to the address space 'vaddr' so it is not of any use after all the data has been translated; only the vnode and address space 'vaddr' are useful.
+
+Answer 12
+---------
+In runprogram() it is necessary to call vfs_close() since md_switch() does not return, and since the file has already been loaded into t_vmspace, it's not going to be used(or closed) anywhere else in the program, and if we don't close it right now then the reference count for the file will always be greater than 0 and we will be leaking memory every time we open a file.
