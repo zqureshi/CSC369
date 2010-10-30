@@ -39,3 +39,9 @@ Turning interrupts off means that the CPU will not interrupt the currently execu
 This is accomplished by enabling/disabling the master interrupt flag in bit 0 of the status register.
 
 Interrupts should be off inside the thread subsystem because it handles the creation/deletion/switching of threads for which it needs to manipulate the data structures atomically and thus should not be interrupted.
+
+Answer 6
+---------
+When a thread wakep up another thread(s), the woken up thread(s) is/are made runnable(i.e. added to the 'runnable' queue), the calling thread keeps on running until it is switched out by the scheduler.
+
+A thread sleeping on the address 'addr' gets to run again when another thread called thread_wakeup/thread_wakeone on the 'addr' at which point the sleeping thread is added to the 'runnable' queue.
