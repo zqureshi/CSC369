@@ -53,3 +53,7 @@ Semaphores are implemented as follows:
     by calling thread_sleep()
   * When a thread calls 'signal'(V) os a semaphore, the thread waiting(sleeping) on
     that semaphore is woken up via thread_wakeup(()
+
+Answer 8
+--------
+This is because it does not make sense to store the value of the lock holder and use it later since it might have changed by the time it is used.
