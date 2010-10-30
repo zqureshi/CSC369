@@ -45,3 +45,11 @@ Answer 6
 When a thread wakep up another thread(s), the woken up thread(s) is/are made runnable(i.e. added to the 'runnable' queue), the calling thread keeps on running until it is switched out by the scheduler.
 
 A thread sleeping on the address 'addr' gets to run again when another thread called thread_wakeup/thread_wakeone on the 'addr' at which point the sleeping thread is added to the 'runnable' queue.
+
+Answer 7
+--------
+Semaphores are implemented as follows:
+  * Whenever a thread calls 'wait'(P) on a semaphore, it is put to sleep 
+    by calling thread_sleep()
+  * When a thread calls 'signal'(V) os a semaphore, the thread waiting(sleeping) on
+    that semaphore is woken up via thread_wakeup(()
