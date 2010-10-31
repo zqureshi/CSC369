@@ -64,6 +64,8 @@ int thread_fork(const char *name,
 		void (*func)(void *, unsigned long),
 		struct thread **ret);
 
+int sys_getpid();
+
 /*
  * Cause the current thread to exit.
  * Interrupts need not be disabled.

@@ -39,6 +39,16 @@ static int numthreads;
  * thread structure and to create subsequent threads.
  */
 
+
+int sys_getpid()
+{
+
+  int curr_pid  =  (int) curthread->t_pid;
+  kprintf(curr_pid);
+  return curr_pid;
+}
+
+
 static
 struct thread *
 thread_create(const char *name)

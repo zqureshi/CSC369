@@ -12,17 +12,6 @@
 int
 main()
 {
-	int result;
-	const char *teststring = "This is a test of printchar.END.\n";
-	int len = strlen(teststring);
-	int i;
-
-	for (i=0; i < len; i++) {
-	  result = printchar(teststring[i]);
-	  if (result != 1) {
-	    break;
-	  }
-	}
-
-	return 0;
+  getpid();
+  return 0;
 }

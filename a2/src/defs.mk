@@ -142,9 +142,9 @@ HOST_STRIP=strip
 # Compile flags. 
 # The kernel has its own debug/optimize setting in the kernel config, so
 # we don't include ours.
-CFLAGS+=-Wall -W -Wwrite-strings -Werror -O2
-KCFLAGS+=-Wall -W -Wwrite-strings -Werror
-HOST_CFLAGS+=-Wall -W -Wwrite-strings -Werror -O2 -I$(OSTREE)/hostinclude
+CFLAGS+=-Wall -W -Wwrite-strings -O2
+KCFLAGS+=-Wall -W -Wwrite-strings
+HOST_CFLAGS+=-Wall -W -Wwrite-strings -O2 -I$(OSTREE)/hostinclude
 
 # Linker flags
 LDFLAGS+=

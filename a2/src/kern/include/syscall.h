@@ -16,5 +16,7 @@ int sys_exit(int exitcode);
 int sys_read(int fd, userptr_t buf, size_t size, int *retval);
 int sys_write(int fd, userptr_t buf, size_t size, int *retval);
 // END A2 SETUP
+int sys_getpid();
+
 
 #endif /* _SYSCALL_H_ */
