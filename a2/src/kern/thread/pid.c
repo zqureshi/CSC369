@@ -271,3 +271,33 @@ pid_unalloc(pid_t theirpid)
 
   lock_release(pid_lock);
 }
+
+int pid_wait(pid_t pid){
+  lock_acquire(pid_lock);
+
+  struct pidinfo *pi = pi_get(pid);
+
+  if(pi == NULL){
+    return ENOENT; /* pid doesn't exist, so return error */
+  }
+
+  cv_wait(pi->pi_join, pid_lock);
+  lock_release(pid_lock);
+
+  return 0;
+}
+
+int pid_signal(pid_t pid){
+  lock_acquire(pid_lock);
+
+  struct pidinfo *pi = pi_get(pid);
+
+  if(pi == NULL){
+    return ENOENT; /* pid doesn't exist, so return error */
+  }
+
+  cv_broadcast(pi->pi_join, pid_lock);
+  lock_release(pid_lock);
+
+  return 0;
+}

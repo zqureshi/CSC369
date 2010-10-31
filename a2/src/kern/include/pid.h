@@ -34,5 +34,8 @@ int pid_alloc(pid_t *retval);
  */
 void pid_unalloc(pid_t targetpid);
 
+/* Wait/Signal Condition Variable on pid */
+int pid_wait(pid_t pid);
+int pid_signal(pid_t pid);
 
 #endif /* _PID_H_ */
