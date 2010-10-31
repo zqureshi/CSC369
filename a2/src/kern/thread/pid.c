@@ -16,6 +16,9 @@
 #include <synch.h>
 #include <pid.h>
 
+/* Lock for the pid monitor */
+struct lock *pid_lock;
+
 /*
  * Structure for holding some data for a thread.
  *
@@ -87,6 +90,9 @@ pidinfo_destroy(struct pidinfo *pi)
 void
 pid_bootstrap(void)
 {
+  /* Create pid lock */
+  pid_lock = lock_create("pid_lock");
+
 	int i;
 
 	/* not really necessary - should start zeroed */
@@ -101,6 +107,13 @@ pid_bootstrap(void)
 
 	nextpid = PID_MIN;
 	nprocs = 1;
+}
+
+/*
+ * Cleanup pid
+ */
+void pid_shutdown(void){
+  lock_destroy(pid_lock);
 }
 
 /*

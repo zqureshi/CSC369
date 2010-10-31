@@ -18,6 +18,11 @@
 void pid_bootstrap(void);
 
 /*
+ * pid cleanup
+ */
+void pid_shutdown(void);
+
+/*
  * Get a pid for a new thread.
  * Returns 0 on success, or an error code as the result of the 
  * function.  Returns the newly-allocated process id in retval.

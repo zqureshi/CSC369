@@ -109,6 +109,7 @@ shutdown(void)
 
 	scheduler_shutdown();
 	thread_shutdown();
+  pid_shutdown();
 }
 
 /*****************************************/
