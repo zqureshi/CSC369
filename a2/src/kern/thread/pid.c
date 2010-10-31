@@ -28,7 +28,8 @@ struct pidinfo {
 	int pi_ppid;			// process id of parent thread
 	volatile int pi_exited;		// true if thread has exited
 	int pi_exitstatus;		// status (only valid if exited)
-        int pi_joinable;                // true if thread is joinable
+  int pi_joinable;                // true if thread is joinable
+  struct cv *pi_join; //Condition on which parent waits to join
 };
 
 
@@ -67,6 +68,7 @@ pidinfo_create(pid_t pid, pid_t ppid)
 	pi->pi_exited = FALSE;
 	pi->pi_exitstatus = 0xbeef;  /* Recognizable unlikely exit code */
 	pi->pi_joinable = TRUE; /* Threads start out joinable by default */
+  pi->pi_join = cv_create("pi_join"); /* ppid waits on this */
 	return pi;
 }
 
@@ -79,6 +81,7 @@ pidinfo_destroy(struct pidinfo *pi)
 {
 	assert(pi->pi_exited==TRUE);
 	assert(pi->pi_ppid==INVALID_PID);
+  cv_destroy(pi->pi_join);
 	kfree(pi);
 }
 
@@ -268,4 +271,3 @@ pid_unalloc(pid_t theirpid)
 
   lock_release(pid_lock);
 }
-
