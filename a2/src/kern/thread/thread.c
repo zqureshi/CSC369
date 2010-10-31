@@ -12,6 +12,7 @@
 #include <scheduler.h>
 #include <addrspace.h>
 #include <vnode.h>
+#include <pid.h>
 
 /* States a thread can be in. */
 typedef enum {
@@ -60,6 +61,16 @@ thread_create(const char *name)
 	
 	// If you add things to the thread structure, be sure to initialize
 	// them here.
+
+  /* Allocate pid to thread */
+  if(numthreads == 0){
+    /* If first thread, set it to BOOTUP_PID */
+    thread->t_pid = BOOTUP_PID;
+  } else {
+    int retval = pid_alloc(&thread->t_pid);
+    /* retval should be 0 */
+    assert(retval == 0);
+  }
 	
 	return thread;
 }
@@ -180,6 +191,13 @@ thread_bootstrap(void)
 	if (zombies==NULL) {
 		panic("Cannot create zombies array\n");
 	}
+
+  /*
+   * Set numthreads to 0, so that thread_create can detect
+   * that the system is being bootstrapped and allocate
+   * BOOTUP_PID to the very first thread
+   */
+  numthreads = 0;
 	
 	/*
 	 * Create the thread structure for the first thread
