@@ -36,5 +36,7 @@
 #define ENOEXEC      24     /* File is not executable */
 #define E2BIG        25     /* Argument list too long */
 #define EBADF        26     /* Bad file number */
+#define ESRCH        27     /* no thread with given pid */
+#define EDEADLK      28     /* pid refers to calling thread */
 
 #endif /* _KERN_ERRNO_H_ */

@@ -278,7 +278,7 @@ int pid_wait(pid_t pid){
   struct pidinfo *pi = pi_get(pid);
 
   if(pi == NULL){
-    return ENOENT; /* pid doesn't exist, so return error */
+    return ESRCH; /* No thread with given pid */
   }
 
   cv_wait(pi->pi_join, pid_lock);
@@ -293,7 +293,7 @@ int pid_signal(pid_t pid){
   struct pidinfo *pi = pi_get(pid);
 
   if(pi == NULL){
-    return ENOENT; /* pid doesn't exist, so return error */
+    return ESRCH; /* No thread with given pid */
   }
 
   cv_broadcast(pi->pi_join, pid_lock);
