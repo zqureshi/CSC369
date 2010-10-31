@@ -175,7 +175,6 @@ pi_drop(pid_t pid)
 }
 
 ////////////////////////////////////////////////////////////
-
 /*
  * Helper function for pid_alloc.
  */
@@ -196,6 +195,8 @@ inc_nextpid(void)
 int
 pid_alloc(pid_t *retval)
 {
+  lock_acquire(pid_lock);
+
 	struct pidinfo *pi;
 	pid_t pid;
 	int count;
@@ -234,6 +235,9 @@ pid_alloc(pid_t *retval)
 	inc_nextpid();
 
 	*retval = pid;
+
+  lock_release(pid_lock);
+
 	return 0;
 }
 
@@ -244,6 +248,8 @@ pid_alloc(pid_t *retval)
 void
 pid_unalloc(pid_t theirpid)
 {
+  lock_acquire(pid_lock);
+
 	struct pidinfo *them;
 
 	assert(theirpid >= PID_MIN && theirpid <= PID_MAX);
@@ -260,5 +266,6 @@ pid_unalloc(pid_t theirpid)
 
 	pi_drop(theirpid);
 
+  lock_release(pid_lock);
 }
 
