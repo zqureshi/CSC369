@@ -472,6 +472,11 @@ thread_exit(int exitcode) /* exitcode added for A0 */
 		assert(curthread->t_stack[3] == (char)0x33);
 	}
 
+  /*
+   * Signal a PID as exited with given status
+   */
+  pid_exit(curthread->t_pid, exitcode);
+
   /* 
    * Signal the thread's condition variable
    * to wake-up the parent if it's waiting on it

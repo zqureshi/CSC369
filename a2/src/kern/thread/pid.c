@@ -301,3 +301,22 @@ int pid_signal(pid_t pid){
 
   return 0;
 }
+
+int pid_exit(pid_t pid, int exitstatus){
+  lock_acquire(pid_lock);
+
+  struct pidinfo *pi = pi_get(pid);
+
+  if(pi == NULL){
+    return ESRCH; /* No thread with given pid */
+  }
+
+  /* Set exited to TRUE and store status */
+  pi->pi_exited = TRUE;
+  pi->pi_exitstatus = exitstatus;
+  DEBUG(DB_THREADS, "PID %d exited with status %d\n", (int)pid, exitstatus);
+
+  lock_release(pid_lock);
+
+  return 0;
+}
