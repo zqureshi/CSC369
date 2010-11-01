@@ -661,10 +661,12 @@ mi_threadstart(void *data1, unsigned long data2,
 }
 
 int thread_join(pid_t pid, int *status) {
-        // The following two lines are to keep the compiler from complaining.
-        // Remove them when you start working on this function
-        *status = pid;
-        return *status;
+  if(curthread->t_pid == pid){
+    return EDEADLK; /* pid refers to calling thread */
+  }
+
+  /* Wait on pid and get exitstatus */
+  return pid_wait(pid, status);
 }
 
 int thread_detach(pid_t pid) {

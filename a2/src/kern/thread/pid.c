@@ -272,18 +272,31 @@ pid_unalloc(pid_t theirpid)
   lock_release(pid_lock);
 }
 
-int pid_wait(pid_t pid){
+int pid_wait(pid_t pid, int *exitstatus){
   lock_acquire(pid_lock);
 
   struct pidinfo *pi = pi_get(pid);
 
   if(pi == NULL){
-    return ESRCH; /* No thread with given pid */
+    return ESRCH;  /* No thread with given pid */
+  } else if(curthread->t_pid != pi->pi_ppid){
+    return EINVAL; /* caller is not parent */
+  } else if(pi->pi_joinable == FALSE){
+    return EINVAL; /* the thread has been detached */
   }
 
   cv_wait(pi->pi_join, pid_lock);
-  lock_release(pid_lock);
 
+  /* If exitstatus is a pointer, then populate it */
+  if(exitstatus != NULL){
+    *exitstatus = pi->pi_exitstatus;
+  }
+
+  /* Now free up the PID table */
+  pi->pi_ppid = INVALID_PID;
+  pi_drop(pid);
+
+  lock_release(pid_lock);
   return 0;
 }
 
@@ -304,6 +317,9 @@ int pid_exit(pid_t pid, int exitstatus){
   /* Signal if thread is joinable */
   if(pi->pi_joinable == TRUE){
     cv_broadcast(pi->pi_join, pid_lock);
+  } else {
+    pi->pi_ppid = INVALID_PID; /* detach it */
+    pi_drop(pid); /* free up table */
   }
 
   lock_release(pid_lock);
