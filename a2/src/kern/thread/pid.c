@@ -208,6 +208,7 @@ pid_alloc(pid_t *retval)
 
 
 	if (nprocs == PROCS_MAX) {
+    lock_release(pid_lock);
 		return EAGAIN;
 	}
 
@@ -230,6 +231,7 @@ pid_alloc(pid_t *retval)
 
 	pi = pidinfo_create(pid, curthread->t_pid);
 	if (pi==NULL) {
+    lock_release(pid_lock);
 		return ENOMEM;
 	}
 
@@ -278,10 +280,13 @@ int pid_wait(pid_t pid, int *exitstatus){
   struct pidinfo *pi = pi_get(pid);
 
   if(pi == NULL){
+    lock_release(pid_lock);
     return ESRCH;  /* No thread with given pid */
   } else if(curthread->t_pid != pi->pi_ppid){
+    lock_release(pid_lock);
     return EINVAL; /* caller is not parent */
   } else if(pi->pi_joinable == FALSE){
+    lock_release(pid_lock);
     return EINVAL; /* the thread has been detached */
   }
 
@@ -309,6 +314,7 @@ int pid_exit(pid_t pid, int exitstatus){
   struct pidinfo *pi = pi_get(pid);
 
   if(pi == NULL){
+    lock_release(pid_lock);
     return ESRCH; /* No thread with given pid */
   }
 
@@ -335,10 +341,13 @@ int pid_detach(pid_t pid){
   struct pidinfo *pi = pi_get(pid);
 
   if(pi == NULL){
+    lock_release(pid_lock);
     return ESRCH; /* No thread with given pid */
   } else if(pi->pi_joinable == FALSE){
+    lock_release(pid_lock);
     return EINVAL; /* thread already detached */
   } else if(curthread->t_pid != pi->pi_ppid){
+    lock_release(pid_lock);
     return EINVAL; /* the caller is not the parent of pid */
   }
   
