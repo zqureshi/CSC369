@@ -30,7 +30,7 @@ all depend tags clean install:
 	(cd matmult && $(MAKE) $@)
 	(cd palin && $(MAKE) $@)
 	(cd parallelvm && $(MAKE) $@)
-	(cd printchartest && $(MAKE) $@)
+	#(cd printchartest && $(MAKE) $@)
 	#(cd printftest && $(MAKE) $@)
 	(cd randcall && $(MAKE) $@)
 	(cd rmdirtest && $(MAKE) $@)
@@ -43,6 +43,7 @@ all depend tags clean install:
 	(cd triplehuge && $(MAKE) $@)
 	(cd triplemat && $(MAKE) $@)
 	(cd triplesort && $(MAKE) $@)
+	(cd getpidtest && $(MAKE) $@)
 
 # But not:
 #    malloctest     (no malloc/free until you write it)

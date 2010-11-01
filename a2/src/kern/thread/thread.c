@@ -38,17 +38,6 @@ static int numthreads;
  * Create a thread. This is used both to create the first thread's 
  * thread structure and to create subsequent threads.
  */
-
-
-int sys_getpid()
-{
-
-  int curr_pid  =  (int) curthread->t_pid;
-  kprintf(curr_pid);
-  return curr_pid;
-}
-
-
 static
 struct thread *
 thread_create(const char *name)
@@ -684,3 +673,12 @@ int thread_detach(pid_t pid) {
         // Remove it when you start working on this function
         return pid;
 }
+
+/* Return curthread's pid */
+int sys_getpid()
+{
+  int curr_pid  =  (int) curthread->t_pid;
+  DEBUG(DB_SYSCALL, "curthread->t_pid: %d\n", curr_pid);
+  return curr_pid;
+}
+
