@@ -670,8 +670,5 @@ int thread_join(pid_t pid, int *status) {
 }
 
 int thread_detach(pid_t pid) {
-        // The following line is there to keep the compiler from complaining.
-        // Remove it when you start working on this function
-        return pid;
+  return pid_detach(pid);
 }
-

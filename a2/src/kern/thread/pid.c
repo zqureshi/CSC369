@@ -325,3 +325,29 @@ int pid_exit(pid_t pid, int exitstatus){
   lock_release(pid_lock);
   return 0;
 }
+
+int pid_detach(pid_t pid){
+  lock_acquire(pid_lock);
+
+  struct pidinfo *pi = pi_get(pid);
+
+  if(pi == NULL){
+    return ESRCH; /* No thread with given pid */
+  } else if(pi->pi_joinable == FALSE){
+    return EINVAL; /* thread already detached */
+  } else if(curthread->t_pid != pi->pi_ppid){
+    return EINVAL; /* the caller is not the parent of pid */
+  }
+  
+  /* Now mark this thread detached */
+  pi->pi_joinable = FALSE;
+  pi->pi_ppid = INVALID_PID;
+
+  /* If thread already exited, then free up the descriptor */
+  if(pi->pi_exited == TRUE){
+    pi_drop(pid);
+  }
+
+  lock_release(pid_lock);
+  return 0;
+}

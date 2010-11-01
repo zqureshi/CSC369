@@ -40,4 +40,7 @@ int pid_wait(pid_t pid, int *exitstatus);
 /* Mark thread as exited and store status */
 int pid_exit(pid_t pid, int exitstatus);
 
+/* Detach thread */
+int pid_detach(pid_t pid);
+
 #endif /* _PID_H_ */
