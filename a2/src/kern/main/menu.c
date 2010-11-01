@@ -105,13 +105,21 @@ common_prog(int nargs, char **args)
 		"synchronization-problems kernel.\n");
 #endif
 
+  pid_t prog_pid;
 	result = thread_fork(args[0] /* thread name */,
 			args /* thread arg */, nargs /* thread arg */,
-			cmd_progthread, NULL);
+			cmd_progthread, &prog_pid);
 	if (result) {
 		kprintf("thread_fork failed: %s\n", strerror(result));
 		return result;
 	}
+
+  /* Wait for thread to join */
+  result = thread_join(prog_pid, NULL);
+  if (result) {
+    kprintf("thread join failed: %s\n", strerror(result));
+    return result;
+  }
 
 	return 0;
 }
