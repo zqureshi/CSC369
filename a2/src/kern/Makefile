@@ -72,3 +72,8 @@ cleanhere:
 # (hopefully) won't become confused if files by those names appear.
 #
 .PHONY: all tags depend clean cleanhere install includes
+
+a2: A2
+
+A2:
+	(cd compile/ASST2 && $(MAKE) && $(MAKE) install)
