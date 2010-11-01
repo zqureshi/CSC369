@@ -29,7 +29,7 @@ struct pidinfo {
 	volatile int pi_exited;		// true if thread has exited
 	int pi_exitstatus;		// status (only valid if exited)
   int pi_joinable;                // true if thread is joinable
-  struct semaphore *pi_join; //Condition on which parent waits to join
+  struct cv *pi_join; //Condition on which parent waits to join
 };
 
 
@@ -68,7 +68,7 @@ pidinfo_create(pid_t pid, pid_t ppid)
 	pi->pi_exited = FALSE;
 	pi->pi_exitstatus = 0xbeef;  /* Recognizable unlikely exit code */
 	pi->pi_joinable = TRUE; /* Threads start out joinable by default */
-  pi->pi_join = sem_create("pi_join", 0); /* ppid waits on this */
+  pi->pi_join = cv_create("pi_join"); /* ppid waits on this */
 	return pi;
 }
 
@@ -81,7 +81,7 @@ pidinfo_destroy(struct pidinfo *pi)
 {
 	assert(pi->pi_exited==TRUE);
 	assert(pi->pi_ppid==INVALID_PID);
-  sem_destroy(pi->pi_join);
+  cv_destroy(pi->pi_join);
 	kfree(pi);
 }
 
@@ -285,9 +285,9 @@ int pid_wait(pid_t pid, int *exitstatus){
     return EINVAL; /* the thread has been detached */
   }
 
-  lock_release(pid_lock);
-  P(pi->pi_join);
-  lock_acquire(pid_lock);
+  while(pi->pi_exited != TRUE){
+    cv_wait(pi->pi_join, pid_lock);
+  }
 
   /* If exitstatus is a pointer, then populate it */
   if(exitstatus != NULL){
@@ -319,7 +319,7 @@ int pid_exit(pid_t pid, int exitstatus){
 
   /* Signal if thread is joinable */
   if(pi->pi_joinable == TRUE){
-    V(pi->pi_join);
+    cv_broadcast(pi->pi_join, pid_lock);
   } else {
     pi->pi_ppid = INVALID_PID; /* detach it */
     pi_drop(pid); /* free up table */
