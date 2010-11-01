@@ -93,7 +93,8 @@ mips_syscall(struct trapframe *tf)
         // END A2 SETUP
 
         case SYS_getpid:
-        err = sys_getpid();
+        retval = sys_getpid();
+        err = 0;
         break;
 
 	    /* Add stuff here */
