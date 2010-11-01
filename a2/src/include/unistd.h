@@ -131,6 +131,6 @@ char *getcwd(char *buf, size_t buflen);		/* calls __getcwd */
 time_t time(time_t *seconds);			/* calls __time */
 
 /* Functions for A2 */
-int getpid();   /* return pid of current thread */
+pid_t getpid();   /* return pid of current thread */
 
 #endif /* _UNISTD_H_ */

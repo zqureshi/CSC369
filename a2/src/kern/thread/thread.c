@@ -675,9 +675,9 @@ int thread_detach(pid_t pid) {
 }
 
 /* Return curthread's pid */
-int sys_getpid()
+pid_t sys_getpid()
 {
-  int curr_pid  =  (int) curthread->t_pid;
+  pid_t curr_pid  =  curthread->t_pid;
   DEBUG(DB_SYSCALL, "curthread->t_pid: %d\n", curr_pid);
   return curr_pid;
 }
