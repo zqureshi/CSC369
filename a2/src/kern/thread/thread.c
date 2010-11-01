@@ -483,6 +483,12 @@ thread_exit(int exitcode) /* exitcode added for A0 */
 		assert(curthread->t_stack[3] == (char)0x33);
 	}
 
+  /* 
+   * Signal the thread's condition variable
+   * to wake-up the parent if it's waiting on it
+   */
+  pid_signal(curthread->t_pid);
+
 	splhigh();
 
 	if (curthread->t_vmspace) {
