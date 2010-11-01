@@ -287,21 +287,6 @@ int pid_wait(pid_t pid){
   return 0;
 }
 
-int pid_signal(pid_t pid){
-  lock_acquire(pid_lock);
-
-  struct pidinfo *pi = pi_get(pid);
-
-  if(pi == NULL){
-    return ESRCH; /* No thread with given pid */
-  }
-
-  cv_broadcast(pi->pi_join, pid_lock);
-  lock_release(pid_lock);
-
-  return 0;
-}
-
 int pid_exit(pid_t pid, int exitstatus){
   lock_acquire(pid_lock);
 
@@ -316,7 +301,11 @@ int pid_exit(pid_t pid, int exitstatus){
   pi->pi_exitstatus = exitstatus;
   DEBUG(DB_THREADS, "PID %d exited with status %d\n", (int)pid, exitstatus);
 
-  lock_release(pid_lock);
+  /* Signal if thread is joinable */
+  if(pi->pi_joinable == TRUE){
+    cv_broadcast(pi->pi_join, pid_lock);
+  }
 
+  lock_release(pid_lock);
   return 0;
 }

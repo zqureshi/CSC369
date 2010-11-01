@@ -36,7 +36,6 @@ void pid_unalloc(pid_t targetpid);
 
 /* Wait/Signal Condition Variable on pid */
 int pid_wait(pid_t pid);
-int pid_signal(pid_t pid);
 
 /* Mark thread as exited and store status */
 int pid_exit(pid_t pid, int exitstatus);

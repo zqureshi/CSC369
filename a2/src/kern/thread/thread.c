@@ -477,12 +477,6 @@ thread_exit(int exitcode) /* exitcode added for A0 */
    */
   pid_exit(curthread->t_pid, exitcode);
 
-  /* 
-   * Signal the thread's condition variable
-   * to wake-up the parent if it's waiting on it
-   */
-  pid_signal(curthread->t_pid);
-
 	splhigh();
 
 	if (curthread->t_vmspace) {
