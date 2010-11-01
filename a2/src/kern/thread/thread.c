@@ -248,7 +248,7 @@ int
 thread_fork(const char *name, 
 	    void *data1, unsigned long data2,
 	    void (*func)(void *, unsigned long),
-	    struct thread **ret)
+	    pid_t *ret)
 {
 	struct thread *newguy;
 	int s, result;
@@ -321,15 +321,14 @@ thread_fork(const char *name,
 	/* Done with stuff that needs to be atomic */
 	splx(s);
 
-	/*
-	 * Return new thread structure if it's wanted.  Note that
-	 * using the thread structure from the parent thread should be
-	 * done only with caution, because in general the child thread
-	 * might exit at any time.
-	 */
-	if (ret != NULL) {
-		*ret = newguy;
-	}
+  /*
+   * Return the pid of the new thread
+   */
+  if(ret == NULL) {
+    pid_detach(newguy->t_pid); /* detach thread immediately */
+  } else {
+    *ret = newguy->t_pid; /* set ret to child's pid */
+  }
 
 	return 0;
 

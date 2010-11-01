@@ -62,7 +62,7 @@ void thread_shutdown(void);
 int thread_fork(const char *name, 
 		void *data1, unsigned long data2, 
 		void (*func)(void *, unsigned long),
-		struct thread **ret);
+		pid_t *ret);
 
 /*
  * Cause the current thread to exit.

@@ -294,6 +294,7 @@ int pid_wait(pid_t pid, int *exitstatus){
 
   /* Now free up the PID table */
   pi->pi_ppid = INVALID_PID;
+  pi->pi_joinable = FALSE;
   pi_drop(pid);
 
   lock_release(pid_lock);
