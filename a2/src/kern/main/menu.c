@@ -67,8 +67,9 @@ cmd_progthread(void *ptr, unsigned long nargs)
 	assert(strlen(args[0]) < sizeof(progname));
 
 	strcpy(progname, args[0]);
+  char *prog_args[] = {NULL};
 
-	result = runprogram(progname);
+	result = runprogram(progname, prog_args);
 	if (result) {
 		kprintf("Running program %s failed: %s\n", args[0],
 			strerror(result));

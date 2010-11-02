@@ -17,7 +17,7 @@ int sys_read(int fd, userptr_t buf, size_t size, int *retval);
 int sys_write(int fd, userptr_t buf, size_t size, int *retval);
 // END A2 SETUP
 pid_t sys_getpid();
-int sys_execv(char *progname, char **args);
+int sys_execv(userptr_t progname, userptr_t args);
 
 
 #endif /* _SYSCALL_H_ */

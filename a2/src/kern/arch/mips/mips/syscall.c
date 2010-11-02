@@ -66,7 +66,6 @@ mips_syscall(struct trapframe *tf)
 	 */
 
 	retval = 0;
-  char progname[128];
 
 	switch (callno) {
 	    case SYS_reboot:
@@ -99,8 +98,7 @@ mips_syscall(struct trapframe *tf)
         break;
 
         case SYS_execv:
-        strcpy(progname, (char *)tf->tf_a0);
-        err = sys_execv(progname, NULL);
+        err = sys_execv((userptr_t)tf->tf_a0, (userptr_t)tf->tf_a1);
         break;
 
 	    /* Add stuff here */

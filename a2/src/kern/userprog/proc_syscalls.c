@@ -14,7 +14,11 @@ pid_t sys_getpid()
   return curr_pid;
 }
 
-int sys_execv(char *program, char **args){
+int sys_execv(userptr_t program, userptr_t args){
+  /* copy progname into kernel space */
+  char progname[256];
+  strcpy(progname, (char *)program);
+
   /* Destroy Current address space */
   as_destroy(curthread->t_vmspace);
   curthread->t_vmspace = NULL;
@@ -23,5 +27,5 @@ int sys_execv(char *program, char **args){
   (void)args;
 
   /* Load the new program */
-  return runprogram(program);
+  return runprogram(progname, (char **)args);
 }

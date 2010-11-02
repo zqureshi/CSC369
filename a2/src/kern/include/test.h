@@ -55,6 +55,6 @@ int jointest2(int, char **);
 void menu(char *argstr);
 
 /* Routine for running userlevel test code. */
-int runprogram(char *progname);
+int runprogram(char *progname, char **args);
 
 #endif /* _TEST_H_ */
