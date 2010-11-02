@@ -1,0 +1,53 @@
+# CSC 369 Fall 2010 - Assignment
+#
+# Group 36
+#
+# Aditya  Mishra  <c9mishra@cdf.toronto.edu>
+# Zeeshan Qureshi <g0zee@cdf.toronto.edu>
+
+PID Synchronization
+-------------------
+For PID synchronization we are using locks to guarantee mutual exclusivity and condition variables stored in each pidinfo structure for joining. 
+
+Every time a new thread is created, it is assigned a new PID using pid_alloc() and when a thread exits pid_exit() is called on it.
+
+When a parent calls thread_join() on a child, then it first checks whether the child has already exited (stored in pidinfo) otherwise it goes to sleep on the PID's condition variable. After the status of the PID is stored, the structure is freed up.
+
+When a thread exits, it calls pid_exit() which check that if it's joinable, then it set's it's status to exited and signals the CV. Otherwise if it's detached, then it's structure is freed up and the PID reclaimed.
+
+When thread_detach is called, then the thread is marked as detached and it's ppid set to INVALID_PID. If the thread already exited, then it's structure is freed up and the PID reclaimed.
+
+The Possible Synchronization conditions are:
+  * Join happens before the exit:
+      The parent waits on the CV and is woken up when the CV is signaled.
+
+  * Detach happens before exit:
+      The thread is marked detached but the structure is not freed up,
+      since pid_exit() will take care of that.
+
+  * Exit happens before join:
+      The thread is marked exited and structure is retained, which is freed
+      up when the parent is woken up by thread_join.
+
+  * Exit happens before detach:
+      The thread is marked exited, but the structure is not freed up since
+      it's still joinable. But when detach is called on this thread, it will
+      free up the structure.
+
+  * If detach happens before join, then join fails and the structure is
+    freed up when the thread exit
+
+Notes: We first though of using semaphores for waiting, but the problem was that we would have to release all locks before sleeping and then acquire them again, and condition variables are a cleaner way of doing this.
+
+System Calls
+------------
+
+getpid
+------
+getpid was straightforward, since we only had to pull t_pid out of curthread and return it.
+
+execv
+-----
+For execv we basically destroy the thread's current t_vmspace and create a new one. Then we call runprogram to load the file into space and run it.
+
+We had to modify runprogram to handle arguments to the new executable. For this we first copied the given args from user space to kernel space, then we copy it onto the new executable's stack (kernel space to user space) and then run the program.
