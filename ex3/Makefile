@@ -20,4 +20,4 @@ testbh.o : bheap.h
 bheap.o : bheap.h
 
 clean : 
-	rm *.o testbh testheap
+	rm -f *.o testbh testheap
