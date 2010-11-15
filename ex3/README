@@ -1,0 +1,4 @@
+The source code files in this directory implement two variations of binary heaps. 
+The starting point for this code was the code provided by Poul-Henning Kamp to 
+support his article.  The original code can be found http://phk.freebsd.dk/B-Heap/.  
+A tar file of the origial code is also provided.
