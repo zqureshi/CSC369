@@ -1,0 +1,39 @@
+# CSC 369 Fall 2010 - Excercise 3
+#
+# Zeeshan Qureshi
+# g0zee@cdf.toronto.edu
+
+Environment
+-----------
+A Virtual Machines under VirtualBox with:
+  * 32 MB of Memory
+  * 7513 MB of Disk Space
+  * 556 MB of Swap
+  * ArchLinux x86 with Kernel 2.6.35
+
+Rationale
+---------
+I decided to run the tests under a VM, because I could control how much
+memory was available to the system and thus compare and contrast between a
+small and large dataset under a reasonable amount of time.
+
+Since modern CPUs also support hardware based virtualization, the
+running time of the tests was pretty close to what I got outside the VM.
+
+The VM video adapter took off 8 MB of RAM, and the base Arch install was using
+around 23 MB, thus the application effectively had a megabyte of free space
+which helped in seeing a significant difference in the datasets.
+
+Tests
+-----
+I wrote a shell script[pageTest.sh] that ran the 'testheap' and 'testbh' 
+tests for a various number of operations.
+
+I also made the script change the DATASIZE after each set was completed.
+
+The tested values were:
+  * DATASIZEs of 8 16 32 64 128 and 256
+  * Operations of 10k 50k 100k and 500k
+
+I ran the test 3 times for each DATASIZE/num_ops combo to take into
+account if the system was under heavy stress or other factors.
