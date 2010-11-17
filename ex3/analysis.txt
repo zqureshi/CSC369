@@ -40,7 +40,6 @@ account if the system was under heavy stress or other factors.
 
 Results
 -------
-
 I decided not to go with graphs since to visualize all the different 
 variables, it would've needed multiple graphs, whereas in a table you
 can see the variations easily.
@@ -161,3 +160,31 @@ Units:
 +--------+------+------+---------+---------+-------+--------+-----------+-----+
 | B-Heap | 256  | 500k | 1388438 | 1190257 | 3018  | 53653  | 129835008 | 2593|
 +--------+------+------+---------+---------+-------+--------+-----------+-----+
+
+Analysis
+--------
+With smaller datasets (DATASIZEs 8, 16, 32) even with a large number of
+operations, the VM size doesn't get big enough that the scheduler pages out
+anything. Thus, B-Heap even with it's extremely low number of minor page
+faults (cache misses) is still slower than the original Binary Heap, since
+B-Heap needs to do a significant amount of extra computation for each parent/
+node lookup. With datasets of up to 100k (except for DATASIZE 256) the VM is
+still not large enough to cause paging, and thus Binary Heap is faster again.
+
+As the dataset grows B-Heap is starting to catch up. As soon as the VM size
+gets around 17 MiB (17825792 Bytes), the memory starts to get stressed,
+and the scheduler starts sawapping out pages. It is important to keep in
+mind, that the Virtual Machine only has 32 MegaBytes of physical memory, so
+the scheduler must've paged out other background processes first and then
+paged out from this process (since it was the one consuming the most 
+CPU time). 
+
+After reaching this critical point, any increase in the size
+of the dataset means that B-Heap will win with a bigger margin since it
+has an order of magnitude less page faults than the generic heap. At this
+point, the extra CPU cycles are insignificant compared to disk I/O.
+
+At 500,000 Operations and DATASIZES >= 64, B-Heap is already twice as fast
+(UTime + STime), and by the time the DATASIZE gets to 256, it's 3 times
+as fast! A further increase in VM size will only mean better results for
+B-Heap.
