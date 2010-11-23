@@ -1,0 +1,45 @@
+A2: Threading
+Group: Group36
+
+Correctness (18)
+2: thread_join and _detach work separately (2)
+3: thread_join and _detach interact appropriately with each other and exit (4)
+2: thread_join and _detach return logical error values (2)
+
+2: getpid returns correct values and error codes (2)
+
+0: exec copies user arguments correctly (4)
+2: exec replaces the address space and sets the new program to run (4)
+
+Style and Efficiency (3)
+1: all new calls use appropriate functions from the PID module (1)
+0.5: the pid module is implemented as a monitor (1)
+1: synchronization is efficient, without redundancy or busy-waiting (1)
+
+Design Document and Code Reading (6)
+1.5: Code reading (2) 
+  # -.25 for each incorrect or incomplete answer
+1: Doc written in a professional tone with correct grammar (1)
+  # -1 for spelling or grammatical mistakes that severely decrease readability
+  # -1 for discussing low-level implementation details
+2: Doc clearly and concisely discusses major design decisions (3)
+  # The design doc should mention system calls (especially error handling
+  # decisions) and the join/detach/exit synchronization problem.
+  # It should also mention how they implemented a monitor for the pids.
+
+Presentation (3)
+2:
+
+0: DEDUCTION: -3 for compiler warnings
+20: Total (30)
+
+COMMENTS:
+- thread_exit doesn't detach any child threads.
+- monitor logic is off: why so many lock_release calls in pid_alloc?
+- Calling runprogram from execv is a bit of a hack: you have to destroy the current address space, which means you can't restore it if runprogram fails.
+- execvtest doesn't generate any output.
+- Presentation was good in regards to your code knowledge, but needed more knowledge about what you would have done differently or better.
+- Q4: too vague.
+- Q5: should mention priority here.
+- Q8: even if the result was reliable, could you do anything with it?
+- design.txt: good description on pids/threads, but you could include much more detail about execv, even if you didn't complete the code.
