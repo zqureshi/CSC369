@@ -28,3 +28,13 @@ The devices are added to the list via calls to vfs_adddev().
 Answer 4
 --------
 The VOP_ routines that work on a file (as an abstraction)  whereas the FSOP_ routines work on the filesystem (as an abstraction).
+
+Answer 5
+--------
+This is because the SFS maintains a copy of the freemap and superblock in 
+memory and works on it, syncing it before unmounting (and shutdown).
+
+Answer 6
+--------
+This means that if the computer crashes before the SFS has been synced, then
+the file system will be in an inconsistend (and possibly unusable) state.
