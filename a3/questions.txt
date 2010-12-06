@@ -5,7 +5,7 @@
 
 Answer 1
 --------
-Generally all all operations that are permitted on files are 
+Generally all vnode operations that are permitted on files are 
 permitted on devices (since UNIX treats devices as files).
 
 
