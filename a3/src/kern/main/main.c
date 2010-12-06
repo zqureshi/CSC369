@@ -66,14 +66,15 @@ boot(void)
 	 * dev/generic/console.c).
 	 */
 
-        size_t memsize; /* ASST2: get memsize from new vm_bootstrap */
+  /* remove compiler warning */
+        //size_t memsize; /* ASST2: get memsize from new vm_bootstrap */
 
 	kprintf("\n");
 	kprintf("OS/161 base system version %s\n", BASE_VERSION);
 	kprintf("%s", harvard_copyright);
 	kprintf("\n");
 
-	kprintf("Put-your-group-name-here's system version %s (%s #%d)\n", 
+	kprintf("Group 36 system version %s (%s #%d)\n", 
 		GROUP_VERSION, buildconfig, buildversion);
 	kprintf("\n");
 
