@@ -1,0 +1,18 @@
+# CSC 369 Fall 2010 - Assignment 3
+#
+# Zeeshan Qureshi <g0zee@cdf.toronto.edu>
+# Aditya Mishra <c9mishra@cdf.toronto.edu>
+# $Id$
+
+Answer 1
+--------
+Generally all all operations that are permitted on files are 
+permitted on devices (since UNIX treats devices as files).
+
+
+Answer 2
+--------
+vfs_getcurdir() increases the reference count of the current directory because
+it is passing a reference to the directory out to the program, and since the
+reference is going to be used later on, it's use is not complete (and that
+is why VOP_DECREF is not called on it inside vfs_getcurdir(), thus it is the responsibility of the function calling vfs_getcurdir() to decrease the reference count after it's done using it, like in vfs_getcwd())
