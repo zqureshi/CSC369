@@ -180,8 +180,14 @@ filetable_destroy(struct filetable *ft)
 int
 filetable_findfile(int fd, struct openfile **file)
 {
-        (void)fd;
-	(void)file;
+  if(fd < 0 || fd > FOPEN_MAX){
+    return EINVAL;
+  }
 
+  if(curthread->t_filetable->ft_openfiles[fd] == NULL){
+    return ENOENT;
+  }
+
+  *file = curthread->t_filetable->ft_openfiles[fd];
 	return 0;
 }
