@@ -15,4 +15,16 @@ Answer 2
 vfs_getcurdir() increases the reference count of the current directory because
 it is passing a reference to the directory out to the program, and since the
 reference is going to be used later on, it's use is not complete (and that
-is why VOP_DECREF is not called on it inside vfs_getcurdir(), thus it is the responsibility of the function calling vfs_getcurdir() to decrease the reference count after it's done using it, like in vfs_getcwd())
+is why VOP_DECREF is not called on it inside vfs_getcurdir(), thus it is 
+the responsibility of the function calling vfs_getcurdir() to decrease 
+the reference count after it's done using it, like in vfs_getcwd()).
+
+
+Answer 3
+--------
+The devices are added to the list via calls to vfs_adddev().
+
+
+Answer 4
+--------
+The VOP_ routines that work on a file (as an abstraction)  whereas the FSOP_ routines work on the filesystem (as an abstraction).
