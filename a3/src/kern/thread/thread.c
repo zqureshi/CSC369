@@ -12,6 +12,7 @@
 #include <scheduler.h>
 #include <addrspace.h>
 #include <vnode.h>
+#include <file.h>
 
 #include <pid.h> /* ASST1: include defs for pid system */
 

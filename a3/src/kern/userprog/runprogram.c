@@ -14,6 +14,7 @@
 #include <vm.h>
 #include <vfs.h>
 #include <test.h>
+#include <file.h>
 
 /*
  * Load program "progname" and start running it in usermode.
