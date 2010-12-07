@@ -192,30 +192,30 @@ sys_read(int fd, userptr_t buf, size_t size, int *retval)
 int
 sys_write(int fd, userptr_t buf, size_t size, int *retval)
 {
-	struct uio useruio;
 	int result;
-	int offset = 0;
+  struct openfile *of;
+  
+  /* Verify descriptor and find file in table */
+  result = filetable_findfile(fd, &of);
+  if(result){
+    return result;
+  }
 
-	/* Make sure we were able to init the cons_vnode */
-	if (cons_vnode == NULL) {
-	  return ENODEV;
-	}
-
-	/* Right now, only stdin (0), stdout (1) and stderr (2)
-	 * are supported, and they can't be redirected to a file
-	 */
-	if (fd < 0 || fd > 2) {
-	  return EBADF;
-	}
+  /* populate uio with offset from open file */
+	struct uio useruio;
+	int offset = of->of_offset;
 
 	/* set up a uio with the buffer, its size, and the current offset */
 	mk_useruio(&useruio, buf, size, offset, UIO_WRITE);
 
 	/* does the write */
-	result = VOP_WRITE(cons_vnode, &useruio);
+	result = VOP_WRITE(of->of_vnode, &useruio);
 	if (result) {
 		return result;
 	}
+
+  /* update offset in open file */
+  of->of_offset = useruio.uio_offset;
 
 	/*
 	 * the amount written is the size of the buffer originally,
