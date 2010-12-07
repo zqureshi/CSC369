@@ -258,11 +258,31 @@ sys_lseek(int fd, off_t offset, int whence, off_t *retval)
 int
 sys_dup2(int oldfd, int newfd, int *retval)
 {
-        (void)oldfd;
-        (void)newfd;
-        (void)retval;
+  int result;
+  struct openfile *of;
 
-	return EUNIMP;
+  /* verify oldfd */
+  result = filetable_findfile(oldfd, &of);
+  if(result){
+    return result;
+  }
+
+  /* verify newfd */
+  if(newfd < 0 || newfd >= FOPEN_MAX){
+    return EBADF;
+  }
+
+  /* close file at newfd if present */
+  if(curthread->t_filetable->ft_openfiles[newfd] != NULL){
+    file_close(newfd);
+  }
+
+  /* finally set newfd to point to oldfd and increase refcount */
+  curthread->t_filetable->ft_openfiles[newfd] = of;
+  of->of_refcount += 1;
+
+  *retval = newfd;
+  return 0;
 }
 
 /* really not "file" calls, per se, but might as well put it here */
