@@ -343,11 +343,16 @@ sys_chdir(userptr_t path)
 int
 sys___getcwd(userptr_t buf, size_t buflen, int *retval)
 {
-        (void)buf;
-        (void)buflen;
-        (void)retval;
+  struct uio userio;
+  mk_useruio(&userio, buf, buflen, 0, UIO_READ);
 
-	return EUNIMP;
+  int result = vfs_getcwd(&userio);
+  if(result){
+    return result;
+  }
+
+  *retval = buflen - userio.uio_resid;
+	return 0;
 }
 
 /*
