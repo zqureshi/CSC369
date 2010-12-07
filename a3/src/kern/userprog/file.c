@@ -88,9 +88,23 @@ file_open(char *filename, int flags, int mode, int *retfd)
 int
 file_close(int fd)
 {
-        (void)fd;
+  struct openfile *of;
+  int result = filetable_findfile(fd, &of);
+  if(result){
+    return result;
+  }
 
-	return EUNIMP;
+  of->of_refcount -= 1;
+
+  /* If refcount hits zero, free up struct */
+  if(of->of_refcount == -1){
+    vfs_close(of->of_vnode);
+    kfree(of);
+    /* mark file descriptor as empty */
+    curthread->t_filetable->ft_openfiles[fd] = NULL;
+  }
+
+	return 0;
 }
 
 /*** filetable functions ***/
@@ -163,9 +177,14 @@ filetable_init()
 void
 filetable_destroy(struct filetable *ft)
 {
+  if(ft == NULL){
+    return;
+  }
+
   int i;
   for(i=0; i<FOPEN_MAX; i++){
-    file_close(i);
+    if(ft->ft_openfiles[i] != NULL)
+      file_close(i);
   }
 
   kfree(ft);
