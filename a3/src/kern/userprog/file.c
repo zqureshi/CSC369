@@ -20,7 +20,7 @@
 
 /* ASST3: custom functions*/
 
-/* Get a empty file descriptor on each call else return FOPEN_MAX */
+/* Get a empty file descriptor on each call, else return FOPEN_MAX */
 int filetable_getfd(){
   struct filetable *ft = curthread->t_filetable;
 
@@ -199,12 +199,12 @@ filetable_destroy(struct filetable *ft)
 int
 filetable_findfile(int fd, struct openfile **file)
 {
-  if(fd < 0 || fd > FOPEN_MAX){
-    return EINVAL;
+  if(fd < 0 || fd >= FOPEN_MAX){
+    return EBADF;
   }
 
   if(curthread->t_filetable->ft_openfiles[fd] == NULL){
-    return ENOENT;
+    return EBADF;
   }
 
   *file = curthread->t_filetable->ft_openfiles[fd];
