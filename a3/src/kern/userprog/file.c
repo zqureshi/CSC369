@@ -47,7 +47,7 @@ int filetable_getfd(){
 int
 file_open(char *filename, int flags, int mode, int *retfd)
 {
-	(void)mode;
+  (void)mode;
 
   /* Perform error checking */
   int fd = filetable_getfd();
@@ -104,7 +104,7 @@ file_close(int fd)
     curthread->t_filetable->ft_openfiles[fd] = NULL;
   }
 
-	return 0;
+  return 0;
 }
 
 /*** filetable functions ***/
@@ -137,28 +137,28 @@ filetable_init()
   for(i=0; i<FOPEN_MAX; i++){
     ft->ft_openfiles[i] = NULL;
   }
-  
+
   /* point t_filetable to ft */
   curthread->t_filetable = ft;
 
   /* Setup standard console streams */
   int result, fd;
   char path[5];
-  
+
   /* Setup STDIN fd 0 */
   strcpy(path, "con:");
   result = file_open(path, O_RDWR, 0, &fd);
   if(result){
     return result;
   }
-  
+
   /* Setup STDOUT fd 1 */
   strcpy(path, "con:");
   result = file_open(path, O_RDWR, 0, &fd);
   if(result){
     return result;
   }
-  
+
   /* Setup STDERR fd 2 */
   strcpy(path, "con:");
   result = file_open(path, O_RDWR, 0, &fd);
@@ -166,7 +166,7 @@ filetable_init()
     return result;
   }
 
-	return 0;
+  return 0;
 }
 
 
@@ -208,5 +208,5 @@ filetable_findfile(int fd, struct openfile **file)
   }
 
   *file = curthread->t_filetable->ft_openfiles[fd];
-	return 0;
+  return 0;
 }

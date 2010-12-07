@@ -56,7 +56,7 @@ void dumb_consoleIO_bootstrap()
   /* The path passed to vfs_open must be mutable. 
    * vfs_open may modify it.
    */
-  
+
   strcpy(path, "con:");
   result = vfs_open(path, O_RDWR, &cons_vnode);
 
@@ -79,17 +79,17 @@ void dumb_consoleIO_bootstrap()
 static
 void
 mk_useruio(struct uio *u, userptr_t buf, size_t len, off_t offset, 
-	   enum uio_rw rw)
+    enum uio_rw rw)
 {
-	assert(u);
+  assert(u);
 
-	u->uio_iovec.iov_ubase = buf;
-	u->uio_iovec.iov_len = len;
-	u->uio_offset = offset;
-	u->uio_resid = len;
-	u->uio_segflg = UIO_USERSPACE;
-	u->uio_rw = rw;
-	u->uio_space = curthread->t_vmspace;
+  u->uio_iovec.iov_ubase = buf;
+  u->uio_iovec.iov_len = len;
+  u->uio_offset = offset;
+  u->uio_resid = len;
+  u->uio_segflg = UIO_USERSPACE;
+  u->uio_rw = rw;
+  u->uio_space = curthread->t_vmspace;
 }
 
 /*
@@ -101,15 +101,15 @@ mk_useruio(struct uio *u, userptr_t buf, size_t len, off_t offset,
 int
 sys_open(userptr_t filename, int flags, int mode, int *retval)
 {
-	char fname[PATH_MAX];
-	int result;
+  char fname[PATH_MAX];
+  int result;
 
-	result = copyinstr(filename, fname, sizeof(fname), NULL);
-	if (result) {
-		return result;
-	}
+  result = copyinstr(filename, fname, sizeof(fname), NULL);
+  if (result) {
+    return result;
+  }
 
-	return file_open(fname, flags, mode, retval);
+  return file_open(fname, flags, mode, retval);
 }
 
 /*
@@ -135,9 +135,9 @@ sys_open(userptr_t filename, int flags, int mode, int *retval)
 int
 sys_read(int fd, userptr_t buf, size_t size, int *retval)
 {
-	int result;
+  int result;
   struct openfile *of;
-  
+
   /* Verify descriptor and find file in table */
   result = filetable_findfile(fd, &of);
   if(result){
@@ -145,28 +145,28 @@ sys_read(int fd, userptr_t buf, size_t size, int *retval)
   }
 
   /* populate uio with offset from open file */
-	struct uio useruio;
-	int offset = of->of_offset;
+  struct uio useruio;
+  int offset = of->of_offset;
 
-	/* set up a uio with the buffer, its size, and the current offset */
-	mk_useruio(&useruio, buf, size, offset, UIO_READ);
+  /* set up a uio with the buffer, its size, and the current offset */
+  mk_useruio(&useruio, buf, size, offset, UIO_READ);
 
-	/* does the read */
-	result = VOP_READ(of->of_vnode, &useruio);
-	if (result) {
-		return result;
-	}
+  /* does the read */
+  result = VOP_READ(of->of_vnode, &useruio);
+  if (result) {
+    return result;
+  }
 
   /* update offset in open file */
   of->of_offset = useruio.uio_offset;
 
-	/*
-	 * The amount read is the size of the buffer originally, minus
-	 * how much is left in it.
-	 */
-	*retval = size - useruio.uio_resid;
+  /*
+   * The amount read is the size of the buffer originally, minus
+   * how much is left in it.
+   */
+  *retval = size - useruio.uio_resid;
 
-	return 0;
+  return 0;
 }
 
 /*
@@ -192,9 +192,9 @@ sys_read(int fd, userptr_t buf, size_t size, int *retval)
 int
 sys_write(int fd, userptr_t buf, size_t size, int *retval)
 {
-	int result;
+  int result;
   struct openfile *of;
-  
+
   /* Verify descriptor and find file in table */
   result = filetable_findfile(fd, &of);
   if(result){
@@ -202,28 +202,28 @@ sys_write(int fd, userptr_t buf, size_t size, int *retval)
   }
 
   /* populate uio with offset from open file */
-	struct uio useruio;
-	int offset = of->of_offset;
+  struct uio useruio;
+  int offset = of->of_offset;
 
-	/* set up a uio with the buffer, its size, and the current offset */
-	mk_useruio(&useruio, buf, size, offset, UIO_WRITE);
+  /* set up a uio with the buffer, its size, and the current offset */
+  mk_useruio(&useruio, buf, size, offset, UIO_WRITE);
 
-	/* does the write */
-	result = VOP_WRITE(of->of_vnode, &useruio);
-	if (result) {
-		return result;
-	}
+  /* does the write */
+  result = VOP_WRITE(of->of_vnode, &useruio);
+  if (result) {
+    return result;
+  }
 
   /* update offset in open file */
   of->of_offset = useruio.uio_offset;
 
-	/*
-	 * the amount written is the size of the buffer originally,
-	 * minus how much is left in it.
-	 */
-	*retval = size - useruio.uio_resid;
+  /*
+   * the amount written is the size of the buffer originally,
+   * minus how much is left in it.
+   */
+  *retval = size - useruio.uio_resid;
 
-	return 0;
+  return 0;
 }
 
 /* 
@@ -233,7 +233,7 @@ sys_write(int fd, userptr_t buf, size_t size, int *retval)
 int
 sys_close(int fd)
 {
-	return file_close(fd);
+  return file_close(fd);
 }
 
 /*
@@ -285,7 +285,7 @@ sys_lseek(int fd, off_t offset, int whence, off_t *retval)
   of->of_offset = pos;
 
   *retval = pos;
-	return 0;
+  return 0;
 }
 
 /* 
@@ -331,9 +331,9 @@ sys_dup2(int oldfd, int newfd, int *retval)
 int
 sys_chdir(userptr_t path)
 {
-        (void)path;
+  (void)path;
 
-	return EUNIMP;
+  return EUNIMP;
 }
 
 /*
@@ -352,7 +352,7 @@ sys___getcwd(userptr_t buf, size_t buflen, int *retval)
   }
 
   *retval = buflen - userio.uio_resid;
-	return 0;
+  return 0;
 }
 
 /*
@@ -361,10 +361,10 @@ sys___getcwd(userptr_t buf, size_t buflen, int *retval)
 int
 sys_mkdir(userptr_t path, int mode)
 {
-        (void)path;
-        (void)mode;
+  (void)path;
+  (void)mode;
 
-	return EUNIMP;
+  return EUNIMP;
 }
 
 /*
@@ -373,9 +373,9 @@ sys_mkdir(userptr_t path, int mode)
 int
 sys_rmdir(userptr_t path)
 {
-        (void)path;
+  (void)path;
 
-	return EUNIMP;
+  return EUNIMP;
 }
 
 /*
@@ -384,9 +384,9 @@ sys_rmdir(userptr_t path)
 int
 sys_remove(userptr_t path)
 {
-        (void)path;
+  (void)path;
 
-	return EUNIMP;
+  return EUNIMP;
 }
 
 /*
@@ -401,10 +401,10 @@ sys_remove(userptr_t path)
 int
 sys_rename(userptr_t oldpath, userptr_t newpath)
 {
-        (void)oldpath;
-        (void)newpath;
+  (void)oldpath;
+  (void)newpath;
 
-	return EUNIMP;
+  return EUNIMP;
 }
 
 /*
@@ -413,12 +413,12 @@ sys_rename(userptr_t oldpath, userptr_t newpath)
 int
 sys_getdirentry(int fd, userptr_t buf, size_t buflen, int *retval)
 {
-        (void)fd;
-        (void)buf;
-	(void)buflen;
-        (void)retval;
+  (void)fd;
+  (void)buf;
+  (void)buflen;
+  (void)retval;
 
-	return EUNIMP;
+  return EUNIMP;
 }
 
 /*
@@ -429,7 +429,7 @@ sys_fstat(int fd, userptr_t statptr)
 {
   int result;
   struct openfile *of;
-  
+
   result = filetable_findfile(fd, &of);
   if(result){
     return result;
@@ -448,5 +448,5 @@ sys_fstat(int fd, userptr_t statptr)
     return result;
   }
 
-	return 0;
+  return 0;
 }
