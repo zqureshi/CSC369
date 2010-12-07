@@ -95,7 +95,7 @@ boot(void)
 	kprintf_bootstrap();
 
 	// DEMKE: ASST1 - initialize user program console I/O
-	dumb_consoleIO_bootstrap();
+	//dumb_consoleIO_bootstrap();
 
 	/* Default bootfs - but ignore failure, in case emu0 doesn't exist */
 	vfs_setbootfs("emu0");
