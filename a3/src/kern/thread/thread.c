@@ -60,6 +60,7 @@ thread_create(const char *name)
 	thread->t_vmspace = NULL;
 
 	thread->t_cwd = NULL;
+  thread->t_filetable = NULL;
 	
 	// If you add things to the thread structure, be sure to initialize
 	// them here.
@@ -509,6 +510,8 @@ thread_exit(int exitcode)
 	/* A3 SETUP */
 	if (curthread->t_filetable) {
 		filetable_destroy(curthread->t_filetable);
+    /* set it back to NULL so it can be initialized again */
+    curthread->t_filetable = NULL;
 	}
 	/* END A3 SETUP */
 
