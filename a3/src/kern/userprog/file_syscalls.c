@@ -243,12 +243,49 @@ sys_close(int fd)
 int
 sys_lseek(int fd, off_t offset, int whence, off_t *retval)
 {
-        (void)fd;
-        (void)offset;
-        (void)whence;
-        (void)retval;
+  int result;
+  struct openfile *of;
 
-	return EUNIMP;
+  result = filetable_findfile(fd, &of);
+  if(result){
+    return result;
+  }
+
+  off_t pos;
+  struct stat statbuf;
+  switch(whence){
+    case SEEK_SET:
+      pos = offset;
+      break;
+
+    case SEEK_CUR:
+      pos = of->of_offset + offset;
+      break;
+
+    case SEEK_END:
+      VOP_STAT(of->of_vnode, &statbuf);
+      pos = statbuf.st_size - 1 + offset;
+      break;
+
+    default:
+      return EINVAL;
+  }
+
+  /* check pos */
+  if(pos < 0){
+    return EINVAL;
+  }
+
+  result = VOP_TRYSEEK(of->of_vnode, pos);
+  if(result){
+    return result;
+  }
+
+  /* If everything ok, modify fd offset */
+  of->of_offset = pos;
+
+  *retval = pos;
+	return 0;
 }
 
 /* 
