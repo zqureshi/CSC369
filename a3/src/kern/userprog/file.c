@@ -97,7 +97,7 @@ file_close(int fd)
   of->of_refcount -= 1;
 
   /* If refcount hits zero, free up struct */
-  if(of->of_refcount == -1){
+  if(of->of_refcount == 0){
     vfs_close(of->of_vnode);
     kfree(of);
     /* mark file descriptor as empty */
