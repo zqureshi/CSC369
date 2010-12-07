@@ -427,8 +427,26 @@ sys_getdirentry(int fd, userptr_t buf, size_t buflen, int *retval)
 int
 sys_fstat(int fd, userptr_t statptr)
 {
-        (void)fd;
-        (void)statptr;
+  int result;
+  struct openfile *of;
+  
+  result = filetable_findfile(fd, &of);
+  if(result){
+    return result;
+  }
 
-	return EUNIMP;
+  struct stat statbuf;
+  result = VOP_STAT(of->of_vnode, &statbuf);
+  if(result){
+    return result;
+  }
+
+  struct uio uiobuf;
+  mk_useruio(&uiobuf, statptr, sizeof (statbuf), 0, UIO_READ);
+  result = uiomove(&statbuf, sizeof (statbuf), &uiobuf);
+  if(result){
+    return result;
+  }
+
+	return 0;
 }
