@@ -331,9 +331,15 @@ sys_dup2(int oldfd, int newfd, int *retval)
 int
 sys_chdir(userptr_t path)
 {
-  (void)path;
+  int result, actual;
+  char dirpath[NAME_MAX + 1];
 
-  return EUNIMP;
+  result = copyinstr(path, dirpath, NAME_MAX + 1, &actual);
+  if(result){
+    return result;
+  }
+
+  return vfs_chdir(dirpath);
 }
 
 /*

@@ -1790,6 +1790,8 @@ sfs_mkdir(struct vnode *v, const char *name)
 	/* and consequently mark it dirty. */
 	newguy->sv_dirty = 1;
 
+  /* decrease reference and release locks */
+  VOP_DECREF(&newguy->sv_v);
   lock_release(newguy->sv_lock);
   lock_release(sv->sv_lock);
 
