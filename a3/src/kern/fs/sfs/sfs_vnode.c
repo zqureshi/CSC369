@@ -1731,7 +1731,6 @@ sfs_mkdir(struct vnode *v, const char *name)
   struct sfs_fs *sfs = v->vn_fs->fs_data;
   struct sfs_vnode *sv = v->vn_data;
 	struct sfs_vnode *newguy;
-	u_int32_t ino;
   int result;
 
   lock_acquire(sv->sv_lock);
@@ -1743,14 +1742,56 @@ sfs_mkdir(struct vnode *v, const char *name)
   }
 
 	/* check if entry already exists */
-	result = sfs_dir_findname(sv, name, &ino, NULL, NULL);
+	result = sfs_dir_findname(sv, name, NULL, NULL, NULL);
 	if (result==0) {
 		lock_release(sv->sv_lock);
 		return EEXIST;
 	}
 
+  /* create new directory */
+	result = sfs_makeobj(sfs, SFS_TYPE_DIR, &newguy);
+	if (result) {
+		lock_release(sv->sv_lock);
+		return result;
+	}
+
+  /* lock newguy */
+  lock_acquire(newguy->sv_lock);
+
+  /* add . and .. entries */
+	result = sfs_dir_link(newguy, ".", newguy->sv_ino, NULL);
+	if (result) {
+		VOP_DECREF(&newguy->sv_v);
+		lock_release(newguy->sv_lock);
+		lock_release(sv->sv_lock);
+		return result;
+	}
+
+	result = sfs_dir_link(newguy, "..", newguy->sv_ino, NULL);
+	if (result) {
+		VOP_DECREF(&newguy->sv_v);
+		lock_release(newguy->sv_lock);
+		lock_release(sv->sv_lock);
+		return result;
+	}
+
+	/* Link it into the directory */
+	result = sfs_dir_link(sv, name, newguy->sv_ino, NULL);
+	if (result) {
+		VOP_DECREF(&newguy->sv_v);
+		lock_release(newguy->sv_lock);
+		lock_release(sv->sv_lock);
+		return result;
+	}
+
+	/* Update the linkcount of the new file */
+	newguy->sv_i.sfi_linkcount++;
+
+	/* and consequently mark it dirty. */
+	newguy->sv_dirty = 1;
+
+  lock_release(newguy->sv_lock);
   lock_release(sv->sv_lock);
-	(void)name;
 
 	return 0;
 }
