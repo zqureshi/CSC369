@@ -1767,7 +1767,7 @@ sfs_mkdir(struct vnode *v, const char *name)
 		return result;
 	}
 
-	result = sfs_dir_link(newguy, "..", newguy->sv_ino, NULL);
+	result = sfs_dir_link(newguy, "..", sv->sv_ino, NULL);
 	if (result) {
 		VOP_DECREF(&newguy->sv_v);
 		lock_release(newguy->sv_lock);
@@ -1784,16 +1784,24 @@ sfs_mkdir(struct vnode *v, const char *name)
 		return result;
 	}
 
-	/* Update the linkcount of the new file */
+	/* Update the linkcount of the new dir */
 	newguy->sv_i.sfi_linkcount++;
 
-	/* and consequently mark it dirty. */
-	newguy->sv_dirty = 1;
+  /* and consequently mark it dirty. */
+  newguy->sv_dirty = 1;
 
-  /* decrease reference and release locks */
-  VOP_DECREF(&newguy->sv_v);
+	/* Update the linkcount of the parent dir */
+	sv->sv_i.sfi_linkcount++;
+
+  /* and consequently mark it dirty. */
+  sv->sv_dirty = 1;
+
+  /* release locks */
   lock_release(newguy->sv_lock);
   lock_release(sv->sv_lock);
+
+  /* decrease refcount of newguy */
+  VOP_DECREF(&newguy->sv_v);
 
 	return 0;
 }
