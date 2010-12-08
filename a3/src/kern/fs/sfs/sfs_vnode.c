@@ -1131,10 +1131,45 @@ static
 int
 sfs_getdirentry(struct vnode *v, struct uio *uio)
 {
-	(void)v;
-	(void)uio;
-	
-	return EUNIMP;
+  struct sfs_vnode *sv = v->vn_data;
+  lock_acquire(sv->sv_lock);
+
+  /* Make sure vnode is a directory */
+  if(sv->sv_i.sfi_type != SFS_TYPE_DIR){
+    lock_release(sv->sv_lock);
+    return ENOTDIR;
+  }
+
+  /* Check slot requested isn't out of range */
+  int slot = uio->uio_offset;
+  if(slot >= sfs_dir_nentries(sv)){
+    lock_release(sv->sv_lock);
+    return 0;
+  }
+
+  int result;
+  struct sfs_dir dir;
+  result = sfs_readdir(sv, &dir, uio->uio_offset);
+  if(result){
+    lock_release(sv->sv_lock);
+    return result;
+  }
+
+  char name[SFS_NAMELEN];
+  strcpy(name, dir.sfd_name);
+
+  lock_release(sv->sv_lock);
+  assert(uio->uio_rw == UIO_READ);
+
+  result = uiomove(name, (size_t)strlen(name) * sizeof(char), uio);
+  if(result){
+    return result;
+  }
+
+  /* everything OK, increment uio offset */
+  uio->uio_offset = slot + 1;
+
+	return 0;
 }
 
 

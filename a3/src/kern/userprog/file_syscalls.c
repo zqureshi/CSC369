@@ -413,12 +413,30 @@ sys_rename(userptr_t oldpath, userptr_t newpath)
 int
 sys_getdirentry(int fd, userptr_t buf, size_t buflen, int *retval)
 {
-  (void)fd;
-  (void)buf;
-  (void)buflen;
-  (void)retval;
+  int result;
+  struct openfile *of;
 
-  return EUNIMP;
+  /* verify file descriptor */
+  result = filetable_findfile(fd, &of);
+  if(result){
+    return result;
+  }
+
+  /* setup uio buffer */
+  struct uio useruio;
+  mk_useruio(&useruio, buf, buflen, of->of_offset, UIO_READ);
+
+  /* get dir entry */
+  result = VOP_GETDIRENTRY(of->of_vnode, &useruio);
+  if(result){
+    return result;
+  }
+
+  /* update offset in fd */
+  of->of_offset = useruio.uio_offset;
+
+  *retval = buflen - useruio.uio_resid;
+  return 0;
 }
 
 /*
