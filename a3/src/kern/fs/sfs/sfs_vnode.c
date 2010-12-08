@@ -1737,6 +1737,12 @@ sfs_mkdir(struct vnode *v, const char *name)
     return ENOTDIR;
   }
 
+  /* check if name is . or .. */
+  if(strcmp(name, ".") == 0 || strcmp(name, "..") == 0){
+    lock_release(sv->sv_lock);
+    return EEXIST;
+  }
+
   lock_release(sv->sv_lock);
 	(void)name;
 
