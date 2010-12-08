@@ -361,10 +361,16 @@ sys___getcwd(userptr_t buf, size_t buflen, int *retval)
 int
 sys_mkdir(userptr_t path, int mode)
 {
-  (void)path;
-  (void)mode;
+  int result, actual;
+  char dirpath[NAME_MAX + 1];
 
-  return EUNIMP;
+  result = copyinstr(path, dirpath, NAME_MAX + 1, &actual);
+  if(result){
+    return result;
+  }
+
+  (void)mode;
+  return vfs_mkdir(dirpath);
 }
 
 /*

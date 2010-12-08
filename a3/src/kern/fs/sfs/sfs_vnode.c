@@ -1728,10 +1728,19 @@ static
 int
 sfs_mkdir(struct vnode *v, const char *name)
 {
-	(void)v;
+  struct sfs_vnode *sv = v->vn_data;
+  lock_acquire(sv->sv_lock);
+
+  /* Make sure vnode is a directory */
+  if(sv->sv_i.sfi_type != SFS_TYPE_DIR){
+    lock_release(sv->sv_lock);
+    return ENOTDIR;
+  }
+
+  lock_release(sv->sv_lock);
 	(void)name;
 
-	return EUNIMP;
+	return 0;
 }
 
 /*
