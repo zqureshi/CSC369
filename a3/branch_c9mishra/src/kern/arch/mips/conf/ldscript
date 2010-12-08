@@ -1,0 +1,44 @@
+/*
+ * This is a pile of crap that tells the linker how to link the kernel,
+ * because it's too stupid to be able to work it out on its own.
+ */
+ENTRY(__start)
+
+SECTIONS
+{
+	/*
+	 * Read-only loaded sections.
+	 */
+	.text : { *(.text) }	/* code */
+	_etext = .;		/* linker-provided symbol for end of code */
+
+	.rodata : { *(.rodata) }	/* read-only data */	
+	.reginfo : { *(.reginfo) }	/* MIPS register usage blather */
+
+	/* don't need this, can't write-protect text */
+	/* . = . + 0x1000; */
+
+	/*
+	 * Read-write loaded sections.
+	 */
+	
+	.data : { *(.data) }	/* initialized data */
+	.bss : { *(.bss) }	/* cleared-to-zero data */
+	_end = .;		/* linker-provided symbol for end of program */
+
+	/*
+	 * Debug info
+	 */
+
+	/* stabs debug sections */
+	.stab 0:		{ *(.stab) }
+	.stabstr 0:		{ *(.stabstr) }
+
+	/* DWARF debug sections */
+	.debug 0:		{ *(.debug) }
+	.debug_srcinfo 0:	{ *(.debug_srcinfo) }
+	.debug_aranges 0:	{ *(.debug_aranges) }
+	.debug_pubnames 0:	{ *(.debug_pubnames) }
+	.debug_sfnames 0:	{ *(.debug_sfnames) }
+	.line 0:		{ *(.line) }
+}

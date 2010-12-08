@@ -1,0 +1,15 @@
+;; Object psh/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "psh/"
+  :tables (list 
+   (semanticdb-table "pwd.c"
+    :major-mode 'c-mode
+    :tags '(("stdio.h" include (:system-flag t) nil [1 19]) ("unistd.h" include (:system-flag t) nil [20 39]) ("string.h" include (:system-flag t) nil [40 59]) ("err.h" include (:system-flag t) nil [60 76]) ("limits.h" include (:system-flag t) nil [77 96]) ("cmd_pwd" function (:arguments (("argc" variable (:type "int") (reparse-symbol arg-sub-list) [319 328]) ("argv" variable (:pointer 1 :dereference 1 :type "char") (reparse-symbol arg-sub-list) [329 342])) :type "int") nil [307 524]))
+    :file "pwd.c"
+    :pointmax 525
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre3"
+  :semanticdb-version "2.0pre3"
+  )

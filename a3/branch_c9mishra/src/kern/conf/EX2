@@ -1,0 +1,28 @@
+# Kernel config file for exercise 2.
+
+arch mips			# use MIPS r2000/r3000
+include conf/conf.kern		# get definitions of available options
+
+debug				# Compile with debug info.
+
+#
+# Device drivers for hardware.
+#
+device lamebus0			# System/161 main bus
+device emu* at lamebus*		# Emulator passthrough filesystem
+device ltrace* at lamebus*	# trace161 trace control device
+device ltimer* at lamebus*	# Timer device
+device lrandom* at lamebus*	# Random device
+device lhd* at lamebus*		# Disk device
+device lser* at lamebus*	# Serial port
+device beep0 at ltimer*		# Abstract beep handler device
+device con0 at lser*		# Abstract console on serial port
+device rtclock0 at ltimer*	# Abstract realtime clock
+device random0 at lrandom*	# Abstract randomness device
+
+device pseudorand0		# Software random generator
+device random0 at pseudorand0	# Abstract randomness device
+
+#options sfs			# Always use the file system
+
+options dumbvm			# Chewing gum and baling wire for asst 1&2.

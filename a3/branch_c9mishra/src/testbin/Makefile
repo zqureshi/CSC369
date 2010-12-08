@@ -1,0 +1,46 @@
+#
+# Makefile for src/testbin (sources for programs installed in /testbin)
+#
+
+include ../defs.mk
+
+all depend tags clean install:
+	(cd add && $(MAKE) $@)
+	(cd argtest && $(MAKE) $@)
+	(cd badcall && $(MAKE) $@)
+	(cd bigfile && $(MAKE) $@)
+	(cd conman && $(MAKE) $@)
+	(cd crash && $(MAKE) $@)
+	(cd ctest && $(MAKE) $@)
+	(cd dirconc && $(MAKE) $@)
+	(cd dirseek && $(MAKE) $@)
+	(cd dirtest && $(MAKE) $@)
+	(cd f_test && $(MAKE) $@)
+	(cd farm && $(MAKE) $@)
+	(cd faulter && $(MAKE) $@)
+	(cd filetest && $(MAKE) $@)
+	(cd forkbomb && $(MAKE) $@)
+	(cd forktest && $(MAKE) $@)
+	(cd guzzle && $(MAKE) $@)
+	(cd hash && $(MAKE) $@)
+	(cd hog && $(MAKE) $@)
+	(cd huge && $(MAKE) $@)
+	(cd kitchen && $(MAKE) $@)
+	(cd matmult && $(MAKE) $@)
+	(cd palin && $(MAKE) $@)
+	(cd parallelvm && $(MAKE) $@)
+	(cd randcall && $(MAKE) $@)
+	(cd rmdirtest && $(MAKE) $@)
+	(cd rmtest && $(MAKE) $@)
+	(cd sink && $(MAKE) $@)
+	(cd sort && $(MAKE) $@)
+	(cd sty && $(MAKE) $@)
+	(cd tail && $(MAKE) $@)
+	(cd tictac && $(MAKE) $@)
+	(cd triplehuge && $(MAKE) $@)
+	(cd triplemat && $(MAKE) $@)
+	(cd triplesort && $(MAKE) $@)
+
+# But not:
+#    malloctest     (no malloc/free until you write it)
+#    userthreads    (no support in kernel API in base system)
