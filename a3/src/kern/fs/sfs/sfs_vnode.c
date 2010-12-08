@@ -1728,7 +1728,12 @@ static
 int
 sfs_mkdir(struct vnode *v, const char *name)
 {
+  struct sfs_fs *sfs = v->vn_fs->fs_data;
   struct sfs_vnode *sv = v->vn_data;
+	struct sfs_vnode *newguy;
+	u_int32_t ino;
+  int result;
+
   lock_acquire(sv->sv_lock);
 
   /* Make sure vnode is a directory */
@@ -1737,11 +1742,12 @@ sfs_mkdir(struct vnode *v, const char *name)
     return ENOTDIR;
   }
 
-  /* check if name is . or .. */
-  if(strcmp(name, ".") == 0 || strcmp(name, "..") == 0){
-    lock_release(sv->sv_lock);
-    return EEXIST;
-  }
+	/* check if entry already exists */
+	result = sfs_dir_findname(sv, name, &ino, NULL, NULL);
+	if (result==0) {
+		lock_release(sv->sv_lock);
+		return EEXIST;
+	}
 
   lock_release(sv->sv_lock);
 	(void)name;
