@@ -385,9 +385,15 @@ sys_mkdir(userptr_t path, int mode)
 int
 sys_rmdir(userptr_t path)
 {
-  (void)path;
+  char fname[PATH_MAX];
+  int result;
 
-  return EUNIMP;
+  result = copyinstr(path, fname, sizeof(fname), NULL);
+  if (result) 
+  {
+    return result;
+  }
+  return vfs_rmdir(fname);
 }
 
 /*
@@ -396,9 +402,16 @@ sys_rmdir(userptr_t path)
 int
 sys_remove(userptr_t path)
 {
-  (void)path;
+  char fname[PATH_MAX];
+  int result;
 
-  return EUNIMP;
+  result = copyinstr(path, fname, sizeof(fname), NULL);
+  if (result) {
+    return result;
+  }
+
+  return vfs_remove(fname);
+
 }
 
 /*

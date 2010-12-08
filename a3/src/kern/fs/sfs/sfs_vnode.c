@@ -1596,6 +1596,12 @@ sfs_remove(struct vnode *dir, const char *name)
     lock_release(sv->sv_lock);
     return result;
   }
+  
+  if (victim->sv_i.sfi_type == SFS_TYPE_DIR)
+  {
+    return EISDIR;
+  }
+
 
   /* Erase its directory entry. */
   result = sfs_dir_unlink(sv, slot);
@@ -1815,12 +1821,64 @@ static
   int
 sfs_rmdir(struct vnode *v, const char *name)
 {
-  (void)v;
-  (void)name;
+  //check of the folder to be deleted is 
+  if(strcmp(name,".") == 0)
+  {
+    return EINVAL;
+  }
 
-  return EUNIMP;
+  struct sfs_vnode *sv = v->vn_data;
+  struct sfs_vnode *victim;
+  int slot;
+  int result;
+  
+  lock_acquire(sv->sv_lock);
+  
+  /* Look for the file and fetch a vnode for it. */
+  result = sfs_lookonce(sv, name, &victim, &slot);
+
+  if (result) {
+    lock_release(sv->sv_lock);
+    return result;
+  }
+
+  //check if the last object was directory
+  if (victim->sv_i.sfi_type != SFS_TYPE_DIR)
+  {
+    return ENOTDIR;
+  }
+
+  //check if the directory is empty
+  lock_acquire(victim->sv_lock);
+  if (sfs_dir_nentries(victim) > 2 || victim->sv_i.sfi_linkcount > 1)
+  {
+    lock_release(victim->sv_lock);
+    return ENOTEMPTY;
+  }
+  lock_release(victim->sv_lock);
+
+  /* Erase its directory entry. */
+  result = sfs_dir_unlink(sv, slot);
+
+  if (result==0) {
+    /* If we succeeded, unlink parent and free space. */
+    lock_acquire(victim->sv_lock);
+    victim->sv_i.sfi_linkcount =0;
+    victim->sv_dirty = 1;
+    lock_release(victim->sv_lock);
+
+
+
+    //reduce link count for removal of ".."
+    sv->sv_i.sfi_linkcount --;
+  }
+
+  VOP_DECREF(&victim->sv_v);
+
+  lock_release(sv->sv_lock);
+
+  return result;
 }
-
 /*
  * lookparent returns the last path component as a string and the
  * directory it's in as a vnode.
