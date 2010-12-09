@@ -3,7 +3,6 @@
  *
  * File-level (vnode) interface routines.
  */
-
 #include <types.h>
 #include <lib.h>
 #include <synch.h>
@@ -50,7 +49,6 @@
 static int 
 sfs_loadvnode(struct sfs_fs *sfs, u_int32_t ino, int type,
     struct sfs_vnode **ret);
-
 
 ////////////////////////////////////////////////////////////
 //
@@ -1944,96 +1942,21 @@ sfs_lookparent(struct vnode *v, char *path, struct vnode **ret,
     char *buf, size_t buflen)
 {
   struct sfs_vnode *sv = v->vn_data;
-  struct sfs_vnode *final;
-  int result;
-  //suporting multilevel
-  char* temp_path,temp;
-  char* next_path;
-  int i =0,j=0,flag =0;
-  while(path[i]!='\0')
-  {
-    if(path[i] == '/')
-    {
-      flag =1;
-      next_path[i] = '\0';
-    }
-    else if(flag == 0){
-      next_path[i] =  path[i];
-    }
-    else if(flag == 1)
-    {
-      temp[j]  = path[i];
-      j++;
-    }
-    i++;
-  }
-
-  path = temp;
-  path[i] = '\0';
 
   VOP_INCREF(&sv->sv_v);
- 
 
-  while(next_path != NULL)
-  {
-   
-    temp_path = next_path;
-
+  if (sv->sv_i.sfi_type != SFS_TYPE_DIR) {
     VOP_DECREF(&sv->sv_v);
-    VOP_INCREF(&sv->sv_v);
- 
-    if (sv->sv_i.sfi_type != SFS_TYPE_DIR) 
-    {
-      VOP_DECREF(&sv->sv_v); 
-      return ENOTDIR;   
-    }   
-
-    final = sv; 
-    
-    lock_acquire(final->sv_lock);   
-    result = sfs_lookonce(sv, next_path, &sv, NULL);
-    lock_release(final->sv_lock); 
-    
-
-
-    if (result) 
-    {
-      return result;
-    }    
-   i =0;
-   j=0;
-   flag =0;
-  while(path[i]!='\0')
-  {
-    if(path[i] == '/')
-    {
-      flag =1;
-      next_path[i] = '\0';
-    }
-    else if(flag == 0){
-      next_path[i] =  path[i];
-    }
-    else if(flag == 1)
-    {
-      temp[j]  = path[i];
-      j++;
-    }
-    i++;
+    return ENOTDIR;
   }
 
-  path = temp;
-  path[i] = '\0';
-
-  }
-
-
-  if (strlen(temp_path)+1 > buflen) {
-    VOP_DECREF(&final->sv_v);
+  if (strlen(path)+1 > buflen) {
+    VOP_DECREF(&sv->sv_v);
     return ENAMETOOLONG;
   }
-  strcpy(buf, temp_path);
+  strcpy(buf, path);
 
-  *ret = &final->sv_v;
+  *ret = &sv->sv_v;
 
   return 0;
 }
@@ -2062,89 +1985,16 @@ sfs_lookup(struct vnode *v, char *path, struct vnode **ret)
   struct sfs_vnode *final;
   int result;
 
-
-
-  //suporting multilevel
-  char* next_path,temp;
-  int i,j,flag;
-
-  i =0;
-  j=0;
-  flag =0;
-  while(path[i]!='\0')
-  {
-    if(path[i] == '/')
-    {
-      flag =1;
-      next_path[i] = '\0';
-    }
-    else if(flag == 0){
-      next_path[i] =  path[i];
-    }
-    else if(flag == 1)
-    {
-      temp[j]  = path[i];
-      j++;
-    }
-    i++;
+  if (sv->sv_i.sfi_type != SFS_TYPE_DIR) {
+    return ENOTDIR;
   }
 
-  path = temp;
-  path[i] = '\0';
-
-
-  while(next_path != NULL)
-  { 
- 
-   if (sv->sv_i.sfi_type != SFS_TYPE_DIR) 
-   {
-     return ENOTDIR;   
-   }   
-   
-    lock_acquire(sv->sv_lock);   
-    result = sfs_lookonce(sv, next_path, &final, NULL);
-    lock_release(sv->sv_lock); 
-    
-    sv = final;
-
-    if (result) 
-    {
-      return result;
-    }    
-    
-     i =0;
-     j=0;
-     flag =0;
-  while(path[i]!='\0')
-  {
-    if(path[i] == '/')
-    {
-      flag =1;
-      next_path[i] = '\0';
-    }
-    else if(flag == 0){
-      next_path[i] =  path[i];
-    }
-    else if(flag == 1)
-    {
-      temp[j]  = path[i];
-      j++;
-    }
-    i++;
+  lock_acquire(sv->sv_lock);
+  result = sfs_lookonce(sv, path, &final, NULL);
+  lock_release(sv->sv_lock);
+  if (result) {
+    return result;
   }
-
-  path = temp;
-  path[i] = '\0';
-
-
-  }
-
-
-  if (sv->sv_i.sfi_type != SFS_TYPE_DIR) 
-  {
-    return ENOTDIR;   
-  }   
-
 
   *ret = &final->sv_v;
 
