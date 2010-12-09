@@ -1,0 +1,45 @@
+# CSC 369 Fall 2010 - Assignment 3
+#
+# Zeeshan Qureshi <g0zee@cdf.toronto.edu>
+# Aditya Mishra <c9mishra@cdf.toronto.edu>
+
+System Calls
+------------
+For the File IO system calls, firsts of all what we needed to do was to 
+initialize the file descriptor table for each thread at startup, thus we 
+disabled the default 'dumb_consoleIO' mechanism and setup a filetable in 
+filetable_init() and open the 3 standard streams (STDIN, STDOUT and STDERR) 
+by default. We then made the 'curthread' global variable point to the new 
+descriptor table.
+
+One thing to note was that whenever a new thread was created, the t_filetable 
+field wasn't initialized, so we modified thread.c to initialize t_filetable 
+to NULL.
+
+We then implemented the 'filetable_findfile', 'file_open' and 'file_close' 
+functions which maintain the proper states of the file descriptors and then 
+call the appropriate vfs function.
+
+The properties that needed to be maintained were:
+  * Create a new descriptor everytime a file is opened
+  * Decrease refcount of descriptor when an associated handle closes it,
+    and completely free it up when the refcount hits 0
+
+we also made sure to free up all the descriptors, and the table in 'filetable_destroy'
+
+For the remaining system calls 'read', 'write', 'lseek', 'fstat' we made sure 
+to check for errors, call the appropriate vfs/vnode functions and then 
+synchronize the offset if needed. 'dup2' was fairly straightforward 
+since we only had to find the new descriptor, deallocate it if needed, 
+and make its entry point to the same 'openfile' struct in memory as the 
+old descriptor.
+
+'mkdir', 'chdir', 'rmdir', 'getdirentry', 'remove', 'rename' didn't have much 
+to do at the system call level since most of the functionality was to be 
+implemented at the file-system level, so we just perform error checking and 
+call in the vfs/vnode functions.
+
+The errors that dealt with vnode/sfs level properties couldn't be checked at 
+the system call level. At the system call level we checked for valid buffers, 
+valid file descriptor (via the filetable_ functions) and proper seek values 
+for lseek. 
