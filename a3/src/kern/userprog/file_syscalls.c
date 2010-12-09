@@ -425,10 +425,30 @@ sys_remove(userptr_t path)
 int
 sys_rename(userptr_t oldpath, userptr_t newpath)
 {
-  (void)oldpath;
-  (void)newpath;
+  /* allocate kernel space for copies of paths in kernel */
+  char *old_path = kmalloc((PATH_MAX + 1) * sizeof (char));
+  char *new_path = kmalloc((PATH_MAX + 1) * sizeof (char));
 
-  return EUNIMP;
+  /* copy them over */
+  int result, actual;
+
+  result = copyinstr(oldpath, old_path, PATH_MAX+1, &actual);
+  if(result){
+    return result;
+  }
+
+  result = copyinstr(newpath, new_path, PATH_MAX+1, &actual);
+  if(result){
+    return result;
+  }
+
+  result = vfs_rename(old_path, new_path);
+
+  /* free up allocated space */
+  kfree(old_path);
+  kfree(new_path);
+
+  return result;
 }
 
 /*
