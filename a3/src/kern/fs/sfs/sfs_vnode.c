@@ -1134,6 +1134,10 @@ static
 sfs_getdirentry(struct vnode *v, struct uio *uio)
 {
   struct sfs_vnode *sv = v->vn_data;
+  int slot = uio->uio_offset;
+  int result;
+  struct sfs_dir dir;
+
   lock_acquire(sv->sv_lock);
 
   /* Make sure vnode is a directory */
@@ -1142,19 +1146,23 @@ sfs_getdirentry(struct vnode *v, struct uio *uio)
     return ENOTDIR;
   }
 
-  /* Check slot requested isn't out of range */
-  int slot = uio->uio_offset;
-  if(slot >= sfs_dir_nentries(sv)){
-    lock_release(sv->sv_lock);
-    return 0;
-  }
+  /* read until a non-empty slot found */
+  for(;; slot++){
+    /* Check slot requested isn't out of range */
+    if(slot >= sfs_dir_nentries(sv)){
+      lock_release(sv->sv_lock);
+      return 0;
+    }
 
-  int result;
-  struct sfs_dir dir;
-  result = sfs_readdir(sv, &dir, uio->uio_offset);
-  if(result){
-    lock_release(sv->sv_lock);
-    return result;
+    result = sfs_readdir(sv, &dir, slot);
+    if(result){
+      lock_release(sv->sv_lock);
+      return result;
+    }
+
+    if(dir.sfd_ino != SFS_NOINO){
+      break;
+    }
   }
 
   char name[SFS_NAMELEN];
@@ -1599,11 +1607,12 @@ sfs_remove(struct vnode *dir, const char *name)
     return result;
   }
   
-  if (victim->sv_i.sfi_type == SFS_TYPE_DIR)
-  {
+  /* Check if the file to be removed is a directory */
+  if (victim->sv_i.sfi_type == SFS_TYPE_DIR) {
+    lock_release(sv->sv_lock);
+    VOP_DECREF(&victim->sv_v);
     return EISDIR;
   }
-
 
   /* Erase its directory entry. */
   result = sfs_dir_unlink(sv, slot);
@@ -1823,9 +1832,8 @@ static
   int
 sfs_rmdir(struct vnode *v, const char *name)
 {
-  //check of the folder to be deleted is 
-  if(strcmp(name,".") == 0)
-  {
+  /* make sure not to delete . and .. */
+  if(strcmp(name,".") == 0 || strcmp(name,"..") == 0){
     return EINVAL;
   }
 
@@ -1838,46 +1846,82 @@ sfs_rmdir(struct vnode *v, const char *name)
   
   /* Look for the file and fetch a vnode for it. */
   result = sfs_lookonce(sv, name, &victim, &slot);
-
   if (result) {
     lock_release(sv->sv_lock);
     return result;
   }
 
-  //check if the last object was directory
-  if (victim->sv_i.sfi_type != SFS_TYPE_DIR)
-  {
+  /* check if the last object was a directory */
+  if (victim->sv_i.sfi_type != SFS_TYPE_DIR) {
+    lock_release(sv->sv_lock);
     return ENOTDIR;
   }
 
-  //check if the directory is empty
   lock_acquire(victim->sv_lock);
-  if (sfs_dir_nentries(victim) > 2 || victim->sv_i.sfi_linkcount > 1)
-  {
+
+  /* get number of directory entries and calculate size */
+  int nentries = sfs_dir_nentries(victim);
+  int victim_size = 0; /* disregard . and .. */
+  struct sfs_dir sfd;
+
+  int i;
+  for(i=2; i<nentries; i++){
+    result = sfs_readdir(victim, &sfd, i);
+    if(result){
+      lock_release(victim->sv_lock);
+      lock_release(sv->sv_lock);
+      VOP_DECREF(&victim->sv_v);
+      return result;
+    }
+
+    /* if slot isn't empty, increase size */
+    if(sfd.sfd_ino != SFS_NOINO){
+      victim_size++;
+    }
+  }
+
+  /* check if the directory is empty */
+  if (victim_size > 0) {
     lock_release(victim->sv_lock);
+    lock_release(sv->sv_lock);
+    VOP_DECREF(&victim->sv_v);
     return ENOTEMPTY;
   }
-  lock_release(victim->sv_lock);
 
-  /* Erase its directory entry. */
-  result = sfs_dir_unlink(sv, slot);
-
-  if (result==0) {
-    /* If we succeeded, unlink parent and free space. */
-    lock_acquire(victim->sv_lock);
-    victim->sv_i.sfi_linkcount =0;
-    victim->sv_dirty = 1;
+  /* remove . and .. entries */
+  result = sfs_dir_unlink(victim, 0);
+  if(result){
     lock_release(victim->sv_lock);
-
-
-
-    //reduce link count for removal of ".."
-    sv->sv_i.sfi_linkcount --;
+    lock_release(sv->sv_lock);
+    VOP_DECREF(&victim->sv_v);
+    return result;
   }
 
-  VOP_DECREF(&victim->sv_v);
+  result = sfs_dir_unlink(victim, 1);
+  if(result){
+    lock_release(victim->sv_lock);
+    lock_release(sv->sv_lock);
+    VOP_DECREF(&victim->sv_v);
+    return result;
+  }
 
+  /* decrease link count of parent after unlinking .. */
+  sv->sv_i.sfi_linkcount--;
+  sv->sv_dirty = 1;
+
+  /* Erase its directory entry from parent */
+  result = sfs_dir_unlink(sv, slot);
+  if(result){
+    lock_release(victim->sv_lock);
+    lock_release(sv->sv_lock);
+    VOP_DECREF(&victim->sv_v);
+    return result;
+  }
+
+  lock_release(victim->sv_lock);
   lock_release(sv->sv_lock);
+
+  VOP_DECREF(&victim->sv_v);
 
   return result;
 }

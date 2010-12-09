@@ -389,10 +389,10 @@ sys_rmdir(userptr_t path)
   int result;
 
   result = copyinstr(path, fname, sizeof(fname), NULL);
-  if (result) 
-  {
+  if (result) {
     return result;
   }
+
   return vfs_rmdir(fname);
 }
 
@@ -411,7 +411,6 @@ sys_remove(userptr_t path)
   }
 
   return vfs_remove(fname);
-
 }
 
 /*
