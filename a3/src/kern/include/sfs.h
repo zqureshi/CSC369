@@ -40,7 +40,8 @@ struct sfs_fs {
  * Function for mounting a sfs (calls vfs_mount)
  */
 int sfs_mount(const char *device);
-
+//char * path_divide(char*path, char ** ret, char * delim);
+  
 
 /*
  * Internal functions
