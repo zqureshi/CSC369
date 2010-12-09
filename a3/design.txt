@@ -43,3 +43,61 @@ The errors that dealt with vnode/sfs level properties couldn't be checked at
 the system call level. At the system call level we checked for valid buffers, 
 valid file descriptor (via the filetable_ functions) and proper seek values 
 for lseek. 
+
+
+Hierarchical Directories
+------------------------
+For this, we first read the 'sfs_vnode.c' file and observed that most sfs 
+functions dealt directly with vnodes and relied on sfs_lookup to parse the
+path. vfs_lookup also relied on sfs_lookup for the same purpose.
+
+So we implemented all the sfs functions as usual, implementing 'getdirentry' 
+first so that the 'ls' command in the shell worked, we then implemendted
+'mkdir' and 'chdir', successfully creating multiple level of directories 
+and traversing them. The point to make sure was that '..' pointed to the
+parent directories' vnode and that 'linkcount' was handled properly when
+creating children. We then implemented 'rmdir', 'remove' and 'rename.
+
+Then we decided to work on parsing the paths. What working with multiple levels of directories required that when sfs_lookup function gets a full path, it 
+should split it up by the path separator '/' and the process each entry. It
+should open up the root directory and use 'sfs_lookonce' to locate that entry
+in the root node. If the entry is not found, it should return and error.
+If the entry found is not a directory then also return an error. If the entry 
+exists and is a directory then it should treat the current node
+as the root and lookup the next node in it, and do it recursively (checking
+for errors on each level) until the full path is traversed. At this point
+it should return the vnode of the last token to the calling function.
+
+The 'sfs_lookparent' function behaves similarly, but returning the last token
+as the 'name' and the parent's (second-last token) vnode .
+
+Since the sfs functions all work on the vnodes, they do not need to be modified
+so as to work with the multi-level paths, since the lookup functions will
+return the proper vnodes. Only the functions like 'rename', 'namefile' that 
+deal directly with the root need to be modified to use the vnodes provided to
+them.
+
+Implementing a cross-directory rename would require to get the vnodes of both
+the directories from which the entry is to be removed, and the one to which
+the entry is to be added. On the way, all the locks for those 2 directories 
+and their ancestors will need to be acquired (in parent first, then child 
+order). Then the entry would be added to the new directory and only if that 
+succeeds the entry from the old directory would be removed.
+
+The error cases to consider are:
+  * Entry cannot be added to the new firectory:
+    
+    In this case, since the entry from the old directory hasn't been removed
+    we're okay
+
+  * Entry cannot be removed from the old directory:
+
+    We can retry doing that, and if that doesn't work, we have 2 options:
+      + Remove the entry from the new directory and quit
+      + leave the entry in the new directory as well as the old one
+
+    Since the operation is atomic, removing the entry from the old directory
+    would be a better choice
+
+This makes sure that our filesystem will be in a consistent state even if 
+the rename process fails.
