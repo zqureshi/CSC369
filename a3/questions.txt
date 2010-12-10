@@ -1,0 +1,80 @@
+# CSC 369 Fall 2010 - Assignment 3
+#
+# Zeeshan Qureshi <g0zee@cdf.toronto.edu>
+# Aditya Mishra <c9mishra@cdf.toronto.edu>
+
+Answer 1
+--------
+Generally all vnode operations that are permitted on files are 
+permitted on devices (since UNIX treats devices as files).
+
+
+Answer 2
+--------
+vfs_getcurdir() increases the reference count of the current directory because
+it is passing a reference to the directory out to the program, and since the
+reference is going to be used later on, it's use is not complete (and that
+is why VOP_DECREF is not called on it inside vfs_getcurdir(), thus it is 
+the responsibility of the function calling vfs_getcurdir() to decrease 
+the reference count after it's done using it, like in vfs_getcwd()).
+
+
+Answer 3
+--------
+The devices are added to the list via calls to vfs_adddev().
+
+
+Answer 4
+--------
+The VOP_ routines that work on a file (as an abstraction)  whereas the FSOP_ routines work on the filesystem (as an abstraction).
+
+
+Answer 5
+--------
+This is because the SFS maintains a copy of the freemap and superblock in 
+memory and works on it, syncing it before unmounting (and shutdown) and when
+reclaiming a file.
+
+
+Answer 6
+--------
+This means that if the computer crashes before the SFS has been synced, then
+the file system will be in an inconsistend (and possibly unusable) state.
+
+
+Answer 7
+--------
+No, you cannot unmount a filesystem on which files are open.
+
+
+Answer 8
+--------
+Reasons why a mount might fail:
+  * Device has the wrong sector size
+  * System runs out of memory and thus all memory allocation calls fail,
+    causing mount to fail.
+  * Wrong magic number in superblock
+  * loading of superblock (via sfs_rblock) fails
+  * sfs_mapio fails
+
+
+Answer 9
+--------
+sfs_partialio() is necessary when we need to modify only a small portion of 
+the block (like writing only 10 bytes), because for this we would have to 
+read the whole block, modify the 10 bytes and then write the block back again. 
+
+(otherwise if we try to write 10 bytes using normal block level functions, 
+we would overwrite the rest of the block as well. which is not what we want)
+
+This is a performance problem, because to read/write even a single byte 
+from the block, space for a new block is malloc'ed every time and then the
+whole block is read into memory and only then is it processed.
+
+
+Answer 10
+---------
+sfs_reclaim() is called on the file when it's reference count falls to 0,
+and if the on-disk reference count to the file is also 0, then it is erased
+via sfs_dotruncate, it's vnode cleaned up, removed from the vnode table and
+finally free'ed up.

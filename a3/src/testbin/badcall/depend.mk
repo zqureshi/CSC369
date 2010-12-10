@@ -1,0 +1,434 @@
+
+bad_execv.o: \
+ bad_execv.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ $(OSTREE)/include/stdarg.h \
+ config.h \
+ test.h
+bad_waitpid.o: \
+ bad_waitpid.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ $(OSTREE)/include/stdarg.h \
+ config.h \
+ test.h
+bad_open.o: \
+ bad_open.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_read.o: \
+ bad_read.c \
+ test.h
+bad_write.o: \
+ bad_write.c \
+ test.h
+bad_close.o: \
+ bad_close.c \
+ test.h
+bad_reboot.o: \
+ bad_reboot.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_sbrk.o: \
+ bad_sbrk.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_ioctl.o: \
+ bad_ioctl.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/ioctl.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ config.h \
+ test.h
+bad_lseek.o: \
+ bad_lseek.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_fsync.o: \
+ bad_fsync.c \
+ test.h
+bad_ftruncate.o: \
+ bad_ftruncate.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_stat.o: \
+ bad_stat.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_remove.o: \
+ bad_remove.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_rename.o: \
+ bad_rename.c \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ test.h
+bad_link.o: \
+ bad_link.c \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ test.h
+bad_mkdir.o: \
+ bad_mkdir.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_rmdir.o: \
+ bad_rmdir.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_chdir.o: \
+ bad_chdir.c \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ $(OSTREE)/include/stdarg.h \
+ test.h
+bad_getdirentry.o: \
+ bad_getdirentry.c \
+ test.h
+bad_symlink.o: \
+ bad_symlink.c \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ test.h
+bad_readlink.o: \
+ bad_readlink.c \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ test.h
+bad_dup2.o: \
+ bad_dup2.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/limits.h \
+ $(OSTREE)/include/kern/limits.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_pipe.o: \
+ bad_pipe.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_time.o: \
+ bad_time.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+bad_getcwd.o: \
+ bad_getcwd.c \
+ test.h
+common_buf.o: \
+ common_buf.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/limits.h \
+ $(OSTREE)/include/kern/limits.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+common_fds.o: \
+ common_fds.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/limits.h \
+ $(OSTREE)/include/kern/limits.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+common_path.o: \
+ common_path.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/limits.h \
+ $(OSTREE)/include/kern/limits.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+driver.o: \
+ driver.c \
+ $(OSTREE)/include/sys/types.h \
+ $(OSTREE)/include/machine/types.h \
+ $(OSTREE)/include/kern/types.h \
+ $(OSTREE)/include/sys/stat.h \
+ $(OSTREE)/include/kern/stat.h \
+ $(OSTREE)/include/stdio.h \
+ $(OSTREE)/include/stdarg.h \
+ $(OSTREE)/include/stdlib.h \
+ $(OSTREE)/include/string.h \
+ $(OSTREE)/include/unistd.h \
+ $(OSTREE)/include/kern/unistd.h \
+ $(OSTREE)/include/kern/ioctl.h \
+ $(OSTREE)/include/errno.h \
+ $(OSTREE)/include/kern/errno.h \
+ $(OSTREE)/include/err.h \
+ config.h \
+ test.h
+

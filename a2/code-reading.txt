@@ -1,0 +1,96 @@
+# CSC 369 Fall 2010 - Assignment 2
+#
+# Zeeshan Qureshi <g0zee@cdf.toronto.edu>
+# Aditya Mishra <c9mishra@cdf.toronto.edu>
+# $Id$
+
+Answer 1
+--------
+When a thread exits, its address space is destroyed and is marked a zombie(and later exorcized).
+
+When thread_sleep() is called, the thread is marked as sleeping(S_SLEEP) on "sleep address" addr. When thread_wakeup is called with the same address, then the thread wakes up.
+
+
+Answer 2
+--------
+  * mi_switch() handles the machine independent portion of context switching
+  * md_switch() handles the machine-dependent portion
+  * mips_switch() does the actual low-level switching for a MIPS system
+
+Answer 3
+--------
+There are 4 thread states:
+  * S_RUN
+  * S_READY
+  * S_SLEEP
+  * S_ZOMB
+
+
+Answer 4
+--------
+Three events that can directly trigger a context switch are:
+  * Trap/Exception (Software Interrupt)
+  * Hardware Interrupt
+  * When the thread exits
+
+Answer 5
+--------
+Turning interrupts off means that the CPU will not interrupt the currently executing code on received hardware/software interrupts. This guarantees that the code will be atomic and and another thread will only be able to run when interrupts are enabled again.
+
+This is accomplished by enabling/disabling the master interrupt flag in bit 0 of the status register.
+
+Interrupts should be off inside the thread subsystem because it handles the creation/deletion/switching of threads for which it needs to manipulate the data structures atomically and thus should not be interrupted.
+
+Answer 6
+---------
+When a thread wakep up another thread(s), the woken up thread(s) is/are made runnable(i.e. added to the 'runnable' queue), the calling thread keeps on running until it is switched out by the scheduler.
+
+A thread sleeping on the address 'addr' gets to run again when another thread called thread_wakeup/thread_wakeone on the 'addr' at which point the sleeping thread is added to the 'runnable' queue.
+
+Answer 7
+--------
+Semaphores are implemented as follows:
+  * Whenever a thread calls 'wait'(P) on a semaphore, it is put to sleep 
+    by calling thread_sleep()
+  * When a thread calls 'signal'(V) os a semaphore, the thread waiting(sleeping) on
+    that semaphore is woken up via thread_wakeup(()
+
+Answer 8
+--------
+This is because it does not make sense to store the value of the lock holder and use it later since it might have changed by the time it is used.
+
+Answer 9
+--------
+The ELF Magic Numbers are used to uniquely identify different file types, so that its complex data structures inside a file don't have to be scanned to determine its type.
+
+In our case, they are:
+  * ELFMAG0 = 0x7f
+  * ELFMAG1 = 'E'
+  * ELFMAG2 = 'L'
+  * ELFMAG3 = 'F'
+
+Answer 10
+---------
+UIO_USERISPACE is used when the file being loaded is an executable, UIO_USERSPACE otherwise. Although currently in uio.c, they are treated as exactly the same.
+
+UIO_SYSSPACE is used to denote that the data being loaded is going to be contained entirely in 'system space'(i.e. 'kernel space').
+
+Answer 11
+---------
+The uio object is just an interface to vnode objects and it is just used to translate the data from a vnode to the address space 'vaddr' so it is not of any use after all the data has been translated; only the vnode and address space 'vaddr' are useful.
+
+Answer 12
+---------
+In runprogram() it is necessary to call vfs_close() since md_switch() does not return, and since the file has already been loaded into t_vmspace, it's not going to be used(or closed) anywhere else in the program, and if we don't close it right now then the reference count for the file will always be greater than 0 and we will be leaking memory every time we open a file.
+
+Answer 13
+---------
+The function md_usermode() sets up the registers to put the processor into usermode while asm_usermode has the actual instructions that do the job.
+
+Yes md_usermode() is machine dependent since it sets up specific registers that put the CPU into usermode.
+
+Answer 14
+---------
+'copyin' and 'copyout' are defined in 'kern/lib/copyinout.c', whereas memmove is defined in 'lib/libc/memmove.c'.
+
+'copyin' and 'copyout' cannot be implemented as simply as 'memmove', since 'memmove' works with data in the same space(either SYS or USER), whereas they copy data in/out from UIO_SYSSPACE to UIO_USER{,I}SPACE (or vice versa) so the virtual addresses must first be translated to physical addresses.
