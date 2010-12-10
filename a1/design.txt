@@ -1,0 +1,51 @@
+Read Request
+============
+
+  1. check if the file id is invalid ( 0 <= block_num < NUM_FILES); if so,
+     return 2.
+  2. lock the file at the file_id index in the file list
+  3. check if the block number is invalid ( 0 <= block_num < file_size); if so,
+     return 2.
+  4. search the block list in the file struct for the block number (found)
+  5. unlock the file
+  6. lock the cache slot at the cache_index
+  7. check if the cache slot at cache_index was not changed between 5 
+     and 6 by a different thread
+     
+  if the block wasn't changed:
+     8. read the cache block
+     9. unlock cache slot
+    10. return 1
+
+  if the block was changed (treat it as if it wasn't found):
+    11. unlock the cache block
+    12. find an empty slot in the cache; if not found select a random slot
+    13. lock new cache slot
+    14. if the new slot isn't empty evict the resident block
+    15. lock I/O
+    16. copy block from disk to cache
+    17. unlock I/O
+    18. update cache slot with cache info: dirty is 0
+    19. lock the file
+    20. add a new block to the block list
+    21. unlock the file
+    22. unlock the cache
+    23. return 0
+
+Evict Operation
+===============
+
+* Precondition: Lock for slot has already been acquired
+
+  1. check if the block in the given slot is dirty
+
+  if the block is dirty:
+    2. lock I/O
+    3. write block to disk
+    4. unlock I/O
+    5. mark slot as not dirty
+
+  6. lock the file owning the block
+  7. remove the block's node in the file's linked list
+  8. unlock the file
+  9. set the slot's file_id to -1
